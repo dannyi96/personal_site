@@ -1,3 +1,254 @@
 {
-  "interactions": {}
+  "interactions": {
+    "laptop_click": {
+      "objectId": "laptop",
+      "trigger": "click",
+      "action": "modal",
+      "target": "professional",
+      "animation": {
+        "type": "fade",
+        "duration": 300,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Professional information modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "window_click": {
+      "objectId": "window",
+      "trigger": "click",
+      "action": "toggle",
+      "target": "personal.environment",
+      "animation": {
+        "type": "slide",
+        "duration": 400,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Environment view toggled"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "map_click": {
+      "objectId": "map",
+      "trigger": "click",
+      "action": "panel",
+      "target": "personal.journey",
+      "animation": {
+        "type": "scale",
+        "duration": 350,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Journey map panel opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "notebook_click": {
+      "objectId": "notebook",
+      "trigger": "click",
+      "action": "inline",
+      "target": "personal.thinking",
+      "animation": {
+        "type": "fade",
+        "duration": 250,
+        "easing": "ease"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Thinking methodology revealed"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "bookshelf_click": {
+      "objectId": "bookshelf",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.reading",
+      "animation": {
+        "type": "slide",
+        "duration": 300,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Reading list modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "tv_click": {
+      "objectId": "tv",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.entertainment",
+      "animation": {
+        "type": "bounce",
+        "duration": 400,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": false,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Entertainment preferences revealed after puzzle completion"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "sports_gear_click": {
+      "objectId": "sports_gear",
+      "trigger": "click",
+      "action": "panel",
+      "target": "personal.activities",
+      "animation": {
+        "type": "scale",
+        "duration": 300,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Physical activities panel opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "clock_click": {
+      "objectId": "clock",
+      "trigger": "click",
+      "action": "inline",
+      "target": "personal.time",
+      "animation": {
+        "type": "fade",
+        "duration": 200,
+        "easing": "linear"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Time philosophy revealed"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "dustbin_click": {
+      "objectId": "dustbin",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.easter_egg",
+      "animation": {
+        "type": "bounce",
+        "duration": 500,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "interactive"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": false,
+        "announceToScreenReader": "Easter egg discovered!"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    }
+  },
+  "globalInteractions": {
+    "modeToggle": {
+      "key": "r",
+      "position": "top-right",
+      "label": "Toggle Recruiter Mode"
+    },
+    "navigation": {
+      "escapeKey": true,
+      "tabOrder": [
+        "laptop",
+        "window",
+        "map",
+        "notebook",
+        "bookshelf",
+        "tv",
+        "sports_gear",
+        "clock",
+        "dustbin"
+      ],
+      "arrowKeys": true
+    }
+  },
+  "accessibility": {
+    "announcements": {
+      "modeSwitch": "Switched to {mode} mode. {description}",
+      "contentRevealed": "New content revealed: {title}",
+      "objectUnlocked": "{objectName} has been unlocked and is now accessible",
+      "finalReveal": "Final content unlocked! You have explored enough to reveal the complete experience."
+    },
+    "focusManagement": {
+      "trapFocus": true,
+      "returnFocus": true
+    }
+  }
 }

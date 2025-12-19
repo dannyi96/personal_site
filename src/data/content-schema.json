@@ -1,0 +1,345 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Interactive Personal Website Content Schema",
+  "description": "Schema for content data structure including room objects and professional information",
+  "type": "object",
+  "properties": {
+    "objects": {
+      "type": "object",
+      "description": "Interactive objects in the room with their positions and content references",
+      "patternProperties": {
+        "^[a-zA-Z][a-zA-Z0-9_-]*$": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique identifier for the object"
+            },
+            "name": {
+              "type": "string",
+              "description": "Display name for the object"
+            },
+            "position": {
+              "type": "object",
+              "description": "Spatial position in the room",
+              "properties": {
+                "x": {
+                  "type": "string",
+                  "pattern": "^\\d+(\\.\\d+)?%$",
+                  "description": "X position as percentage"
+                },
+                "y": {
+                  "type": "string",
+                  "pattern": "^\\d+(\\.\\d+)?%$",
+                  "description": "Y position as percentage"
+                }
+              },
+              "required": ["x", "y"],
+              "additionalProperties": false
+            },
+            "contentRef": {
+              "type": "string",
+              "description": "Reference to content section"
+            },
+            "accessibility": {
+              "type": "object",
+              "description": "Accessibility attributes for the object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "description": "ARIA label for screen readers"
+                },
+                "role": {
+                  "type": "string",
+                  "description": "ARIA role"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Detailed description for assistive technologies"
+                }
+              },
+              "required": ["label", "role"],
+              "additionalProperties": false
+            },
+            "visual": {
+              "type": "object",
+              "description": "Visual representation properties",
+              "properties": {
+                "icon": {
+                  "type": "string",
+                  "description": "Icon or emoji representation"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Color theme for the object"
+                },
+                "size": {
+                  "type": "string",
+                  "enum": ["small", "medium", "large"],
+                  "description": "Relative size of the object"
+                }
+              },
+              "additionalProperties": false
+            },
+            "locked": {
+              "type": "boolean",
+              "description": "Whether the object requires unlocking",
+              "default": false
+            },
+            "puzzleRef": {
+              "type": "string",
+              "description": "Reference to puzzle required for unlocking"
+            }
+          },
+          "required": ["id", "name", "position", "contentRef", "accessibility"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "content": {
+      "type": "object",
+      "description": "Content sections referenced by objects",
+      "properties": {
+        "professional": {
+          "type": "object",
+          "description": "Professional information content",
+          "properties": {
+            "resume": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "summary": { "type": "string" },
+                "contact": {
+                  "type": "object",
+                  "properties": {
+                    "email": { "type": "string", "format": "email" },
+                    "phone": { "type": "string" },
+                    "location": { "type": "string" },
+                    "linkedin": { "type": "string", "format": "uri" },
+                    "github": { "type": "string", "format": "uri" },
+                    "website": { "type": "string", "format": "uri" }
+                  },
+                  "additionalProperties": false
+                },
+                "education": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "institution": { "type": "string" },
+                      "degree": { "type": "string" },
+                      "field": { "type": "string" },
+                      "year": { "type": "string" },
+                      "gpa": { "type": "string" },
+                      "honors": { "type": "array", "items": { "type": "string" } }
+                    },
+                    "required": ["institution", "degree", "field", "year"],
+                    "additionalProperties": false
+                  }
+                },
+                "certifications": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string" },
+                      "issuer": { "type": "string" },
+                      "date": { "type": "string" },
+                      "url": { "type": "string", "format": "uri" }
+                    },
+                    "required": ["name", "issuer", "date"],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": ["title", "summary", "contact"],
+              "additionalProperties": false
+            },
+            "experience": {
+              "type": "array",
+              "description": "Work experience entries",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "company": { "type": "string" },
+                  "position": { "type": "string" },
+                  "startDate": { "type": "string" },
+                  "endDate": { "type": "string" },
+                  "current": { "type": "boolean", "default": false },
+                  "location": { "type": "string" },
+                  "description": { "type": "string" },
+                  "achievements": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "technologies": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                },
+                "required": ["company", "position", "startDate", "description"],
+                "additionalProperties": false
+              }
+            },
+            "projects": {
+              "type": "array",
+              "description": "Project portfolio entries",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "description": { "type": "string" },
+                  "technologies": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "url": { "type": "string", "format": "uri" },
+                  "github": { "type": "string", "format": "uri" },
+                  "demo": { "type": "string", "format": "uri" },
+                  "status": {
+                    "type": "string",
+                    "enum": ["completed", "in-progress", "planned"]
+                  },
+                  "highlights": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "images": {
+                    "type": "array",
+                    "items": { "type": "string", "format": "uri" }
+                  }
+                },
+                "required": ["name", "description", "technologies"],
+                "additionalProperties": false
+              }
+            },
+            "skills": {
+              "type": "object",
+              "description": "Skills organized by category",
+              "properties": {
+                "technical": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "languages": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string" },
+                      "proficiency": {
+                        "type": "string",
+                        "enum": ["beginner", "intermediate", "advanced", "native"]
+                      }
+                    },
+                    "required": ["name", "proficiency"],
+                    "additionalProperties": false
+                  }
+                },
+                "frameworks": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "tools": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "soft": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": ["resume", "experience", "projects", "skills"],
+          "additionalProperties": false
+        },
+        "personal": {
+          "type": "object",
+          "description": "Personal content for various objects",
+          "patternProperties": {
+            "^[a-zA-Z][a-zA-Z0-9_-]*$": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "content": { "type": "string" },
+                "type": {
+                  "type": "string",
+                  "enum": ["text", "markdown", "html", "list", "gallery"]
+                },
+                "data": {
+                  "description": "Additional structured data based on content type"
+                }
+              },
+              "required": ["title", "content", "type"],
+              "additionalProperties": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["professional"],
+      "additionalProperties": false
+    },
+    "puzzles": {
+      "type": "object",
+      "description": "Puzzle definitions for locked content",
+      "patternProperties": {
+        "^[a-zA-Z][a-zA-Z0-9_-]*$": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "type": {
+              "type": "string",
+              "enum": ["riddle", "code", "sequence", "trivia"]
+            },
+            "question": { "type": "string" },
+            "answer": { "type": "string" },
+            "hints": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "difficulty": {
+              "type": "string",
+              "enum": ["easy", "medium", "hard"]
+            }
+          },
+          "required": ["id", "type", "question", "answer"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Site metadata and configuration",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "author": { "type": "string" },
+        "version": { "type": "string" },
+        "explorationThreshold": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of objects to explore before final reveal"
+        },
+        "finalReveal": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "content": { "type": "string" },
+            "type": { "type": "string", "enum": ["text", "markdown", "html"] }
+          },
+          "required": ["title", "content", "type"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["title", "description", "author", "explorationThreshold"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["objects", "content", "metadata"],
+  "additionalProperties": false
+}

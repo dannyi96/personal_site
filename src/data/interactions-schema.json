@@ -1,0 +1,207 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Interactive Personal Website Interactions Schema",
+  "description": "Schema for object interaction definitions and behavior",
+  "type": "object",
+  "properties": {
+    "interactions": {
+      "type": "object",
+      "description": "Interaction definitions for room objects",
+      "patternProperties": {
+        "^[a-zA-Z][a-zA-Z0-9_-]*$": {
+          "type": "object",
+          "properties": {
+            "objectId": {
+              "type": "string",
+              "description": "ID of the object this interaction applies to"
+            },
+            "trigger": {
+              "type": "string",
+              "enum": ["click", "hover", "focus", "keypress"],
+              "description": "Event that triggers the interaction"
+            },
+            "action": {
+              "type": "string",
+              "enum": ["modal", "panel", "inline", "toggle", "navigate"],
+              "description": "Type of action to perform"
+            },
+            "target": {
+              "type": "string",
+              "description": "Target content or element for the action"
+            },
+            "animation": {
+              "type": "object",
+              "description": "Animation properties for the interaction",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["fade", "slide", "scale", "bounce", "none"]
+                },
+                "duration": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Animation duration in milliseconds"
+                },
+                "easing": {
+                  "type": "string",
+                  "enum": ["linear", "ease", "ease-in", "ease-out", "ease-in-out"]
+                }
+              },
+              "additionalProperties": false
+            },
+            "conditions": {
+              "type": "object",
+              "description": "Conditions that must be met for interaction",
+              "properties": {
+                "unlocked": {
+                  "type": "boolean",
+                  "description": "Whether object must be unlocked"
+                },
+                "visitedObjects": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "Objects that must be visited first"
+                },
+                "mode": {
+                  "type": "string",
+                  "enum": ["interactive", "recruiter", "both"],
+                  "description": "Mode in which interaction is available"
+                }
+              },
+              "additionalProperties": false
+            },
+            "effects": {
+              "type": "object",
+              "description": "Side effects of the interaction",
+              "properties": {
+                "trackVisit": {
+                  "type": "boolean",
+                  "description": "Whether to track this as a visited object",
+                  "default": true
+                },
+                "incrementExploration": {
+                  "type": "boolean",
+                  "description": "Whether to increment exploration counter",
+                  "default": true
+                },
+                "unlockObjects": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "Objects to unlock after this interaction"
+                },
+                "announceToScreenReader": {
+                  "type": "string",
+                  "description": "Message to announce to screen readers"
+                }
+              },
+              "additionalProperties": false
+            },
+            "keyboard": {
+              "type": "object",
+              "description": "Keyboard interaction properties",
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "description": "Key that triggers the interaction"
+                },
+                "modifiers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["ctrl", "alt", "shift", "meta"]
+                  },
+                  "description": "Required modifier keys"
+                },
+                "focusable": {
+                  "type": "boolean",
+                  "description": "Whether object can receive keyboard focus",
+                  "default": true
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": ["objectId", "trigger", "action", "target"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "globalInteractions": {
+      "type": "object",
+      "description": "Global interaction behaviors",
+      "properties": {
+        "modeToggle": {
+          "type": "object",
+          "properties": {
+            "key": { "type": "string" },
+            "position": {
+              "type": "string",
+              "enum": ["top-left", "top-right", "bottom-left", "bottom-right"]
+            },
+            "label": { "type": "string" }
+          },
+          "required": ["key", "position", "label"],
+          "additionalProperties": false
+        },
+        "navigation": {
+          "type": "object",
+          "properties": {
+            "escapeKey": {
+              "type": "boolean",
+              "description": "Whether ESC key closes modals",
+              "default": true
+            },
+            "tabOrder": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Custom tab order for objects"
+            },
+            "arrowKeys": {
+              "type": "boolean",
+              "description": "Whether arrow keys navigate between objects",
+              "default": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "accessibility": {
+      "type": "object",
+      "description": "Global accessibility settings",
+      "properties": {
+        "announcements": {
+          "type": "object",
+          "properties": {
+            "modeSwitch": { "type": "string" },
+            "contentRevealed": { "type": "string" },
+            "objectUnlocked": { "type": "string" },
+            "finalReveal": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "focusManagement": {
+          "type": "object",
+          "properties": {
+            "trapFocus": {
+              "type": "boolean",
+              "description": "Whether to trap focus in modals",
+              "default": true
+            },
+            "returnFocus": {
+              "type": "boolean",
+              "description": "Whether to return focus after modal close",
+              "default": true
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["interactions"],
+  "additionalProperties": false
+}
