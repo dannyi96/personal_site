@@ -128,12 +128,18 @@ export default class ContentModal {
     this.handleKeydown = (event) => {
       if (event.key === 'Escape' && this.isOpen) {
         event.preventDefault();
+        event.stopPropagation();
         this.close();
       }
       
       // Handle focus trapping for modal mode
       if (this.mode === 'modal' && this.isOpen && this.trapFocus) {
         this.handleFocusTrap(event);
+      }
+      
+      // Handle additional keyboard shortcuts
+      if (this.isOpen) {
+        this.handleModalKeydown(event);
       }
     };
     
@@ -147,6 +153,43 @@ export default class ContentModal {
     }
     
     document.addEventListener('keydown', this.handleKeydown);
+  }
+  
+  handleModalKeydown(event) {
+    // Handle Ctrl+W or Cmd+W to close modal (common pattern)
+    if (event.key === 'w' && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault();
+      this.close();
+    }
+    
+    // Handle Enter key on close button
+    if (event.key === 'Enter' && event.target === this.closeButton) {
+      event.preventDefault();
+      this.close();
+    }
+    
+    // Handle Home/End keys for content navigation
+    if (event.key === 'Home' || event.key === 'End') {
+      this.handleHomeEndNavigation(event);
+    }
+  }
+  
+  handleHomeEndNavigation(event) {
+    if (!this.contentContainer) return;
+    
+    const focusableElements = Array.from(
+      this.contentContainer.querySelectorAll('button, input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])')
+    ).filter(el => el.offsetWidth > 0 && el.offsetHeight > 0 && !el.hidden);
+    
+    if (focusableElements.length === 0) return;
+    
+    if (event.key === 'Home' && !event.ctrlKey) {
+      event.preventDefault();
+      focusableElements[0].focus();
+    } else if (event.key === 'End' && !event.ctrlKey) {
+      event.preventDefault();
+      focusableElements[focusableElements.length - 1].focus();
+    }
   }
   
   handleFocusTrap(event) {

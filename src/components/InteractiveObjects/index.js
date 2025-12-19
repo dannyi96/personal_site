@@ -152,8 +152,11 @@ export default class InteractiveObject {
   
   handleArrowKeyNavigation(key) {
     // Get all focusable objects in tab order
-    const allObjects = document.querySelectorAll('.room-object[tabindex="0"]');
-    const currentIndex = Array.from(allObjects).indexOf(this.element);
+    const allObjects = Array.from(document.querySelectorAll('.room-object[tabindex="0"]'))
+      .filter(el => el.offsetWidth > 0 && el.offsetHeight > 0 && !el.hidden);
+    
+    const currentIndex = allObjects.indexOf(this.element);
+    if (currentIndex === -1) return;
     
     let nextIndex;
     switch (key) {
@@ -169,6 +172,11 @@ export default class InteractiveObject {
     
     if (nextIndex !== undefined && allObjects[nextIndex]) {
       allObjects[nextIndex].focus();
+      
+      // Announce navigation to screen readers
+      const targetElement = allObjects[nextIndex];
+      const targetName = targetElement.getAttribute('aria-label') || targetElement.dataset.objectId;
+      this.announceToScreenReader(`Navigated to ${targetName}`);
     }
   }
   

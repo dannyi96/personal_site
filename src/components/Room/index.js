@@ -142,19 +142,47 @@ export default class Room {
   }
   
   setupKeyboardNavigation() {
-    // Set up tab order based on interaction data
-    const tabOrder = this.interactionData?.globalInteractions?.navigation?.tabOrder || [];
-    
-    tabOrder.forEach((objectId, index) => {
-      const interactiveObject = this.objects[objectId];
-      if (interactiveObject) {
-        const element = interactiveObject.getElement();
-        element.style.zIndex = 100 + index; // Ensure proper stacking order
+    // Import accessibility utilities
+    import('../../utils/accessibility.js').then((module) => {
+      const { accessibilityUtils } = module;
+      
+      // Set up tab order based on interaction data
+      const tabOrder = this.interactionData?.globalInteractions?.navigation?.tabOrder || [];
+      
+      tabOrder.forEach((objectId, index) => {
+        const interactiveObject = this.objects[objectId];
+        if (interactiveObject) {
+          const element = interactiveObject.getElement();
+          element.style.zIndex = 100 + index; // Ensure proper stacking order
+          element.setAttribute('tabindex', '0');
+        }
+      });
+      
+      // Set up arrow key navigation for objects
+      if (this.currentMode === 'interactive') {
+        this.arrowNavCleanup = accessibilityUtils.setupArrowKeyNavigation(this.container, {
+          selector: '.room-object[tabindex="0"]',
+          wrap: true,
+          announceNavigation: true
+        });
       }
+      
+      // Add keyboard navigation for the room container
+      this.container.addEventListener('keydown', this.handleRoomKeydown.bind(this));
+      
+      // Set up escape key handler for closing modals
+      this.escapeHandler = accessibilityUtils.addKeyboardHandler('Escape', (event) => {
+        this.closeAllModals();
+      });
+      
+      // Add skip to content functionality
+      this.addSkipToContentLink();
+      
+    }).catch(error => {
+      console.error('Failed to load accessibility utilities:', error);
+      // Fallback to basic keyboard navigation
+      this.container.addEventListener('keydown', this.handleRoomKeydown.bind(this));
     });
-    
-    // Add keyboard navigation for the room container
-    this.container.addEventListener('keydown', this.handleRoomKeydown.bind(this));
   }
   
   // Event handlers for specific object interactions
@@ -248,6 +276,112 @@ export default class Room {
     if (event.key === 'Escape') {
       this.closeAllModals();
     }
+    
+    // Handle tab order management
+    if (event.key === 'Tab') {
+      this.handleTabNavigation(event);
+    }
+    
+    // Handle home/end keys for quick navigation
+    if (event.key === 'Home' || event.key === 'End') {
+      this.handleHomeEndNavigation(event);
+    }
+    
+    // Handle number keys for quick object access (1-9)
+    if (event.key >= '1' && event.key <= '9' && !event.ctrlKey && !event.metaKey && !event.altKey) {
+      this.handleNumberKeyNavigation(event);
+    }
+  }
+  
+  handleTabNavigation(event) {
+    if (this.currentMode !== 'interactive') return;
+    
+    const focusableObjects = Array.from(this.container.querySelectorAll('.room-object[tabindex="0"]'))
+      .filter(el => el.offsetWidth > 0 && el.offsetHeight > 0 && !el.hidden);
+    
+    if (focusableObjects.length === 0) return;
+    
+    // If we're not currently focused on an object, focus the first one
+    if (!focusableObjects.includes(document.activeElement)) {
+      event.preventDefault();
+      focusableObjects[0].focus();
+    }
+  }
+  
+  handleHomeEndNavigation(event) {
+    if (this.currentMode !== 'interactive') return;
+    
+    const focusableObjects = Array.from(this.container.querySelectorAll('.room-object[tabindex="0"]'))
+      .filter(el => el.offsetWidth > 0 && el.offsetHeight > 0 && !el.hidden);
+    
+    if (focusableObjects.length === 0) return;
+    
+    event.preventDefault();
+    
+    if (event.key === 'Home') {
+      focusableObjects[0].focus();
+      this.announceToScreenReader('Moved to first interactive object');
+    } else if (event.key === 'End') {
+      focusableObjects[focusableObjects.length - 1].focus();
+      this.announceToScreenReader('Moved to last interactive object');
+    }
+  }
+  
+  handleNumberKeyNavigation(event) {
+    if (this.currentMode !== 'interactive') return;
+    
+    const number = parseInt(event.key);
+    const focusableObjects = Array.from(this.container.querySelectorAll('.room-object[tabindex="0"]'))
+      .filter(el => el.offsetWidth > 0 && el.offsetHeight > 0 && !el.hidden);
+    
+    if (number > 0 && number <= focusableObjects.length) {
+      event.preventDefault();
+      const targetObject = focusableObjects[number - 1];
+      targetObject.focus();
+      
+      const objectId = targetObject.dataset.objectId;
+      const objectName = targetObject.getAttribute('aria-label') || objectId;
+      this.announceToScreenReader(`Jumped to ${objectName}`);
+    }
+  }
+  
+  addSkipToContentLink() {
+    // Check if skip link already exists
+    if (document.getElementById('skip-to-content')) return;
+    
+    const skipLink = document.createElement('a');
+    skipLink.id = 'skip-to-content';
+    skipLink.href = '#room-container';
+    skipLink.className = 'skip-link';
+    skipLink.textContent = 'Skip to main content';
+    skipLink.style.cssText = `
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: #000;
+      color: #fff;
+      padding: 8px;
+      text-decoration: none;
+      border-radius: 4px;
+      z-index: 10000;
+      transition: top 0.3s;
+    `;
+    
+    skipLink.addEventListener('focus', () => {
+      skipLink.style.top = '6px';
+    });
+    
+    skipLink.addEventListener('blur', () => {
+      skipLink.style.top = '-40px';
+    });
+    
+    skipLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      this.container.focus();
+      this.announceToScreenReader('Skipped to main room content');
+    });
+    
+    document.body.insertBefore(skipLink, document.body.firstChild);
   }
   
 
@@ -437,9 +571,35 @@ export default class Room {
   
   // Method to refresh the room (useful for state changes)
   refresh() {
+    this.cleanup();
     this.setupRoom();
     this.renderObjects();
     this.setupEventListeners();
     this.setupKeyboardNavigation();
+  }
+  
+  // Cleanup method for navigation handlers
+  cleanup() {
+    if (this.arrowNavCleanup) {
+      this.arrowNavCleanup();
+      this.arrowNavCleanup = null;
+    }
+    
+    if (this.escapeHandler) {
+      this.escapeHandler();
+      this.escapeHandler = null;
+    }
+  }
+  
+  // Destroy method for complete cleanup
+  destroy() {
+    this.cleanup();
+    this.closeAllModals();
+    
+    // Remove skip link
+    const skipLink = document.getElementById('skip-to-content');
+    if (skipLink && skipLink.parentNode) {
+      skipLink.parentNode.removeChild(skipLink);
+    }
   }
 }

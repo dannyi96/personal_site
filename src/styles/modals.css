@@ -372,6 +372,69 @@ body.modal-open {
   }
 }
 
+/* Keyboard navigation styles */
+body.keyboard-navigation .content-modal *:focus {
+  outline: 2px solid var(--modal-focus);
+  outline-offset: 2px;
+}
+
+.content-modal .focus-visible {
+  outline: 2px solid var(--modal-focus);
+  outline-offset: 2px;
+}
+
+/* Focus trap indicator */
+.content-modal-modal[aria-modal="true"] {
+  position: relative;
+}
+
+.content-modal-modal[aria-modal="true"]::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  border: 3px solid var(--modal-focus);
+  z-index: -1;
+  opacity: 0.1;
+}
+
+/* Enhanced focus styles for modal controls */
+.modal-close:focus,
+.panel-close:focus,
+.inline-collapse:focus {
+  outline: 3px solid var(--modal-focus);
+  outline-offset: 2px;
+  background: rgba(74, 144, 226, 0.1);
+  transform: scale(1.05);
+}
+
+/* Content focus styles */
+.modal-content *:focus,
+.panel-content *:focus,
+.inline-content *:focus {
+  outline: 2px solid var(--modal-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Button focus styles */
+.modal-content button:focus,
+.panel-content button:focus,
+.inline-content button:focus {
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+}
+
+/* Link focus styles */
+.modal-content a:focus,
+.panel-content a:focus,
+.inline-content a:focus {
+  background: rgba(74, 144, 226, 0.1);
+  border-radius: 2px;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .content-modal-modal .modal-overlay,
@@ -387,6 +450,12 @@ body.modal-open {
   
   .content-modal-panel[aria-hidden="false"] {
     right: 0;
+  }
+  
+  .modal-close:focus,
+  .panel-close:focus,
+  .inline-collapse:focus {
+    transform: none;
   }
 }
 
