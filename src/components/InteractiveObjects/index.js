@@ -130,13 +130,11 @@ export default class InteractiveObject {
   handleMouseEnter(event) {
     if (!this.isLocked || this.stateManager.isContentUnlocked(this.objectData.id)) {
       this.element.classList.add('object-hover');
-      this.element.style.transform = 'translate(-50%, -50%) scale(1.05)';
     }
   }
   
   handleMouseLeave(event) {
     this.element.classList.remove('object-hover');
-    this.element.style.transform = 'translate(-50%, -50%) scale(1)';
   }
   
   handleFocus(event) {

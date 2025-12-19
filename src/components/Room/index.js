@@ -119,7 +119,8 @@ export default class Room {
     this.makeFurnitureInteractive(window, 'window');
     
     const bookshelf = document.createElement('div');
-    bookshelf.className = 'room-bookshelf';
+    bookshelf.className = 'room-bookshelf room-interactive-furniture';
+    bookshelf.setAttribute('data-object-id', 'bookshelf');
     
     // Add bookshelf shelves and books
     for (let i = 1; i <= 4; i++) {
@@ -128,22 +129,50 @@ export default class Room {
       bookshelf.appendChild(shelf);
     }
     
-    // Add some books to the first shelf
-    const books = [
-      { class: 'book book-1' },
-      { class: 'book book-2' },
-      { class: 'book book-3' },
-      { class: 'book book-4' }
+    // Add books to all shelves with variety
+    const bookColors = ['#8b4513', '#228b22', '#4169e1', '#dc143c', '#ff8c00', '#9932cc', '#2e8b57', '#b22222', '#4682b4', '#d2691e'];
+    const bookWidths = [6, 8, 10, 12, 7, 9, 11];
+    const bookHeights = [35, 40, 38, 42, 36, 39, 41];
+    
+    // Books for each shelf
+    const shelfBooks = [
+      { count: 8, startLeft: 8 },   // Shelf 1
+      { count: 7, startLeft: 10 },  // Shelf 2  
+      { count: 9, startLeft: 6 },   // Shelf 3
+      { count: 6, startLeft: 12 }   // Shelf 4
     ];
     
-    books.forEach(bookData => {
-      const book = document.createElement('div');
-      book.className = bookData.class;
-      bookshelf.appendChild(book);
+    shelfBooks.forEach((shelfData, shelfIndex) => {
+      let currentLeft = shelfData.startLeft;
+      
+      for (let bookIndex = 0; bookIndex < shelfData.count; bookIndex++) {
+        const book = document.createElement('div');
+        book.className = 'book';
+        
+        const colorIndex = (shelfIndex * shelfData.count + bookIndex) % bookColors.length;
+        const widthIndex = bookIndex % bookWidths.length;
+        const heightIndex = bookIndex % bookHeights.length;
+        
+        book.style.background = bookColors[colorIndex];
+        book.style.width = `${bookWidths[widthIndex]}px`;
+        book.style.height = `${bookHeights[heightIndex]}px`;
+        book.style.left = `${currentLeft}%`;
+        book.style.top = `${20 + (shelfIndex * 20)}%`;
+        
+        // Add some books with slight tilt for realism
+        if (bookIndex % 3 === 0) {
+          book.style.transform = 'rotate(2deg)';
+        } else if (bookIndex % 4 === 0) {
+          book.style.transform = 'rotate(-1deg)';
+        }
+        
+        bookshelf.appendChild(book);
+        currentLeft += (bookWidths[widthIndex] / bookshelf.offsetWidth * 100) + 2; // 2% gap between books
+      }
     });
     
-    // Add bookshelf interactive object
-    this.addInteractiveObjectToContainer(bookshelf, 'bookshelf');
+    // Make bookshelf directly interactive
+    this.makeFurnitureInteractive(bookshelf, 'bookshelf');
     
     const desk = document.createElement('div');
     desk.className = 'room-desk';

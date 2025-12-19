@@ -27,7 +27,7 @@
     "window_click": {
       "objectId": "window",
       "trigger": "click",
-      "action": "toggle",
+      "action": "modal",
       "target": "personal.environment",
       "animation": {
         "type": "slide",
@@ -41,7 +41,7 @@
       "effects": {
         "trackVisit": true,
         "incrementExploration": true,
-        "announceToScreenReader": "Environment view toggled"
+        "announceToScreenReader": "Environment preferences modal opened"
       },
       "keyboard": {
         "key": "Enter",
@@ -51,7 +51,7 @@
     "map_click": {
       "objectId": "map",
       "trigger": "click",
-      "action": "panel",
+      "action": "modal",
       "target": "personal.journey",
       "animation": {
         "type": "scale",
@@ -65,7 +65,7 @@
       "effects": {
         "trackVisit": true,
         "incrementExploration": true,
-        "announceToScreenReader": "Journey map panel opened"
+        "announceToScreenReader": "Journey map modal opened"
       },
       "keyboard": {
         "key": "Enter",
@@ -75,7 +75,7 @@
     "notebook_click": {
       "objectId": "notebook",
       "trigger": "click",
-      "action": "inline",
+      "action": "modal",
       "target": "personal.thinking",
       "animation": {
         "type": "fade",
@@ -89,7 +89,7 @@
       "effects": {
         "trackVisit": true,
         "incrementExploration": true,
-        "announceToScreenReader": "Thinking methodology revealed"
+        "announceToScreenReader": "Thinking methodology modal opened"
       },
       "keyboard": {
         "key": "Enter",
@@ -147,7 +147,7 @@
     "sports_gear_click": {
       "objectId": "sports_gear",
       "trigger": "click",
-      "action": "panel",
+      "action": "modal",
       "target": "personal.activities",
       "animation": {
         "type": "scale",
@@ -161,7 +161,7 @@
       "effects": {
         "trackVisit": true,
         "incrementExploration": true,
-        "announceToScreenReader": "Physical activities panel opened"
+        "announceToScreenReader": "Physical activities modal opened"
       },
       "keyboard": {
         "key": "Enter",
@@ -171,7 +171,7 @@
     "clock_click": {
       "objectId": "clock",
       "trigger": "click",
-      "action": "inline",
+      "action": "modal",
       "target": "personal.time",
       "animation": {
         "type": "fade",
@@ -185,7 +185,7 @@
       "effects": {
         "trackVisit": true,
         "incrementExploration": true,
-        "announceToScreenReader": "Time philosophy revealed"
+        "announceToScreenReader": "Time philosophy modal opened"
       },
       "keyboard": {
         "key": "Enter",

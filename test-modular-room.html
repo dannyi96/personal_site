@@ -40,8 +40,8 @@
         }
         
         .test-object:hover {
-            transform: scale(1.2);
             background: #3182ce;
+            filter: brightness(1.1);
         }
     </style>
 </head>
@@ -76,24 +76,32 @@
             <div class="room-window room-interactive-furniture" tabindex="0" role="button" aria-label="Window showing environment preferences" data-object-id="window">
             </div>
             
-            <!-- Bookshelf with interactive object -->
-            <div class="room-bookshelf">
+            <!-- Bookshelf - directly interactive with many books -->
+            <div class="room-bookshelf room-interactive-furniture" tabindex="0" role="button" aria-label="Bookshelf with reading list and favorite books" data-object-id="bookshelf">
                 <!-- Shelves -->
                 <div class="bookshelf-shelf"></div>
                 <div class="bookshelf-shelf"></div>
                 <div class="bookshelf-shelf"></div>
                 <div class="bookshelf-shelf"></div>
                 
-                <!-- Books -->
-                <div class="book book-1"></div>
-                <div class="book book-2"></div>
-                <div class="book book-3"></div>
-                <div class="book book-4"></div>
+                <!-- Books - many more books for realistic look -->
+                <div class="book" style="background: #8b4513; width: 8px; height: 38px; left: 8%; top: 22%;"></div>
+                <div class="book" style="background: #228b22; width: 6px; height: 40px; left: 18%; top: 20%;"></div>
+                <div class="book" style="background: #4169e1; width: 10px; height: 36px; left: 26%; top: 24%;"></div>
+                <div class="book" style="background: #dc143c; width: 7px; height: 42px; left: 38%; top: 18%;"></div>
+                <div class="book" style="background: #ff8c00; width: 9px; height: 39px; left: 47%; top: 21%;"></div>
+                <div class="book" style="background: #9932cc; width: 11px; height: 37px; left: 58%; top: 23%;"></div>
+                <div class="book" style="background: #2e8b57; width: 8px; height: 41px; left: 71%; top: 19%;"></div>
+                <div class="book" style="background: #b22222; width: 6px; height: 38px; left: 81%; top: 22%;"></div>
                 
-                <!-- Interactive object -->
-                <div class="test-object room-object">
-                    📚
-                </div>
+                <!-- Second shelf -->
+                <div class="book" style="background: #4682b4; width: 7px; height: 40px; left: 10%; top: 42%;"></div>
+                <div class="book" style="background: #d2691e; width: 9px; height: 36px; left: 19%; top: 44%;"></div>
+                <div class="book" style="background: #8b4513; width: 12px; height: 42px; left: 30%; top: 38%;"></div>
+                <div class="book" style="background: #228b22; width: 8px; height: 39px; left: 44%; top: 41%;"></div>
+                <div class="book" style="background: #4169e1; width: 10px; height: 37px; left: 54%; top: 43%;"></div>
+                <div class="book" style="background: #dc143c; width: 6px; height: 41px; left: 66%; top: 39%;"></div>
+                <div class="book" style="background: #ff8c00; width: 11px; height: 38px; left: 74%; top: 42%;"></div>
             </div>
             
             <!-- Desk with two interactive objects -->
