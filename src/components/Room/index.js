@@ -85,30 +85,171 @@ export default class Room {
       return;
     }
     
-    // Create objects container
-    const objectsContainer = document.createElement('div');
-    objectsContainer.className = 'room-objects';
-    objectsContainer.setAttribute('role', 'group');
-    objectsContainer.setAttribute('aria-label', 'Interactive room objects');
+    // Create room background elements with embedded interactive objects
+    this.renderRoomBackgroundWithObjects();
+  }
+  
+  renderRoomBackgroundWithObjects() {
+    // Create background container
+    const backgroundContainer = document.createElement('div');
+    backgroundContainer.className = 'room-background';
     
-    // Render each object using ObjectFactory
-    Object.values(this.contentData.objects).forEach(objectData => {
-      const interactiveObject = ObjectFactory.createObject(
-        objectData,
-        this.contentData,
-        this.interactionData,
-        this.stateManager
-      );
-      
-      if (interactiveObject) {
-        const objectElement = interactiveObject.getElement();
-        objectsContainer.appendChild(objectElement);
-        this.objects[objectData.id] = interactiveObject;
-      }
+    // Room structure elements
+    const floor = document.createElement('div');
+    floor.className = 'room-floor';
+    
+    const backWall = document.createElement('div');
+    backWall.className = 'room-back-wall';
+    
+    const leftWall = document.createElement('div');
+    leftWall.className = 'room-left-wall';
+    
+    const rightWall = document.createElement('div');
+    rightWall.className = 'room-right-wall';
+    
+    const ceiling = document.createElement('div');
+    ceiling.className = 'room-ceiling';
+    
+    // Furniture elements with embedded interactive objects
+    const window = document.createElement('div');
+    window.className = 'room-window';
+    
+    // Add window interactive object
+    this.addInteractiveObjectToContainer(window, 'window');
+    
+    const bookshelf = document.createElement('div');
+    bookshelf.className = 'room-bookshelf';
+    
+    // Add bookshelf shelves and books
+    for (let i = 1; i <= 4; i++) {
+      const shelf = document.createElement('div');
+      shelf.className = 'bookshelf-shelf';
+      bookshelf.appendChild(shelf);
+    }
+    
+    // Add some books to the first shelf
+    const books = [
+      { class: 'book book-1' },
+      { class: 'book book-2' },
+      { class: 'book book-3' },
+      { class: 'book book-4' }
+    ];
+    
+    books.forEach(bookData => {
+      const book = document.createElement('div');
+      book.className = bookData.class;
+      bookshelf.appendChild(book);
     });
     
-    this.container.appendChild(objectsContainer);
+    // Add bookshelf interactive object
+    this.addInteractiveObjectToContainer(bookshelf, 'bookshelf');
+    
+    const desk = document.createElement('div');
+    desk.className = 'room-desk';
+    
+    // Add desk legs
+    const leftLeg = document.createElement('div');
+    leftLeg.className = 'desk-leg desk-leg-left';
+    desk.appendChild(leftLeg);
+    
+    const rightLeg = document.createElement('div');
+    rightLeg.className = 'desk-leg desk-leg-right';
+    desk.appendChild(rightLeg);
+    
+    // Add laptop and notebook to desk
+    this.addInteractiveObjectToContainer(desk, 'laptop');
+    this.addInteractiveObjectToContainer(desk, 'notebook');
+    
+    const tvStand = document.createElement('div');
+    tvStand.className = 'room-tv-stand';
+    
+    // Add TV to TV stand
+    this.addInteractiveObjectToContainer(tvStand, 'tv');
+    
+    const clockArea = document.createElement('div');
+    clockArea.className = 'room-clock-area';
+    
+    // Add clock to clock area
+    this.addInteractiveObjectToContainer(clockArea, 'clock');
+    
+    const picture = document.createElement('div');
+    picture.className = 'room-picture';
+    
+    // Add map to picture frame
+    this.addInteractiveObjectToContainer(picture, 'map');
+    
+    const carpet = document.createElement('div');
+    carpet.className = 'room-carpet';
+    
+    // Add sports gear to carpet area
+    this.addInteractiveObjectToContainer(carpet, 'sports_gear');
+    
+    // Add dustbin to floor (not in furniture)
+    this.addInteractiveObjectToContainer(floor, 'dustbin');
+    
+    const lighting = document.createElement('div');
+    lighting.className = 'room-lighting';
+    
+    // Floor shadows
+    const deskShadow = document.createElement('div');
+    deskShadow.className = 'floor-shadow shadow-desk';
+    
+    const tvShadow = document.createElement('div');
+    tvShadow.className = 'floor-shadow shadow-tv';
+    
+    const bookshelfShadow = document.createElement('div');
+    bookshelfShadow.className = 'floor-shadow shadow-bookshelf';
+    
+    // Append all elements in proper z-order
+    backgroundContainer.appendChild(backWall);
+    backgroundContainer.appendChild(leftWall);
+    backgroundContainer.appendChild(rightWall);
+    backgroundContainer.appendChild(ceiling);
+    backgroundContainer.appendChild(floor);
+    backgroundContainer.appendChild(window);
+    backgroundContainer.appendChild(bookshelf);
+    backgroundContainer.appendChild(desk);
+    backgroundContainer.appendChild(tvStand);
+    backgroundContainer.appendChild(clockArea);
+    backgroundContainer.appendChild(picture);
+    backgroundContainer.appendChild(carpet);
+    backgroundContainer.appendChild(deskShadow);
+    backgroundContainer.appendChild(tvShadow);
+    backgroundContainer.appendChild(bookshelfShadow);
+    backgroundContainer.appendChild(lighting);
+    
+    this.container.appendChild(backgroundContainer);
   }
+  
+  addInteractiveObjectToContainer(container, objectId) {
+    const objectData = this.contentData.objects[objectId];
+    if (!objectData) return;
+    
+    const interactiveObject = ObjectFactory.createObject(
+      objectData,
+      this.contentData,
+      this.interactionData,
+      this.stateManager
+    );
+    
+    if (interactiveObject) {
+      const objectElement = interactiveObject.getElement();
+      
+      // Remove absolute positioning - objects will be positioned naturally within containers
+      objectElement.style.position = 'relative';
+      objectElement.style.left = 'auto';
+      objectElement.style.top = 'auto';
+      objectElement.style.transform = 'none';
+      
+      // Add container-specific classes for fine-tuning if needed
+      objectElement.classList.add(`in-${container.className.replace('room-', '')}`);
+      
+      container.appendChild(objectElement);
+      this.objects[objectId] = interactiveObject;
+    }
+  }
+  
+
   
   renderRecruiterMode() {
     if (!this.recruiterMode) {

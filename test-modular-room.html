@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modular Room Background</title>
+    <link rel="stylesheet" href="src/styles/room.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .test-info {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+            max-width: 300px;
+        }
+        
+        .test-object {
+            width: 40px;
+            height: 40px;
+            background: #4299e1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .test-object:hover {
+            transform: scale(1.2);
+            background: #3182ce;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <strong>Modular Room Background Test</strong><br>
+        This test shows the new modular HTML/CSS room structure with interactive objects embedded inside furniture elements.
+        <br><br>
+        <strong>Features:</strong><br>
+        • Individual HTML elements for each furniture piece<br>
+        • Interactive objects positioned within their containers<br>
+        • CSS flexbox for natural positioning<br>
+        • Hover effects and animations
+    </div>
+
+    <div id="room-container" class="room-container">
+        <div class="room-background">
+            <!-- Room structure -->
+            <div class="room-back-wall"></div>
+            <div class="room-left-wall"></div>
+            <div class="room-right-wall"></div>
+            <div class="room-ceiling"></div>
+            <div class="room-floor">
+                <!-- Dustbin on floor -->
+                <div class="test-object room-object" style="position: absolute; left: 15%; bottom: 15%;">
+                    🗑️
+                </div>
+            </div>
+            
+            <!-- Window with interactive object -->
+            <div class="room-window">
+                <div class="test-object room-object">
+                    🪟
+                </div>
+            </div>
+            
+            <!-- Bookshelf with interactive object -->
+            <div class="room-bookshelf">
+                <!-- Shelves -->
+                <div class="bookshelf-shelf"></div>
+                <div class="bookshelf-shelf"></div>
+                <div class="bookshelf-shelf"></div>
+                <div class="bookshelf-shelf"></div>
+                
+                <!-- Books -->
+                <div class="book book-1"></div>
+                <div class="book book-2"></div>
+                <div class="book book-3"></div>
+                <div class="book book-4"></div>
+                
+                <!-- Interactive object -->
+                <div class="test-object room-object">
+                    📚
+                </div>
+            </div>
+            
+            <!-- Desk with two interactive objects -->
+            <div class="room-desk">
+                <div class="desk-leg desk-leg-left"></div>
+                <div class="desk-leg desk-leg-right"></div>
+                
+                <!-- Laptop and notebook -->
+                <div class="test-object room-object">
+                    💻
+                </div>
+                <div class="test-object room-object">
+                    📓
+                </div>
+            </div>
+            
+            <!-- TV stand with interactive object -->
+            <div class="room-tv-stand">
+                <div class="test-object room-object">
+                    📺
+                </div>
+            </div>
+            
+            <!-- Clock area with interactive object -->
+            <div class="room-clock-area">
+                <div class="test-object room-object">
+                    🕐
+                </div>
+            </div>
+            
+            <!-- Picture frame with interactive object -->
+            <div class="room-picture">
+                <div class="test-object room-object">
+                    🗺️
+                </div>
+            </div>
+            
+            <!-- Carpet with interactive object -->
+            <div class="room-carpet">
+                <div class="test-object room-object">
+                    ⚽
+                </div>
+            </div>
+            
+            <!-- Floor shadows -->
+            <div class="floor-shadow shadow-desk"></div>
+            <div class="floor-shadow shadow-tv"></div>
+            <div class="floor-shadow shadow-bookshelf"></div>
+            
+            <!-- Ambient lighting -->
+            <div class="room-lighting"></div>
+        </div>
+    </div>
+
+    <script>
+        // Add click handlers to test objects
+        document.querySelectorAll('.test-object').forEach(obj => {
+            obj.addEventListener('click', function() {
+                const emoji = this.textContent;
+                const container = this.closest('[class*="room-"]').className;
+                alert(`Clicked ${emoji} in ${container}`);
+            });
+        });
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                // Let default tab behavior work
+            }
+        });
+        
+        // Make test objects focusable
+        document.querySelectorAll('.test-object').forEach((obj, index) => {
+            obj.setAttribute('tabindex', '0');
+            obj.setAttribute('role', 'button');
+            obj.setAttribute('aria-label', `Test object ${index + 1}: ${obj.textContent}`);
+        });
+    </script>
+</body>
+</html>

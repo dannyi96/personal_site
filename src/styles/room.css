@@ -31,17 +31,16 @@
   --bounce-transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Main room container */
+/* Main room container with modular background elements */
 .room-container {
   position: relative;
   width: 100%;
   height: 100vh;
   min-height: 600px;
-  background-image: url('/src/assets/images/room-background.svg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: linear-gradient(135deg, 
+    var(--room-bg-primary) 0%, 
+    var(--room-bg-secondary) 40%, 
+    var(--room-bg-tertiary) 100%);
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   color: var(--room-text-primary);
@@ -154,11 +153,340 @@
   color: var(--room-text-primary);
 }
 
+/* Room background elements container */
+.room-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Enable pointer events for furniture that contains interactive objects */
+.room-background > * {
+  pointer-events: auto;
+}
+
+/* Individual room elements */
+.room-floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(180deg, #dde1e6 0%, #d4d8dc 50%, #c8cdd3 100%);
+  background-image: 
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(200, 205, 211, 0.3) 40px),
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(200, 205, 211, 0.3) 40px);
+}
+
+.room-back-wall {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(180deg, #f8fafb 0%, #f0f2f5 50%, #e8eaed 100%);
+}
+
+.room-left-wall {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15%;
+  height: 70%;
+  background: linear-gradient(135deg, #e8eaed 0%, #dde1e6 100%);
+  transform: skewY(2deg);
+  transform-origin: bottom left;
+}
+
+.room-right-wall {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15%;
+  height: 70%;
+  background: linear-gradient(225deg, #dde1e6 0%, #d4d8dc 100%);
+  transform: skewY(-2deg);
+  transform-origin: bottom right;
+}
+
+.room-ceiling {
+  position: absolute;
+  top: 0;
+  left: 15%;
+  width: 70%;
+  height: 8%;
+  background: linear-gradient(90deg, #f8fafb 0%, #ffffff 50%, #f8fafb 100%);
+  transform: perspective(1000px) rotateX(45deg);
+  transform-origin: bottom center;
+}
+
+/* Window on left wall */
+.room-window {
+  position: absolute;
+  top: 15%;
+  left: 2%;
+  width: 10%;
+  height: 20%;
+  background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%);
+  border: 4px solid #5a7ba7;
+  border-radius: 4px;
+  box-shadow: 
+    inset 0 0 20px rgba(255, 255, 255, 0.3),
+    0 4px 15px rgba(0, 0, 0, 0.2);
+  /* Container for interactive objects */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-window::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 45%;
+  width: 10%;
+  height: 100%;
+  background: #5a7ba7;
+  z-index: 1;
+}
+
+.room-window::after {
+  content: '';
+  position: absolute;
+  top: 45%;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background: #5a7ba7;
+  z-index: 1;
+}
+
+/* Bookshelf on right wall */
+.room-bookshelf {
+  position: absolute;
+  top: 18%;
+  right: 2%;
+  width: 8%;
+  height: 45%;
+  background: 
+    linear-gradient(135deg, #8b7355 0%, #6b5d42 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 0, 0, 0.1) 3px);
+  border: 3px solid #6b5d42;
+  border-radius: 4px;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  /* Container for interactive objects */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookshelf-shelf {
+  position: absolute;
+  left: 5%;
+  width: 90%;
+  height: 8px;
+  background: #6b5d42;
+}
+
+.bookshelf-shelf:nth-child(1) { top: 20%; }
+.bookshelf-shelf:nth-child(2) { top: 40%; }
+.bookshelf-shelf:nth-child(3) { top: 60%; }
+.bookshelf-shelf:nth-child(4) { top: 80%; }
+
+.book {
+  position: absolute;
+  width: 8px;
+  height: 40px;
+  border-radius: 1px;
+}
+
+.book-1 { top: 25%; left: 10%; background: #8b4513; }
+.book-2 { top: 25%; left: 25%; background: #228b22; width: 6px; }
+.book-3 { top: 25%; left: 35%; background: #4169e1; width: 10px; }
+.book-4 { top: 25%; left: 55%; background: #dc143c; width: 7px; }
+
+/* Desk in center */
+.room-desk {
+  position: absolute;
+  bottom: 25%;
+  left: 33%;
+  width: 18%;
+  height: 12%;
+  background: 
+    linear-gradient(135deg, #8b7355 0%, #6b5d42 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 0, 0, 0.1) 4px);
+  border: 3px solid #6b5d42;
+  border-radius: 4px;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  /* Container for interactive objects */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.desk-leg {
+  position: absolute;
+  bottom: -15px;
+  width: 12px;
+  height: 15px;
+  background: #5a4d32;
+  border-radius: 2px;
+}
+
+.desk-leg-left { left: 10px; }
+.desk-leg-right { right: 10px; }
+
+/* TV stand on right */
+.room-tv-stand {
+  position: absolute;
+  bottom: 25%;
+  right: 25%;
+  width: 12%;
+  height: 8%;
+  background: linear-gradient(135deg, #8b7355 0%, #6b5d42 100%);
+  border: 3px solid #6b5d42;
+  border-radius: 4px;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  /* Container for interactive objects */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Clock on back wall */
+.room-clock-area {
+  position: absolute;
+  top: 20%;
+  left: 65%;
+  width: 6%;
+  height: 8%;
+  background: #f8f9fa;
+  border: 3px solid #8d9499;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* Container for interactive objects */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-clock-area::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: #ffffff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Picture frame */
+.room-picture {
+  position: absolute;
+  top: 25%;
+  left: 40%;
+  width: 12%;
+  height: 12%;
+  background: #f8f9fa;
+  border: 3px solid #8d9499;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* Container for interactive objects */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-picture::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: linear-gradient(135deg, #e9ecef 0%, #f8f9fa 100%);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+/* Carpet */
+.room-carpet {
+  position: absolute;
+  bottom: 15%;
+  left: 30%;
+  width: 40%;
+  height: 15%;
+  background: radial-gradient(ellipse, #daa520 0%, #b8860b 70%, transparent 100%);
+  border-radius: 50%;
+  opacity: 0.6;
+  /* Container for interactive objects */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ambient lighting with subtle animation */
+.room-lighting {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
+  pointer-events: none;
+  animation: lightingPulse 8s ease-in-out infinite;
+}
+
+@keyframes lightingPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Floor shadows */
+.floor-shadow {
+  position: absolute;
+  bottom: 20%;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transition: all var(--transition-medium);
+  pointer-events: none;
+}
+
+.shadow-desk { left: 35%; width: 14%; height: 4%; }
+.shadow-tv { right: 27%; width: 10%; height: 3%; }
+.shadow-bookshelf { right: 4%; width: 6%; height: 2%; }
+
+/* Subtle furniture hover effects */
+.room-desk:hover + .shadow-desk,
+.room-tv-stand:hover + .shadow-tv,
+.room-bookshelf:hover + .shadow-bookshelf {
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+  transform: scale(1.1);
+}
+
 /* Objects container */
 .room-objects {
   position: relative;
   width: 100%;
   height: 100%;
+  z-index: 10;
   transition: opacity var(--transition-medium);
 }
 
@@ -199,7 +527,7 @@
 
 /* Interactive room objects */
 .room-object {
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -213,6 +541,64 @@
   border: none;
   box-shadow: none;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  z-index: 10;
+}
+
+/* Objects positioned within furniture containers */
+.room-background .room-object {
+  position: relative;
+  transform: none;
+  margin: 0;
+  z-index: 10;
+}
+
+/* Container-specific object positioning */
+.room-desk {
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.room-desk .room-object {
+  flex-shrink: 0;
+  flex: 1;
+  max-width: 45%;
+}
+
+/* Objects on floor need absolute positioning */
+.room-floor .room-object {
+  position: absolute;
+}
+
+.room-floor .room-object.in-floor {
+  left: 15%;
+  bottom: 15%;
+  transform: none;
+}
+
+/* Ensure furniture elements don't interfere with object interactions */
+.room-background > * {
+  pointer-events: auto;
+}
+
+.room-background > *::before,
+.room-background > *::after {
+  pointer-events: none;
+}
+
+/* Ensure interactive objects are always clickable */
+.room-object {
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Improve visual hierarchy */
+.room-bookshelf .book {
+  z-index: 2;
+}
+
+.room-bookshelf .bookshelf-shelf {
+  z-index: 1;
 }
 
 /* Object sizes - more realistic proportions */
@@ -267,9 +653,14 @@
 
 /* Interactive states */
 .room-object:hover {
-  transform: translate(-50%, -50%) scale(1.15);
+  transform: scale(1.15);
   filter: brightness(1.2) saturate(1.3);
   transition: all var(--bounce-transition);
+}
+
+/* Special hover effects for floor objects */
+.room-floor .room-object:hover {
+  transform: scale(1.15);
 }
 
 .room-object:hover .object-icon {
@@ -293,16 +684,27 @@
 .room-object:focus {
   outline: 3px solid var(--focus-color);
   outline-offset: 4px;
-  transform: translate(-50%, -50%) scale(1.15);
+  transform: scale(1.15);
   filter: brightness(1.2) saturate(1.3) drop-shadow(0 0 20px var(--glow-shadow));
   transition: all var(--bounce-transition);
 }
 
+/* Special focus effects for floor objects */
+.room-floor .room-object:focus {
+  transform: scale(1.15);
+}
+
 .room-object:active,
 .room-object.object-activated {
-  transform: translate(-50%, -50%) scale(0.95);
+  transform: scale(0.95);
   box-shadow: 0 2px 8px var(--active-shadow);
   background: rgba(255, 255, 255, 1);
+}
+
+/* Special active effects for floor objects */
+.room-floor .room-object:active,
+.room-floor .room-object.object-activated {
+  transform: scale(0.95);
 }
 
 /* Visited state */
@@ -339,8 +741,13 @@
 }
 
 .room-object.object-locked:hover {
-  transform: translate(-50%, -50%) scale(1.05);
+  transform: scale(1.05);
   filter: grayscale(0.3) brightness(0.9);
+}
+
+/* Special locked hover effects for floor objects */
+.room-floor .room-object.object-locked:hover {
+  transform: scale(1.05);
 }
 
 /* Mode toggle button */
@@ -432,9 +839,16 @@ body.keyboard-navigation *:focus {
 
 /* Locked object shake animation */
 @keyframes lockedShake {
-  0%, 100% { transform: translate(-50%, -50%) translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translate(-50%, -50%) translateX(-5px); }
-  20%, 40%, 60%, 80% { transform: translate(-50%, -50%) translateX(5px); }
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Special shake animation for floor objects */
+@keyframes lockedShakeFloor {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
 .room-object.object-locked-shake {
@@ -454,46 +868,46 @@ body.keyboard-navigation *:focus {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8) rotate(-5deg);
+    transform: scale(0.8) rotate(-5deg);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
   }
 }
 
 @keyframes float {
   0%, 100% {
-    transform: translate(-50%, -50%) translateY(0px);
+    transform: translateY(0px);
   }
   50% {
-    transform: translate(-50%, -50%) translateY(-3px);
+    transform: translateY(-3px);
   }
 }
 
 @keyframes pulse {
   0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.03);
+    transform: scale(1.03);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 }
 
 @keyframes bounce {
   0%, 20%, 53%, 80%, 100% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
   }
   40%, 43% {
-    transform: translate(-50%, -50%) scale(1.15);
+    transform: scale(1.15);
   }
   70% {
-    transform: translate(-50%, -50%) scale(1.08);
+    transform: scale(1.08);
   }
   90% {
-    transform: translate(-50%, -50%) scale(1.02);
+    transform: scale(1.02);
   }
 }
 
@@ -571,12 +985,12 @@ body.keyboard-navigation *:focus {
 /* Contextual positioning effects */
 .room-object[data-object-id="dustbin"] {
   opacity: 0.7;
-  transform: translate(-50%, -50%) scale(0.8);
+  transform: scale(0.8);
 }
 
 .room-object[data-object-id="dustbin"]:hover {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1.1);
+  transform: scale(1.1);
 }
 
 @keyframes clockTick {
@@ -641,9 +1055,44 @@ body.keyboard-navigation *:focus {
 @media (max-width: 768px) {
   .room-container {
     min-height: 500px;
-    background-attachment: scroll; /* Better performance on mobile */
-    background-size: cover;
-    background-position: center top;
+  }
+  
+  /* Adjust furniture sizes for mobile */
+  .room-bookshelf {
+    width: 10%;
+    height: 40%;
+  }
+  
+  .room-desk {
+    width: 22%;
+    height: 10%;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.25rem;
+  }
+  
+  .room-desk .room-object {
+    max-width: 100%;
+  }
+  
+  .room-tv-stand {
+    width: 14%;
+    height: 7%;
+  }
+  
+  .room-window {
+    width: 12%;
+    height: 18%;
+  }
+  
+  .room-clock-area {
+    width: 8%;
+    height: 6%;
+  }
+  
+  .room-picture {
+    width: 14%;
+    height: 10%;
   }
   
   .mode-toggle {
