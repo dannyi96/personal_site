@@ -2,6 +2,7 @@
 import { StateManager } from '../../utils/stateManager.js';
 import ObjectFactory from '../InteractiveObjects/ObjectFactory.js';
 import ContentModal from '../ContentModals/index.js';
+import RecruiterMode from '../RecruiterMode/index.js';
 
 export default class Room {
   constructor() {
@@ -10,7 +11,8 @@ export default class Room {
     this.objects = {};
     this.contentData = null;
     this.interactionData = null;
-    this.currentMode = 'interactive';
+    this.currentMode = this.stateManager.getMode() || 'interactive';
+    this.recruiterMode = null;
     
     this.init();
   }
@@ -62,11 +64,22 @@ export default class Room {
     
     // Set up ARIA attributes for accessibility
     this.container.setAttribute('role', 'main');
-    this.container.setAttribute('aria-label', 'Interactive room with clickable objects');
+    
+    if (this.currentMode === 'recruiter') {
+      this.container.setAttribute('aria-label', 'Linear presentation of professional content');
+    } else {
+      this.container.setAttribute('aria-label', 'Interactive room with clickable objects');
+    }
+    
     this.container.setAttribute('tabindex', '0');
   }
   
   renderObjects() {
+    if (this.currentMode === 'recruiter') {
+      this.renderRecruiterMode();
+      return;
+    }
+    
     if (!this.contentData || !this.contentData.objects) {
       console.warn('No object data available for rendering');
       return;
@@ -95,6 +108,14 @@ export default class Room {
     });
     
     this.container.appendChild(objectsContainer);
+  }
+  
+  renderRecruiterMode() {
+    if (!this.recruiterMode) {
+      this.recruiterMode = new RecruiterMode(this.contentData, this.stateManager);
+    }
+    
+    this.recruiterMode.render(this.container);
   }
   
 
@@ -234,17 +255,19 @@ export default class Room {
   toggleMode() {
     this.currentMode = this.currentMode === 'interactive' ? 'recruiter' : 'interactive';
     
-    // Update room styling
-    this.container.className = 'room-container';
-    this.container.classList.add(`room-${this.currentMode}`);
-    
     // Store mode preference
     this.stateManager.setMode(this.currentMode);
     
+    // Re-render the room with new mode
+    this.setupRoom();
+    this.renderObjects();
+    this.setupEventListeners();
+    this.setupKeyboardNavigation();
+    
     // Announce mode change
     const modeDescription = this.currentMode === 'recruiter' 
-      ? 'Linear content presentation mode activated'
-      : 'Interactive room exploration mode activated';
+      ? 'Linear content presentation mode activated. All professional content is now displayed sequentially.'
+      : 'Interactive room exploration mode activated. Click on objects to discover content.';
     
     this.announceToScreenReader(`Switched to ${this.currentMode} mode. ${modeDescription}`);
     
@@ -258,8 +281,31 @@ export default class Room {
   setMode(mode) {
     if (mode !== this.currentMode) {
       this.currentMode = mode;
-      this.toggleMode();
+      this.stateManager.setMode(this.currentMode);
+      
+      // Re-render the room with new mode
+      this.setupRoom();
+      this.renderObjects();
+      this.setupEventListeners();
+      this.setupKeyboardNavigation();
+      
+      // Announce mode change
+      const modeDescription = this.currentMode === 'recruiter' 
+        ? 'Linear content presentation mode activated. All professional content is now displayed sequentially.'
+        : 'Interactive room exploration mode activated. Click on objects to discover content.';
+      
+      this.announceToScreenReader(`Switched to ${this.currentMode} mode. ${modeDescription}`);
+      
+      // Emit custom event for other components to listen to
+      const modeChangeEvent = new CustomEvent('modeChange', {
+        detail: { mode: this.currentMode }
+      });
+      document.dispatchEvent(modeChangeEvent);
     }
+  }
+  
+  getCurrentMode() {
+    return this.currentMode;
   }
   
   async openContentModal(objectId, objectData, interaction, contentRef) {
