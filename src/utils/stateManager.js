@@ -116,6 +116,31 @@ export class StateManager {
   }
 
   /**
+   * Alias for isContentUnlocked for backward compatibility
+   * @param {string} objectId - ID of object to check
+   * @returns {boolean} True if object is unlocked
+   */
+  isUnlocked(objectId) {
+    return this.isContentUnlocked(objectId);
+  }
+
+  /**
+   * Mark an object as visited
+   * @param {string} objectId - ID of the object to mark as visited
+   */
+  markVisited(objectId) {
+    this.trackInteraction(objectId);
+  }
+
+  /**
+   * Increment exploration count manually
+   */
+  incrementExploration() {
+    this.state.explorationCount++;
+    this.saveState();
+  }
+
+  /**
    * Set the current mode (interactive or recruiter)
    * @param {string} mode - Mode to set ('interactive' or 'recruiter')
    */

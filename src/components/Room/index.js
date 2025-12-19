@@ -1,5 +1,6 @@
 // Room component - Main spatial layout container
 import { StateManager } from '../../utils/stateManager.js';
+import ObjectFactory from '../InteractiveObjects/ObjectFactory.js';
 
 export default class Room {
   constructor() {
@@ -76,86 +77,46 @@ export default class Room {
     objectsContainer.setAttribute('role', 'group');
     objectsContainer.setAttribute('aria-label', 'Interactive room objects');
     
-    // Render each object
+    // Render each object using ObjectFactory
     Object.values(this.contentData.objects).forEach(objectData => {
-      const objectElement = this.createObjectElement(objectData);
-      if (objectElement) {
+      const interactiveObject = ObjectFactory.createObject(
+        objectData,
+        this.contentData,
+        this.interactionData,
+        this.stateManager
+      );
+      
+      if (interactiveObject) {
+        const objectElement = interactiveObject.getElement();
         objectsContainer.appendChild(objectElement);
-        this.objects[objectData.id] = objectElement;
+        this.objects[objectData.id] = interactiveObject;
       }
     });
     
     this.container.appendChild(objectsContainer);
   }
   
-  createObjectElement(objectData) {
-    const element = document.createElement('div');
-    element.className = `room-object room-object-${objectData.id}`;
-    element.id = `object-${objectData.id}`;
-    
-    // Position the object
-    element.style.position = 'absolute';
-    element.style.left = objectData.position.x;
-    element.style.top = objectData.position.y;
-    element.style.transform = 'translate(-50%, -50%)'; // Center the object on its position
-    
-    // Add visual content
-    const icon = document.createElement('span');
-    icon.className = 'object-icon';
-    icon.textContent = objectData.visual.icon;
-    icon.setAttribute('aria-hidden', 'true');
-    
-    const label = document.createElement('span');
-    label.className = 'object-label sr-only';
-    label.textContent = objectData.name;
-    
-    element.appendChild(icon);
-    element.appendChild(label);
-    
-    // Add accessibility attributes
-    element.setAttribute('role', objectData.accessibility.role || 'button');
-    element.setAttribute('aria-label', objectData.accessibility.label);
-    element.setAttribute('aria-describedby', `${objectData.id}-description`);
-    element.setAttribute('tabindex', '0');
-    
-    // Add description element for screen readers
-    const description = document.createElement('div');
-    description.id = `${objectData.id}-description`;
-    description.className = 'sr-only';
-    description.textContent = objectData.accessibility.description;
-    element.appendChild(description);
-    
-    // Add visual styling classes
-    element.classList.add(`object-color-${objectData.visual.color}`);
-    element.classList.add(`object-size-${objectData.visual.size}`);
-    
-    // Add locked state if applicable
-    if (objectData.locked) {
-      element.classList.add('object-locked');
-      element.setAttribute('aria-disabled', 'true');
-    }
-    
-    // Store object data for interaction handling
-    element.dataset.objectId = objectData.id;
-    element.dataset.contentRef = objectData.contentRef;
-    element.dataset.locked = objectData.locked ? 'true' : 'false';
-    
-    return element;
-  }
+
   
   setupEventListeners() {
-    // Add click listeners to all objects
-    Object.keys(this.objects).forEach(objectId => {
-      const element = this.objects[objectId];
-      element.addEventListener('click', (e) => this.handleObjectClick(e, objectId));
-      element.addEventListener('keydown', (e) => this.handleObjectKeydown(e, objectId));
-    });
+    // Objects now handle their own events through the InteractiveObject classes
+    // Just set up global room event listeners
     
-    // Add hover effects for better UX (while maintaining accessibility)
-    Object.values(this.objects).forEach(element => {
-      element.addEventListener('mouseenter', this.handleObjectHover.bind(this));
-      element.addEventListener('mouseleave', this.handleObjectHoverEnd.bind(this));
-    });
+    // Listen for custom events from interactive objects
+    document.addEventListener('objectInteraction', this.handleObjectInteraction.bind(this));
+    document.addEventListener('objectLocked', this.handleObjectLocked.bind(this));
+    document.addEventListener('puzzleRequired', this.handlePuzzleRequired.bind(this));
+    
+    // Listen for specific object events
+    document.addEventListener('laptopInteraction', this.handleLaptopInteraction.bind(this));
+    document.addEventListener('windowInteraction', this.handleWindowInteraction.bind(this));
+    document.addEventListener('mapInteraction', this.handleMapInteraction.bind(this));
+    document.addEventListener('notebookInteraction', this.handleNotebookInteraction.bind(this));
+    document.addEventListener('bookshelfInteraction', this.handleBookshelfInteraction.bind(this));
+    document.addEventListener('tvInteraction', this.handleTVInteraction.bind(this));
+    document.addEventListener('sportsGearInteraction', this.handleSportsGearInteraction.bind(this));
+    document.addEventListener('clockInteraction', this.handleClockInteraction.bind(this));
+    document.addEventListener('dustbinInteraction', this.handleDustbinInteraction.bind(this));
   }
   
   setupKeyboardNavigation() {
@@ -163,8 +124,9 @@ export default class Room {
     const tabOrder = this.interactionData?.globalInteractions?.navigation?.tabOrder || [];
     
     tabOrder.forEach((objectId, index) => {
-      const element = this.objects[objectId];
-      if (element) {
+      const interactiveObject = this.objects[objectId];
+      if (interactiveObject) {
+        const element = interactiveObject.getElement();
         element.style.zIndex = 100 + index; // Ensure proper stacking order
       }
     });
@@ -173,57 +135,74 @@ export default class Room {
     this.container.addEventListener('keydown', this.handleRoomKeydown.bind(this));
   }
   
-  handleObjectClick(event, objectId) {
-    event.preventDefault();
-    event.stopPropagation();
+  // Event handlers for specific object interactions
+  handleObjectInteraction(event) {
+    const { objectId, objectData, interaction, contentRef } = event.detail;
+    console.log(`Room received interaction from ${objectId}:`, interaction.action);
     
-    // Track the interaction
-    this.stateManager.trackInteraction(objectId);
-    
-    // Get object data
-    const objectData = this.contentData.objects[objectId];
-    const interactionData = this.interactionData.interactions[`${objectId}_click`];
-    
-    if (!objectData || !interactionData) {
-      console.warn(`No interaction data found for object: ${objectId}`);
-      return;
-    }
-    
-    // Check if object is locked and handle accordingly
-    if (objectData.locked && !this.stateManager.isUnlocked(objectId)) {
-      this.handleLockedObject(objectId, objectData);
-      return;
-    }
-    
-    // Handle the interaction based on action type
-    this.executeInteraction(objectId, interactionData);
-    
-    // Announce to screen readers
-    this.announceToScreenReader(interactionData.effects.announceToScreenReader);
+    // This will be handled by the ContentModal system when implemented
+    // For now, just log the interaction
   }
   
-  handleObjectKeydown(event, objectId) {
-    // Handle Enter and Space key presses
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      this.handleObjectClick(event, objectId);
-    }
+  handleObjectLocked(event) {
+    const { objectId, objectData } = event.detail;
+    console.log(`Object ${objectId} is locked and requires puzzle completion`);
+    
+    // This will be handled by the puzzle system when implemented
   }
   
-  handleObjectHover(event) {
-    const element = event.currentTarget;
-    element.classList.add('object-hover');
+  handlePuzzleRequired(event) {
+    const { objectId, puzzle, onSolved } = event.detail;
+    console.log(`Puzzle required for ${objectId}:`, puzzle.question);
     
-    // Add subtle scale effect
-    element.style.transform = 'translate(-50%, -50%) scale(1.05)';
+    // This will be handled by the puzzle system when implemented
+    // For now, just log the puzzle requirement
   }
   
-  handleObjectHoverEnd(event) {
-    const element = event.currentTarget;
-    element.classList.remove('object-hover');
-    
-    // Reset scale
-    element.style.transform = 'translate(-50%, -50%) scale(1)';
+  // Specific object interaction handlers
+  handleLaptopInteraction(event) {
+    const { content, sections } = event.detail;
+    console.log('Laptop interaction - Professional content:', sections);
+  }
+  
+  handleWindowInteraction(event) {
+    const { currentView, viewData } = event.detail;
+    console.log(`Window interaction - Current view: ${currentView}`, viewData);
+  }
+  
+  handleMapInteraction(event) {
+    const { locations } = event.detail;
+    console.log('Map interaction - Journey locations:', locations.length);
+  }
+  
+  handleNotebookInteraction(event) {
+    const { methodology } = event.detail;
+    console.log('Notebook interaction - Methodology steps:', methodology.length);
+  }
+  
+  handleBookshelfInteraction(event) {
+    const { categories } = event.detail;
+    console.log('Bookshelf interaction - Reading categories:', categories.length);
+  }
+  
+  handleTVInteraction(event) {
+    const { shows, movies } = event.detail;
+    console.log('TV interaction - Entertainment content:', { shows: shows.length, movies: movies.length });
+  }
+  
+  handleSportsGearInteraction(event) {
+    const { activities } = event.detail;
+    console.log('Sports gear interaction - Activities:', activities.length);
+  }
+  
+  handleClockInteraction(event) {
+    const { principles } = event.detail;
+    console.log('Clock interaction - Time principles:', principles.length);
+  }
+  
+  handleDustbinInteraction(event) {
+    const { reward, isEasterEgg } = event.detail;
+    console.log('Dustbin interaction - Easter egg found!', reward);
   }
   
   handleRoomKeydown(event) {
@@ -239,36 +218,7 @@ export default class Room {
     }
   }
   
-  handleLockedObject(objectId, objectData) {
-    // This will be implemented when puzzle system is added
-    console.log(`Object ${objectId} is locked and requires puzzle completion`);
-    
-    // For now, just announce that it's locked
-    this.announceToScreenReader(`${objectData.name} is locked and requires puzzle completion`);
-  }
-  
-  executeInteraction(objectId, interactionData) {
-    // This will be expanded when modal system is implemented
-    console.log(`Executing ${interactionData.action} interaction for ${objectId}`);
-    
-    // Add visual feedback
-    const element = this.objects[objectId];
-    if (element) {
-      element.classList.add('object-activated');
-      setTimeout(() => {
-        element.classList.remove('object-activated');
-      }, interactionData.animation.duration || 300);
-    }
-    
-    // Track visit and exploration
-    if (interactionData.effects.trackVisit) {
-      this.stateManager.markVisited(objectId);
-    }
-    
-    if (interactionData.effects.incrementExploration) {
-      this.stateManager.incrementExploration();
-    }
-  }
+
   
   toggleMode() {
     this.currentMode = this.currentMode === 'interactive' ? 'recruiter' : 'interactive';
@@ -322,18 +272,11 @@ export default class Room {
   
   // Method to update object states (for use by other components)
   updateObjectState(objectId, state) {
-    const element = this.objects[objectId];
-    if (!element) return;
+    const interactiveObject = this.objects[objectId];
+    if (!interactiveObject) return;
     
-    if (state.unlocked !== undefined) {
-      element.dataset.locked = state.unlocked ? 'false' : 'true';
-      element.classList.toggle('object-locked', !state.unlocked);
-      element.setAttribute('aria-disabled', state.unlocked ? 'false' : 'true');
-    }
-    
-    if (state.visited !== undefined) {
-      element.classList.toggle('object-visited', state.visited);
-    }
+    // Update the interactive object's state
+    interactiveObject.updateState();
   }
   
   // Method to get current room state
