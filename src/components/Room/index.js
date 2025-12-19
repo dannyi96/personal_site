@@ -112,10 +112,11 @@ export default class Room {
     
     // Furniture elements with embedded interactive objects
     const window = document.createElement('div');
-    window.className = 'room-window';
+    window.className = 'room-window room-interactive-furniture';
+    window.setAttribute('data-object-id', 'window');
     
-    // Add window interactive object
-    this.addInteractiveObjectToContainer(window, 'window');
+    // Make window directly clickable
+    this.makeFurnitureInteractive(window, 'window');
     
     const bookshelf = document.createElement('div');
     bookshelf.className = 'room-bookshelf';
@@ -167,10 +168,11 @@ export default class Room {
     this.addInteractiveObjectToContainer(tvStand, 'tv');
     
     const clockArea = document.createElement('div');
-    clockArea.className = 'room-clock-area';
+    clockArea.className = 'room-clock-area room-interactive-furniture';
+    clockArea.setAttribute('data-object-id', 'clock');
     
-    // Add clock to clock area
-    this.addInteractiveObjectToContainer(clockArea, 'clock');
+    // Make clock area directly clickable
+    this.makeFurnitureInteractive(clockArea, 'clock');
     
     const picture = document.createElement('div');
     picture.className = 'room-picture';
@@ -249,6 +251,116 @@ export default class Room {
     }
   }
   
+  makeFurnitureInteractive(furnitureElement, objectId) {
+    if (!this.contentData || !this.interactionData) {
+      console.error('Content data or interaction data not loaded yet');
+      return;
+    }
+    
+    const objectData = this.contentData.objects[objectId];
+    if (!objectData) {
+      console.error(`No object data found for ${objectId}`);
+      return;
+    }
+    
+    // Make the furniture element itself interactive
+    furnitureElement.setAttribute('tabindex', '0');
+    furnitureElement.setAttribute('role', 'button');
+    furnitureElement.setAttribute('aria-label', objectData.accessibility?.label || objectData.name);
+    furnitureElement.setAttribute('aria-description', objectData.accessibility?.description || '');
+    furnitureElement.style.cursor = 'pointer';
+    
+    // Add event listeners to furniture element
+    const handleInteraction = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      
+      console.log(`Furniture ${objectId} activated`);
+      
+      // Check if object is locked
+      const isLocked = objectData.locked && !this.stateManager.isContentUnlocked(objectId);
+      
+      if (isLocked) {
+        // Handle locked interaction
+        furnitureElement.classList.add('object-locked-shake');
+        setTimeout(() => {
+          furnitureElement.classList.remove('object-locked-shake');
+        }, 500);
+        
+        const message = `${objectData.name} is locked and requires puzzle completion to access.`;
+        this.announceToScreenReader(message);
+        
+        const lockedEvent = new CustomEvent('objectLocked', {
+          detail: {
+            objectId: objectId,
+            objectData: objectData
+          }
+        });
+        document.dispatchEvent(lockedEvent);
+        return;
+      }
+      
+      // Track the interaction
+      this.stateManager.trackInteraction(objectId);
+      
+      // Execute the interaction directly
+      const interactionKey = `${objectId}_click`;
+      const interaction = this.interactionData.interactions[interactionKey];
+      
+      if (interaction) {
+        // Emit interaction event for content modal system to handle
+        const interactionEvent = new CustomEvent('objectInteraction', {
+          detail: {
+            objectId: objectId,
+            objectData: objectData,
+            interaction: interaction,
+            contentRef: objectData.contentRef
+          }
+        });
+        document.dispatchEvent(interactionEvent);
+        
+        // Announce interaction to screen readers
+        if (interaction.effects.announceToScreenReader) {
+          this.announceToScreenReader(interaction.effects.announceToScreenReader);
+        }
+        
+        // Add visual feedback
+        furnitureElement.classList.add('object-activated');
+        setTimeout(() => {
+          furnitureElement.classList.remove('object-activated');
+        }, interaction.animation?.duration || 300);
+      } else {
+        console.warn(`No interaction found for ${interactionKey}`);
+      }
+    };
+    
+    furnitureElement.addEventListener('click', handleInteraction);
+    furnitureElement.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        handleInteraction(event);
+      }
+    });
+    
+    // Create a simple object for state management without using ObjectFactory
+    this.objects[objectId] = {
+      objectData: objectData,
+      updateState: () => {
+        // Update visual state based on visited/locked status
+        const isVisited = this.stateManager.hasVisited(objectId);
+        const isUnlocked = this.stateManager.isContentUnlocked(objectId);
+        const effectivelyLocked = objectData.locked && !isUnlocked;
+        
+        furnitureElement.classList.toggle('object-visited', isVisited);
+        furnitureElement.classList.toggle('object-locked', effectivelyLocked);
+        furnitureElement.setAttribute('aria-disabled', effectivelyLocked ? 'true' : 'false');
+      },
+      getElement: () => furnitureElement
+    };
+    
+    // Update initial state
+    this.objects[objectId].updateState();
+  }
+  
 
   
   renderRecruiterMode() {
@@ -299,10 +411,10 @@ export default class Room {
         }
       });
       
-      // Set up arrow key navigation for objects
+      // Set up arrow key navigation for objects and interactive furniture
       if (this.currentMode === 'interactive') {
         this.arrowNavCleanup = accessibilityUtils.setupArrowKeyNavigation(this.container, {
-          selector: '.room-object[tabindex="0"]',
+          selector: '.room-object[tabindex="0"], .room-interactive-furniture[tabindex="0"]',
           wrap: true,
           announceNavigation: true
         });
@@ -437,7 +549,7 @@ export default class Room {
   handleTabNavigation(event) {
     if (this.currentMode !== 'interactive') return;
     
-    const focusableObjects = Array.from(this.container.querySelectorAll('.room-object[tabindex="0"]'))
+    const focusableObjects = Array.from(this.container.querySelectorAll('.room-object[tabindex="0"], .room-interactive-furniture[tabindex="0"]'))
       .filter(el => el.offsetWidth > 0 && el.offsetHeight > 0 && !el.hidden);
     
     if (focusableObjects.length === 0) return;
@@ -452,7 +564,7 @@ export default class Room {
   handleHomeEndNavigation(event) {
     if (this.currentMode !== 'interactive') return;
     
-    const focusableObjects = Array.from(this.container.querySelectorAll('.room-object[tabindex="0"]'))
+    const focusableObjects = Array.from(this.container.querySelectorAll('.room-object[tabindex="0"], .room-interactive-furniture[tabindex="0"]'))
       .filter(el => el.offsetWidth > 0 && el.offsetHeight > 0 && !el.hidden);
     
     if (focusableObjects.length === 0) return;
@@ -461,10 +573,10 @@ export default class Room {
     
     if (event.key === 'Home') {
       focusableObjects[0].focus();
-      this.announceToScreenReader('Moved to first interactive object');
+      this.announceToScreenReader('Moved to first interactive element');
     } else if (event.key === 'End') {
       focusableObjects[focusableObjects.length - 1].focus();
-      this.announceToScreenReader('Moved to last interactive object');
+      this.announceToScreenReader('Moved to last interactive element');
     }
   }
   
@@ -472,7 +584,7 @@ export default class Room {
     if (this.currentMode !== 'interactive') return;
     
     const number = parseInt(event.key);
-    const focusableObjects = Array.from(this.container.querySelectorAll('.room-object[tabindex="0"]'))
+    const focusableObjects = Array.from(this.container.querySelectorAll('.room-object[tabindex="0"], .room-interactive-furniture[tabindex="0"]'))
       .filter(el => el.offsetWidth > 0 && el.offsetHeight > 0 && !el.hidden);
     
     if (number > 0 && number <= focusableObjects.length) {

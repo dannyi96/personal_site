@@ -48,13 +48,14 @@
 <body>
     <div class="test-info">
         <strong>Modular Room Background Test</strong><br>
-        This test shows the new modular HTML/CSS room structure with interactive objects embedded inside furniture elements.
+        This test shows the new modular HTML/CSS room structure with both embedded objects and directly interactive furniture.
         <br><br>
         <strong>Features:</strong><br>
         • Individual HTML elements for each furniture piece<br>
-        • Interactive objects positioned within their containers<br>
-        • CSS flexbox for natural positioning<br>
-        • Hover effects and animations
+        • Some furniture elements are directly clickable (window, clock)<br>
+        • Other objects are embedded within containers (desk items)<br>
+        • Subtle hover effects without weird animations<br>
+        • CSS flexbox for natural positioning
     </div>
 
     <div id="room-container" class="room-container">
@@ -71,11 +72,8 @@
                 </div>
             </div>
             
-            <!-- Window with interactive object -->
-            <div class="room-window">
-                <div class="test-object room-object">
-                    🪟
-                </div>
+            <!-- Window - directly interactive -->
+            <div class="room-window room-interactive-furniture" tabindex="0" role="button" aria-label="Window showing environment preferences" data-object-id="window">
             </div>
             
             <!-- Bookshelf with interactive object -->
@@ -119,11 +117,8 @@
                 </div>
             </div>
             
-            <!-- Clock area with interactive object -->
-            <div class="room-clock-area">
-                <div class="test-object room-object">
-                    🕐
-                </div>
+            <!-- Clock area - directly interactive -->
+            <div class="room-clock-area room-interactive-furniture" tabindex="0" role="button" aria-label="Clock representing time management philosophy" data-object-id="clock">
             </div>
             
             <!-- Picture frame with interactive object -->
@@ -160,11 +155,22 @@
             });
         });
         
-        // Add keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Tab') {
-                // Let default tab behavior work
-            }
+        // Add click handlers to interactive furniture
+        document.querySelectorAll('.room-interactive-furniture').forEach(furniture => {
+            furniture.addEventListener('click', function(e) {
+                console.log('Test furniture clicked:', this);
+                const className = this.className.split(' ')[0];
+                const objectId = this.getAttribute('data-object-id') || 'furniture';
+                alert(`Clicked ${objectId} (${className} - directly interactive furniture)`);
+            });
+            
+            furniture.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    console.log('Test furniture keyboard activated:', this);
+                    this.click();
+                }
+            });
         });
         
         // Make test objects focusable
