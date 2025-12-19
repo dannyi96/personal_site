@@ -22,6 +22,7 @@ export default class InteractiveObject {
     this.element = document.createElement('div');
     this.element.className = `room-object room-object-${this.objectData.id}`;
     this.element.id = `object-${this.objectData.id}`;
+    this.element.setAttribute('data-object-id', this.objectData.id);
     
     // Position the object
     this.element.style.position = 'absolute';

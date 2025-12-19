@@ -37,7 +37,10 @@
   width: 100%;
   height: 100vh;
   min-height: 600px;
-  background: linear-gradient(135deg, var(--room-bg-primary) 0%, var(--room-bg-secondary) 50%, var(--room-bg-primary) 100%);
+  background-image: url('/src/assets/images/room-background.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -163,6 +166,37 @@
   display: none;
 }
 
+/* Ambient lighting overlay */
+.room-objects::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(255, 248, 220, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Subtle room atmosphere */
+.room-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(255, 255, 255, 0.02) 0%, 
+    transparent 25%, 
+    transparent 75%, 
+    rgba(0, 0, 0, 0.02) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* Interactive room objects */
 .room-object {
   position: absolute;
@@ -173,51 +207,52 @@
   cursor: pointer;
   user-select: none;
   transition: all var(--transition-fast);
-  border-radius: 12px;
-  padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 0.25rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-/* Object sizes */
+/* Object sizes - more realistic proportions */
 .room-object.object-size-small {
-  width: 60px;
-  height: 60px;
-  font-size: 1.5rem;
-}
-
-.room-object.object-size-medium {
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   font-size: 2rem;
 }
 
-.room-object.object-size-large {
-  width: 100px;
-  height: 100px;
-  font-size: 2.5rem;
+.room-object.object-size-medium {
+  width: 60px;
+  height: 60px;
+  font-size: 3rem;
 }
 
-/* Object color variations */
-.room-object.object-color-blue { border-left: 4px solid var(--object-blue); }
-.room-object.object-color-cyan { border-left: 4px solid var(--object-cyan); }
-.room-object.object-color-green { border-left: 4px solid var(--object-green); }
-.room-object.object-color-orange { border-left: 4px solid var(--object-orange); }
-.room-object.object-color-brown { border-left: 4px solid var(--object-brown); }
-.room-object.object-color-purple { border-left: 4px solid var(--object-purple); }
-.room-object.object-color-red { border-left: 4px solid var(--object-red); }
-.room-object.object-color-gold { border-left: 4px solid var(--object-gold); }
-.room-object.object-color-gray { border-left: 4px solid var(--object-gray); }
+.room-object.object-size-large {
+  width: 80px;
+  height: 80px;
+  font-size: 4rem;
+}
+
+/* Object color variations - subtle glow effects */
+.room-object.object-color-blue { filter: drop-shadow(0 0 8px rgba(66, 153, 225, 0.3)); }
+.room-object.object-color-cyan { filter: drop-shadow(0 0 8px rgba(56, 178, 172, 0.3)); }
+.room-object.object-color-green { filter: drop-shadow(0 0 8px rgba(72, 187, 120, 0.3)); }
+.room-object.object-color-orange { filter: drop-shadow(0 0 8px rgba(237, 137, 54, 0.3)); }
+.room-object.object-color-brown { filter: drop-shadow(0 0 8px rgba(160, 174, 192, 0.3)); }
+.room-object.object-color-purple { filter: drop-shadow(0 0 8px rgba(128, 90, 213, 0.3)); }
+.room-object.object-color-red { filter: drop-shadow(0 0 8px rgba(245, 101, 101, 0.3)); }
+.room-object.object-color-gold { filter: drop-shadow(0 0 8px rgba(236, 201, 75, 0.3)); }
+.room-object.object-color-gray { filter: drop-shadow(0 0 8px rgba(113, 128, 150, 0.3)); }
 
 /* Object icon */
 .object-icon {
   display: block;
   line-height: 1;
-  margin-bottom: 0.25rem;
-  filter: grayscale(0.2) opacity(0.9);
-  transition: filter var(--transition-fast);
+  margin-bottom: 0;
+  filter: grayscale(0.1) opacity(0.95);
+  transition: all var(--transition-fast);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Object label (hidden by default, shown on hover for sighted users) */
@@ -232,29 +267,34 @@
 
 /* Interactive states */
 .room-object:hover {
-  transform: translate(-50%, -50%) scale(1.08);
-  box-shadow: 0 8px 25px var(--hover-shadow), 0 0 0 1px rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.95);
+  transform: translate(-50%, -50%) scale(1.15);
+  filter: brightness(1.2) saturate(1.3);
   transition: all var(--bounce-transition);
 }
 
 .room-object:hover .object-icon {
-  filter: grayscale(0) opacity(1);
-  transform: scale(1.1);
+  filter: grayscale(0) opacity(1) drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+  transform: scale(1.1) rotate(2deg);
   transition: all var(--transition-fast);
 }
 
 .room-object:hover .object-label {
   opacity: 1;
-  transform: translateY(-2px);
+  transform: translateY(-8px);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
   transition: all var(--transition-fast);
 }
 
 .room-object:focus {
   outline: 3px solid var(--focus-color);
-  outline-offset: 3px;
-  transform: translate(-50%, -50%) scale(1.08);
-  box-shadow: 0 8px 25px var(--hover-shadow), 0 0 0 4px var(--glow-shadow);
+  outline-offset: 4px;
+  transform: translate(-50%, -50%) scale(1.15);
+  filter: brightness(1.2) saturate(1.3) drop-shadow(0 0 20px var(--glow-shadow));
   transition: all var(--bounce-transition);
 }
 
@@ -267,40 +307,40 @@
 
 /* Visited state */
 .room-object.object-visited {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 255, 255, 0.5);
+  filter: brightness(1.1) saturate(1.2);
 }
 
 .room-object.object-visited .object-icon {
-  filter: grayscale(0) opacity(1);
+  filter: grayscale(0) opacity(1) drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
 }
 
 /* Locked state */
 .room-object.object-locked {
-  opacity: 0.6;
+  opacity: 0.7;
   cursor: not-allowed;
-  background: rgba(255, 255, 255, 0.5);
+  filter: grayscale(0.5) brightness(0.8);
 }
 
 .room-object.object-locked::after {
   content: '🔒';
   position: absolute;
-  top: -8px;
-  right: -8px;
-  font-size: 0.8rem;
-  background: var(--room-bg-primary);
+  top: -12px;
+  right: -12px;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.8);
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--room-text-muted);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .room-object.object-locked:hover {
-  transform: translate(-50%, -50%) scale(1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transform: translate(-50%, -50%) scale(1.05);
+  filter: grayscale(0.3) brightness(0.9);
 }
 
 /* Mode toggle button */
@@ -308,30 +348,34 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  padding: 12px 24px;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--room-text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   z-index: 1000;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
   transition: all var(--transition-fast);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .mode-toggle:hover {
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  transform: translateY(-1px);
+  background: rgba(0, 0, 0, 0.85);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px) scale(1.05);
+  color: white;
 }
 
 .mode-toggle:focus {
-  outline: 2px solid var(--focus-color);
-  outline-offset: 2px;
-  background: rgba(255, 255, 255, 1);
+  outline: 3px solid var(--focus-color);
+  outline-offset: 3px;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
 }
 
 .mode-toggle:active {
@@ -464,15 +508,15 @@ body.keyboard-navigation *:focus {
 
 /* Animation classes */
 .room-object.animate-fade-in {
-  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .room-object.animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite;
 }
 
 .room-object.animate-pulse {
-  animation: pulse 2.5s ease-in-out infinite;
+  animation: pulse 3s ease-in-out infinite;
 }
 
 .room-object.animate-bounce {
@@ -486,11 +530,65 @@ body.keyboard-navigation *:focus {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
   background-size: 200% 100%;
-  animation: shimmer 2s infinite;
+  animation: shimmer 3s infinite;
   border-radius: inherit;
   pointer-events: none;
+}
+
+/* Idle animations for atmosphere */
+.room-object:not(:hover):not(:focus) {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: calc(var(--object-index, 0) * 0.5s);
+}
+
+/* Special object-specific effects */
+.room-object[data-object-id="clock"] .object-icon {
+  animation: clockTick 2s ease-in-out infinite;
+}
+
+.room-object[data-object-id="tv"].object-locked .object-icon {
+  animation: tvStatic 0.15s infinite;
+}
+
+.room-object[data-object-id="laptop"] {
+  filter: drop-shadow(0 2px 8px rgba(66, 153, 225, 0.4));
+}
+
+.room-object[data-object-id="window"] {
+  filter: drop-shadow(0 0 12px rgba(135, 206, 235, 0.6));
+}
+
+.room-object[data-object-id="bookshelf"] {
+  filter: drop-shadow(2px 2px 6px rgba(139, 115, 85, 0.5));
+}
+
+.room-object[data-object-id="tv"] {
+  filter: drop-shadow(0 0 10px rgba(128, 90, 213, 0.4));
+}
+
+/* Contextual positioning effects */
+.room-object[data-object-id="dustbin"] {
+  opacity: 0.7;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.room-object[data-object-id="dustbin"]:hover {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+@keyframes clockTick {
+  0%, 50%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(6deg); }
+  75% { transform: rotate(-6deg); }
+}
+
+@keyframes tvStatic {
+  0% { filter: brightness(1) contrast(1); }
+  50% { filter: brightness(1.1) contrast(1.2); }
+  100% { filter: brightness(0.9) contrast(0.8); }
 }
 
 /* Enhanced responsive design */
@@ -544,6 +642,8 @@ body.keyboard-navigation *:focus {
   .room-container {
     min-height: 500px;
     background-attachment: scroll; /* Better performance on mobile */
+    background-size: cover;
+    background-position: center top;
   }
   
   .mode-toggle {

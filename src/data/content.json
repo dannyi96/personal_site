@@ -4,8 +4,8 @@
       "id": "laptop",
       "name": "Professional Laptop",
       "position": {
-        "x": "45%",
-        "y": "60%"
+        "x": "42%",
+        "y": "68%"
       },
       "contentRef": "professional",
       "accessibility": {
@@ -24,8 +24,8 @@
       "id": "window",
       "name": "Room Window",
       "position": {
-        "x": "15%",
-        "y": "25%"
+        "x": "8%",
+        "y": "28%"
       },
       "contentRef": "personal.environment",
       "accessibility": {
@@ -44,8 +44,8 @@
       "id": "map",
       "name": "Journey Map",
       "position": {
-        "x": "20%",
-        "y": "45%"
+        "x": "52%",
+        "y": "32%"
       },
       "contentRef": "personal.journey",
       "accessibility": {
@@ -64,8 +64,8 @@
       "id": "notebook",
       "name": "Thinking Notebook",
       "position": {
-        "x": "55%",
-        "y": "45%"
+        "x": "48%",
+        "y": "68%"
       },
       "contentRef": "personal.thinking",
       "accessibility": {
@@ -84,8 +84,8 @@
       "id": "bookshelf",
       "name": "Reading Collection",
       "position": {
-        "x": "80%",
-        "y": "35%"
+        "x": "92%",
+        "y": "38%"
       },
       "contentRef": "personal.reading",
       "accessibility": {
@@ -104,8 +104,8 @@
       "id": "tv",
       "name": "Entertainment Center",
       "position": {
-        "x": "75%",
-        "y": "55%"
+        "x": "76%",
+        "y": "72%"
       },
       "contentRef": "personal.entertainment",
       "accessibility": {
@@ -125,8 +125,8 @@
       "id": "sports_gear",
       "name": "Sports Equipment",
       "position": {
-        "x": "25%",
-        "y": "75%"
+        "x": "28%",
+        "y": "82%"
       },
       "contentRef": "personal.activities",
       "accessibility": {
@@ -145,8 +145,8 @@
       "id": "clock",
       "name": "Time Philosophy",
       "position": {
-        "x": "65%",
-        "y": "75%"
+        "x": "67%",
+        "y": "30%"
       },
       "contentRef": "personal.time",
       "accessibility": {
@@ -165,8 +165,8 @@
       "id": "dustbin",
       "name": "Hidden Surprise",
       "position": {
-        "x": "5%",
-        "y": "85%"
+        "x": "12%",
+        "y": "88%"
       },
       "contentRef": "personal.easter_egg",
       "accessibility": {

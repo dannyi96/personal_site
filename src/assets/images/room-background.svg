@@ -1,0 +1,119 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Enhanced gradients for depth and lighting -->
+    <linearGradient id="wallGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafb;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f0f2f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8eaed;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="floorGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#dde1e6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#d4d8dc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c8cdd3;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="shadowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:0.15" />
+      <stop offset="50%" style="stop-color:#000000;stop-opacity:0.08" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0" />
+    </linearGradient>
+    
+    <radialGradient id="lightGradient" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3" />
+      <stop offset="70%" style="stop-color:#ffffff;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </radialGradient>
+    
+    <!-- Enhanced patterns for texture -->
+    <pattern id="woodPattern" patternUnits="userSpaceOnUse" width="6" height="6">
+      <rect width="6" height="6" fill="#8b7355"/>
+      <rect width="3" height="6" fill="#9d8066"/>
+      <rect width="1" height="6" x="2" fill="#7a6b4f"/>
+    </pattern>
+    
+    <pattern id="floorPattern" patternUnits="userSpaceOnUse" width="40" height="40">
+      <rect width="40" height="40" fill="#d4d8dc"/>
+      <rect width="38" height="38" x="1" y="1" fill="#dde1e6" stroke="#c8cdd3" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  
+  <!-- Room structure with perspective -->
+  <!-- Back wall -->
+  <rect x="0" y="0" width="1200" height="500" fill="url(#wallGradient)"/>
+  
+  <!-- Floor with pattern -->
+  <polygon points="0,500 1200,500 1200,800 0,800" fill="url(#floorPattern)"/>
+  
+  <!-- Left wall with perspective -->
+  <polygon points="0,0 150,50 150,550 0,500" fill="#e8eaed"/>
+  <polygon points="0,0 150,50 150,550 0,500" fill="url(#shadowGradient)" opacity="0.3"/>
+  
+  <!-- Right wall with perspective -->
+  <polygon points="1200,0 1050,50 1050,550 1200,500" fill="#dde1e6"/>
+  <polygon points="1200,0 1050,50 1050,550 1200,500" fill="url(#shadowGradient)" opacity="0.2" transform="scale(-1,1) translate(-1200,0)"/>
+  
+  <!-- Ceiling with perspective -->
+  <polygon points="0,0 1200,0 1050,50 150,50" fill="#f8fafb"/>
+  
+  <!-- Ambient lighting overlay -->
+  <rect x="0" y="0" width="1200" height="800" fill="url(#lightGradient)"/>
+  
+  <!-- Window on left wall with depth -->
+  <rect x="15" y="75" width="110" height="130" fill="#4a90e2" opacity="0.1"/>
+  <rect x="20" y="80" width="100" height="120" fill="#87ceeb" stroke="#5a7ba7" stroke-width="4"/>
+  <rect x="65" y="80" width="10" height="120" fill="#5a7ba7"/>
+  <rect x="20" y="135" width="100" height="10" fill="#5a7ba7"/>
+  <!-- Window glass reflection -->
+  <rect x="25" y="85" width="35" height="50" fill="#ffffff" opacity="0.3"/>
+  
+  <!-- Enhanced window light -->
+  <polygon points="120,80 350,220 350,340 120,200" fill="url(#shadowGradient)" opacity="0.4"/>
+  
+  <!-- Bookshelf area (right wall) with depth -->
+  <rect x="1075" y="95" width="90" height="310" fill="#6b5d42" opacity="0.2"/>
+  <rect x="1080" y="100" width="80" height="300" fill="url(#woodPattern)" stroke="#6b5d42" stroke-width="3"/>
+  <rect x="1085" y="120" width="70" height="8" fill="#6b5d42"/>
+  <rect x="1085" y="180" width="70" height="8" fill="#6b5d42"/>
+  <rect x="1085" y="240" width="70" height="8" fill="#6b5d42"/>
+  <rect x="1085" y="300" width="70" height="8" fill="#6b5d42"/>
+  <!-- Book spines -->
+  <rect x="1090" y="125" width="8" height="50" fill="#8b4513"/>
+  <rect x="1100" y="125" width="6" height="50" fill="#228b22"/>
+  <rect x="1108" y="125" width="10" height="50" fill="#4169e1"/>
+  <rect x="1120" y="125" width="7" height="50" fill="#dc143c"/>
+  
+  <!-- Desk area (center-left) with perspective -->
+  <rect x="395" y="415" width="210" height="90" fill="#6b5d42" opacity="0.2"/>
+  <rect x="400" y="420" width="200" height="80" fill="url(#woodPattern)" stroke="#6b5d42" stroke-width="3"/>
+  <rect x="410" y="430" width="180" height="5" fill="#5a4d32"/>
+  <!-- Desk legs -->
+  <rect x="410" y="480" width="15" height="20" fill="#5a4d32"/>
+  <rect x="575" y="480" width="15" height="20" fill="#5a4d32"/>
+  
+  <!-- TV stand (right side) with depth -->
+  <rect x="845" y="445" width="130" height="60" fill="#6b5d42" opacity="0.2"/>
+  <rect x="850" y="450" width="120" height="50" fill="url(#woodPattern)" stroke="#6b5d42" stroke-width="3"/>
+  <rect x="860" y="460" width="100" height="5" fill="#5a4d32"/>
+  
+  <!-- Floor shadows -->
+  <ellipse cx="500" cy="520" rx="100" ry="20" fill="#000000" opacity="0.1"/>
+  <ellipse cx="900" cy="520" rx="80" ry="15" fill="#000000" opacity="0.1"/>
+  <ellipse cx="1120" cy="520" rx="60" ry="12" fill="#000000" opacity="0.1"/>
+  
+  <!-- Wall decorations -->
+  <!-- Picture frame -->
+  <rect x="500" y="150" width="120" height="80" fill="#f8f9fa" stroke="#8d9499" stroke-width="3"/>
+  <rect x="510" y="160" width="100" height="60" fill="#e9ecef"/>
+  
+  <!-- Clock area -->
+  <circle cx="800" cy="180" r="40" fill="#f8f9fa" stroke="#8d9499" stroke-width="3"/>
+  <circle cx="800" cy="180" r="35" fill="#ffffff"/>
+  
+  <!-- Carpet -->
+  <ellipse cx="600" cy="600" rx="250" ry="80" fill="#b8860b" opacity="0.3"/>
+  <ellipse cx="600" cy="600" rx="230" ry="70" fill="#daa520" opacity="0.4"/>
+  
+  <!-- Ambient lighting effects -->
+  <circle cx="600" cy="50" r="300" fill="url(#shadowGradient)" opacity="0.1"/>
+</svg>
