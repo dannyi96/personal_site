@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Personal Website</title>
+  <meta name="description" content="Explore my professional journey through an interactive room interface">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="/src/styles/room.css" as="style">
+  <link rel="preload" href="/src/styles/modals.css" as="style">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/styles/room.css">
+  <link rel="stylesheet" href="/src/styles/modals.css">
+</head>
+<body>
+  <div id="app">
+    <div id="room-container" class="room-container">
+      <!-- Room content will be dynamically generated -->
+    </div>
+    
+    <!-- Recruiter mode toggle -->
+    <button id="mode-toggle" class="mode-toggle" aria-label="Toggle between interactive and recruiter mode">
+      Switch to Recruiter Mode
+    </button>
+    
+    <!-- Accessibility live region for announcements -->
+    <div id="announcements" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+  </div>
+  
+  <!-- Main application script -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

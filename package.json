@@ -1,0 +1,18 @@
+{
+  "name": "interactive-personal-website",
+  "version": "1.0.0",
+  "description": "Interactive personal website with point-and-click interface",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "gh-pages": "^6.0.0",
+    "terser": "^5.0.0"
+  },
+  "dependencies": {}
+}
