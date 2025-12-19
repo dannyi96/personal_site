@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Puzzle System Integration Test</title>
+  <link rel="stylesheet" href="/src/styles/room.css">
+  <link rel="stylesheet" href="/src/styles/modals.css">
+  <link rel="stylesheet" href="/src/styles/puzzle.css">
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .test-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .test-section {
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .test-button {
+      background-color: #6366f1;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 10px;
+    }
+    .test-button:hover {
+      background-color: #5855eb;
+    }
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    .status-pass { background-color: #22c55e; }
+    .status-fail { background-color: #ef4444; }
+    .status-pending { background-color: #f59e0b; }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>Complete Puzzle System Integration Test</h1>
+    <p>This comprehensive test verifies all puzzle system components work together correctly.</p>
+    
+    <div class="test-section">
+      <h3>Test Status</h3>
+      <div id="test-status">
+        <div><span class="status-indicator status-pending"></span>Puzzle System Initialization</div>
+        <div><span class="status-indicator status-pending"></span>Riddle Puzzle Creation</div>
+        <div><span class="status-indicator status-pending"></span>Math Puzzle Creation</div>
+        <div><span class="status-indicator status-pending"></span>Multiple Choice Puzzle Creation</div>
+        <div><span class="status-indicator status-pending"></span>State Persistence</div>
+        <div><span class="status-indicator status-pending"></span>TV Object Integration</div>
+        <div><span class="status-indicator status-pending"></span>Modal UI Functionality</div>
+      </div>
+    </div>
+    
+    <div class="test-section">
+      <h3>Interactive Tests</h3>
+      <button id="test-all" class="test-button">Run All Tests</button>
+      <button id="test-tv-puzzle" class="test-button">Test TV Puzzle</button>
+      <button id="test-state-reset" class="test-button">Reset State</button>
+    </div>
+    
+    <div id="test-results" class="test-section">
+      <h3>Test Results:</h3>
+      <div id="results-content">Click "Run All Tests" to begin comprehensive testing</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { PuzzleManager, PuzzleFactory, RiddlePuzzle, MathPuzzle, MultipleChoicePuzzle } from '/src/utils/puzzleSystem.js';
+    import { StateManager } from '/src/utils/stateManager.js';
+    import PuzzleModal from '/src/components/PuzzleModal/index.js';
+
+    // Initialize components
+    const stateManager = new StateManager();
+    const puzzleManager = new PuzzleManager(stateManager);
+    const puzzleModal = new PuzzleModal();
+
+    // Test data
+    const testPuzzles = {
+      riddle: {
+        id: 'test_riddle',
+        type: 'riddle',
+        question: "I'm not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, but water kills me. What am I?",
+        answer: 'fire',
+        hints: ['Think about something that consumes to survive', 'It dances without music'],
+        difficulty: 'medium'
+      },
+      math: {
+        id: 'test_math',
+        type: 'math',
+        question: 'What is 15 + 27?',
+        answer: '42',
+        hints: ['Add the numbers together'],
+        difficulty: 'easy'
+      },
+      multipleChoice: {
+        id: 'test_mc',
+        type: 'multiple_choice',
+        question: 'What is the capital of France?',
+        answer: 'paris',
+        choices: ['London', 'Berlin', 'Paris', 'Madrid'],
+        hints: ['It\'s known as the City of Light'],
+        difficulty: 'easy'
+      },
+      tvPuzzle: {
+        id: 'tv_puzzle',
+        type: 'riddle',
+        question: "I'm not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, but water kills me. What am I?",
+        answer: 'fire',
+        hints: ['Think about something that consumes to survive', 'It dances without music'],
+        difficulty: 'medium'
+      }
+    };
+
+    let testResults = {
+      puzzleSystemInit: false,
+      riddlePuzzle: false,
+      mathPuzzle: false,
+      multipleChoicePuzzle: false,
+      statePersistence: false,
+      tvIntegration: false,
+      modalUI: false
+    };
+
+    // Setup event listeners
+    document.addEventListener('puzzleAttempt', (event) => {
+      const { puzzleId, answer, callback } = event.detail;
+      const result = puzzleManager.attemptPuzzle(puzzleId, answer);
+      if (callback) callback(result);
+    });
+
+    // Test functions
+    function log(message, type = 'info') {
+      const resultsContent = document.getElementById('results-content');
+      const timestamp = new Date().toLocaleTimeString();
+      const colorClass = type === 'success' ? 'color: #22c55e' : 
+                        type === 'error' ? 'color: #ef4444' : 
+                        type === 'warning' ? 'color: #f59e0b' : 'color: #3b82f6';
+      
+      resultsContent.innerHTML += `<div style="${colorClass}; margin: 5px 0;">[${timestamp}] ${message}</div>`;
+    }
+
+    function updateTestStatus(testName, passed) {
+      testResults[testName] = passed;
+      const statusElements = document.querySelectorAll('#test-status div');
+      const testNames = ['puzzleSystemInit', 'riddlePuzzle', 'mathPuzzle', 'multipleChoicePuzzle', 'statePersistence', 'tvIntegration', 'modalUI'];
+      
+      testNames.forEach((name, index) => {
+        const indicator = statusElements[index]?.querySelector('.status-indicator');
+        if (indicator) {
+          indicator.className = `status-indicator ${testResults[name] ? 'status-pass' : 'status-pending'}`;
+        }
+      });
+    }
+
+    async function runAllTests() {
+      log('Starting comprehensive puzzle system tests...', 'info');
+      
+      // Test 1: Puzzle System Initialization
+      try {
+        log('Test 1: Testing puzzle system initialization...', 'info');
+        const manager = new PuzzleManager(stateManager);
+        const factory = PuzzleFactory;
+        updateTestStatus('puzzleSystemInit', true);
+        log('✓ Puzzle system initialized successfully', 'success');
+      } catch (error) {
+        updateTestStatus('puzzleSystemInit', false);
+        log(`✗ Puzzle system initialization failed: ${error.message}`, 'error');
+      }
+
+      // Test 2: Riddle Puzzle
+      try {
+        log('Test 2: Testing riddle puzzle creation and validation...', 'info');
+        const riddlePuzzle = PuzzleFactory.createPuzzle(testPuzzles.riddle);
+        const wrongResult = riddlePuzzle.attempt('water');
+        const correctResult = riddlePuzzle.attempt('fire');
+        
+        if (!wrongResult.solved && correctResult.solved) {
+          updateTestStatus('riddlePuzzle', true);
+          log('✓ Riddle puzzle works correctly', 'success');
+        } else {
+          updateTestStatus('riddlePuzzle', false);
+          log('✗ Riddle puzzle validation failed', 'error');
+        }
+      } catch (error) {
+        updateTestStatus('riddlePuzzle', false);
+        log(`✗ Riddle puzzle test failed: ${error.message}`, 'error');
+      }
+
+      // Test 3: Math Puzzle
+      try {
+        log('Test 3: Testing math puzzle creation and validation...', 'info');
+        const mathPuzzle = PuzzleFactory.createPuzzle(testPuzzles.math);
+        const wrongResult = mathPuzzle.attempt('40');
+        const correctResult = mathPuzzle.attempt('42');
+        
+        if (!wrongResult.solved && correctResult.solved) {
+          updateTestStatus('mathPuzzle', true);
+          log('✓ Math puzzle works correctly', 'success');
+        } else {
+          updateTestStatus('mathPuzzle', false);
+          log('✗ Math puzzle validation failed', 'error');
+        }
+      } catch (error) {
+        updateTestStatus('mathPuzzle', false);
+        log(`✗ Math puzzle test failed: ${error.message}`, 'error');
+      }
+
+      // Test 4: Multiple Choice Puzzle
+      try {
+        log('Test 4: Testing multiple choice puzzle creation and validation...', 'info');
+        const mcPuzzle = PuzzleFactory.createPuzzle(testPuzzles.multipleChoice);
+        const wrongResult = mcPuzzle.attempt('london');
+        const correctResult = mcPuzzle.attempt('paris');
+        
+        if (!wrongResult.solved && correctResult.solved) {
+          updateTestStatus('multipleChoicePuzzle', true);
+          log('✓ Multiple choice puzzle works correctly', 'success');
+        } else {
+          updateTestStatus('multipleChoicePuzzle', false);
+          log('✗ Multiple choice puzzle validation failed', 'error');
+        }
+      } catch (error) {
+        updateTestStatus('multipleChoicePuzzle', false);
+        log(`✗ Multiple choice puzzle test failed: ${error.message}`, 'error');
+      }
+
+      // Test 5: State Persistence
+      try {
+        log('Test 5: Testing state persistence...', 'info');
+        const testPuzzle = PuzzleFactory.createPuzzle(testPuzzles.riddle);
+        testPuzzle.attempt('wrong');
+        
+        const stateBefore = testPuzzle.getState();
+        stateManager.savePuzzleState(testPuzzle.id, stateBefore);
+        
+        const stateAfter = stateManager.getPuzzleState(testPuzzle.id);
+        
+        if (stateAfter && stateAfter.attempts === 1) {
+          updateTestStatus('statePersistence', true);
+          log('✓ State persistence works correctly', 'success');
+        } else {
+          updateTestStatus('statePersistence', false);
+          log('✗ State persistence failed', 'error');
+        }
+      } catch (error) {
+        updateTestStatus('statePersistence', false);
+        log(`✗ State persistence test failed: ${error.message}`, 'error');
+      }
+
+      // Test 6: TV Integration
+      try {
+        log('Test 6: Testing TV puzzle integration...', 'info');
+        puzzleManager.registerPuzzle(testPuzzles.tvPuzzle, () => {
+          log('TV puzzle completion callback executed', 'info');
+        });
+        
+        const tvPuzzle = puzzleManager.getPuzzle('tv_puzzle');
+        if (tvPuzzle) {
+          updateTestStatus('tvIntegration', true);
+          log('✓ TV puzzle integration works correctly', 'success');
+        } else {
+          updateTestStatus('tvIntegration', false);
+          log('✗ TV puzzle integration failed', 'error');
+        }
+      } catch (error) {
+        updateTestStatus('tvIntegration', false);
+        log(`✗ TV integration test failed: ${error.message}`, 'error');
+      }
+
+      // Test 7: Modal UI
+      try {
+        log('Test 7: Testing puzzle modal UI...', 'info');
+        const modal = new PuzzleModal();
+        if (modal && typeof modal.show === 'function' && typeof modal.hide === 'function') {
+          updateTestStatus('modalUI', true);
+          log('✓ Puzzle modal UI initialized correctly', 'success');
+        } else {
+          updateTestStatus('modalUI', false);
+          log('✗ Puzzle modal UI initialization failed', 'error');
+        }
+      } catch (error) {
+        updateTestStatus('modalUI', false);
+        log(`✗ Modal UI test failed: ${error.message}`, 'error');
+      }
+
+      // Summary
+      const passedTests = Object.values(testResults).filter(result => result).length;
+      const totalTests = Object.keys(testResults).length;
+      
+      log(`\n=== TEST SUMMARY ===`, 'info');
+      log(`Passed: ${passedTests}/${totalTests} tests`, passedTests === totalTests ? 'success' : 'warning');
+      
+      if (passedTests === totalTests) {
+        log('🎉 All puzzle system tests passed! The system is ready for use.', 'success');
+      } else {
+        log('⚠️ Some tests failed. Please review the results above.', 'warning');
+      }
+    }
+
+    function testTVPuzzle() {
+      log('Testing TV puzzle interactively...', 'info');
+      
+      puzzleManager.registerPuzzle(testPuzzles.tvPuzzle, () => {
+        log('🎉 TV puzzle solved! Content unlocked.', 'success');
+      });
+
+      puzzleModal.show(
+        testPuzzles.tvPuzzle,
+        () => {
+          log('TV puzzle completed successfully!', 'success');
+        },
+        () => {
+          log('TV puzzle cancelled by user', 'info');
+        }
+      );
+    }
+
+    function resetState() {
+      log('Resetting all puzzle states...', 'info');
+      stateManager.resetAllPuzzleStates();
+      puzzleManager.resetAllPuzzles();
+      log('✓ All puzzle states reset', 'success');
+    }
+
+    // Button event listeners
+    document.getElementById('test-all').addEventListener('click', runAllTests);
+    document.getElementById('test-tv-puzzle').addEventListener('click', testTVPuzzle);
+    document.getElementById('test-state-reset').addEventListener('click', resetState);
+
+    // Initialize
+    log('Puzzle system integration test page loaded', 'success');
+    log('Click "Run All Tests" to perform comprehensive testing', 'info');
+  </script>
+</body>
+</html>

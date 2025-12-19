@@ -2,6 +2,7 @@
 export class StateManager {
   constructor() {
     this.storageKey = 'interactive-website-state';
+    this.puzzleStorageKey = 'interactive-website-puzzles';
     this.fallbackState = {
       visitedObjects: [],
       unlockedContent: [],
@@ -11,6 +12,7 @@ export class StateManager {
     };
     this.useLocalStorage = this.isLocalStorageAvailable();
     this.state = this.loadState();
+    this.puzzleStates = this.loadPuzzleStates();
   }
 
   /**
@@ -215,5 +217,85 @@ export class StateManager {
    */
   isUsingLocalStorage() {
     return this.useLocalStorage;
+  }
+
+  /**
+   * Load puzzle states from localStorage
+   * @returns {Object} Puzzle states object
+   */
+  loadPuzzleStates() {
+    if (!this.useLocalStorage) {
+      return {};
+    }
+
+    try {
+      const stored = localStorage.getItem(this.puzzleStorageKey);
+      if (stored) {
+        return JSON.parse(stored);
+      }
+    } catch (e) {
+      console.warn('Failed to load puzzle states from localStorage:', e);
+    }
+    
+    return {};
+  }
+
+  /**
+   * Save puzzle states to localStorage
+   */
+  savePuzzleStates() {
+    if (!this.useLocalStorage) {
+      return;
+    }
+
+    try {
+      localStorage.setItem(this.puzzleStorageKey, JSON.stringify(this.puzzleStates));
+    } catch (e) {
+      console.warn('Failed to save puzzle states to localStorage:', e);
+    }
+  }
+
+  /**
+   * Save state for a specific puzzle
+   * @param {string} puzzleId - ID of the puzzle
+   * @param {Object} puzzleState - State object for the puzzle
+   */
+  savePuzzleState(puzzleId, puzzleState) {
+    this.puzzleStates[puzzleId] = puzzleState;
+    this.savePuzzleStates();
+  }
+
+  /**
+   * Get state for a specific puzzle
+   * @param {string} puzzleId - ID of the puzzle
+   * @returns {Object|null} Puzzle state or null if not found
+   */
+  getPuzzleState(puzzleId) {
+    return this.puzzleStates[puzzleId] || null;
+  }
+
+  /**
+   * Reset puzzle state for a specific puzzle
+   * @param {string} puzzleId - ID of the puzzle to reset
+   */
+  resetPuzzleState(puzzleId) {
+    delete this.puzzleStates[puzzleId];
+    this.savePuzzleStates();
+  }
+
+  /**
+   * Reset all puzzle states
+   */
+  resetAllPuzzleStates() {
+    this.puzzleStates = {};
+    this.savePuzzleStates();
+  }
+
+  /**
+   * Get all puzzle states
+   * @returns {Object} All puzzle states
+   */
+  getAllPuzzleStates() {
+    return { ...this.puzzleStates };
   }
 }

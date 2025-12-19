@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV Puzzle Test</title>
+  <link rel="stylesheet" href="/src/styles/room.css">
+  <link rel="stylesheet" href="/src/styles/modals.css">
+  <link rel="stylesheet" href="/src/styles/puzzle.css">
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .test-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .tv-test {
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .test-tv {
+      font-size: 2rem;
+      background: none;
+      border: 2px solid #6366f1;
+      color: #e0e0e0;
+      padding: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .test-tv:hover {
+      background-color: rgba(99, 102, 241, 0.1);
+      transform: scale(1.05);
+    }
+    .test-tv.locked {
+      border-color: #ef4444;
+      opacity: 0.7;
+    }
+    .test-tv.unlocked {
+      border-color: #22c55e;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>TV Puzzle Integration Test</h1>
+    <p>This page tests the TV object with puzzle integration.</p>
+    
+    <div class="tv-test">
+      <h3>TV Object Test</h3>
+      <button id="test-tv" class="test-tv locked" aria-label="TV with puzzle lock">
+        📺 Entertainment Center (Locked)
+      </button>
+      <p>Status: <span id="tv-status">Locked - Puzzle required</span></p>
+    </div>
+    
+    <div id="test-results" style="margin-top: 20px; padding: 20px; background-color: #2a2a2a; border-radius: 8px;">
+      <h3>Test Log:</h3>
+      <div id="results-content">Initializing TV puzzle test...</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { PuzzleManager } from '/src/utils/puzzleSystem.js';
+    import { StateManager } from '/src/utils/stateManager.js';
+    import PuzzleModal from '/src/components/PuzzleModal/index.js';
+    import TVObject from '/src/components/InteractiveObjects/TVObject.js';
+
+    // Initialize components
+    const stateManager = new StateManager();
+    const puzzleManager = new PuzzleManager(stateManager);
+    const puzzleModal = new PuzzleModal();
+
+    // Mock content data for TV
+    const mockContentData = {
+      objects: {
+        tv: {
+          id: 'tv',
+          name: 'Entertainment Center',
+          locked: true,
+          puzzleRef: 'tv_puzzle'
+        }
+      },
+      content: {
+        personal: {
+          entertainment: {
+            title: 'Entertainment Preferences',
+            content: 'My favorite shows and movies',
+            data: {
+              shows: ['Black Mirror', 'The Good Place'],
+              movies: ['The Matrix', 'Her']
+            }
+          }
+        }
+      },
+      puzzles: {
+        tv_puzzle: {
+          id: 'tv_puzzle',
+          type: 'riddle',
+          question: "I'm not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, but water kills me. What am I?",
+          answer: 'fire',
+          hints: ['Think about something that consumes to survive', 'It dances without music'],
+          difficulty: 'medium'
+        }
+      }
+    };
+
+    // Mock interaction data
+    const mockInteractionData = {
+      interactions: {
+        tv: {
+          type: 'modal',
+          unlockRequired: true
+        }
+      }
+    };
+
+    let tvObject = null;
+
+    // Setup event listeners
+    document.addEventListener('puzzleRequired', (event) => {
+      const { puzzle, onSolved } = event.detail;
+      log('Puzzle required event received', 'info');
+      
+      // Register puzzle
+      puzzleManager.registerPuzzle(puzzle, onSolved);
+      
+      // Show puzzle modal
+      puzzleModal.show(
+        puzzle,
+        onSolved,
+        () => log('Puzzle cancelled', 'info')
+      );
+    });
+
+    document.addEventListener('puzzleAttempt', (event) => {
+      const { puzzleId, answer, callback } = event.detail;
+      log(`Puzzle attempt: ${answer}`, 'info');
+      
+      const result = puzzleManager.attemptPuzzle(puzzleId, answer);
+      if (callback) callback(result);
+    });
+
+    // Initialize TV object
+    function initializeTVObject() {
+      try {
+        tvObject = new TVObject(
+          mockContentData.objects.tv,
+          mockContentData,
+          mockInteractionData,
+          stateManager
+        );
+        
+        log('TV object created successfully', 'success');
+        
+        // Update UI based on lock state
+        updateTVStatus();
+        
+      } catch (error) {
+        log(`Error creating TV object: ${error.message}`, 'error');
+      }
+    }
+
+    function updateTVStatus() {
+      const tvButton = document.getElementById('test-tv');
+      const statusSpan = document.getElementById('tv-status');
+      
+      if (stateManager.isContentUnlocked('tv')) {
+        tvButton.classList.remove('locked');
+        tvButton.classList.add('unlocked');
+        tvButton.textContent = '📺 Entertainment Center (Unlocked)';
+        statusSpan.textContent = 'Unlocked - Content available';
+      } else {
+        tvButton.classList.add('locked');
+        tvButton.classList.remove('unlocked');
+        tvButton.textContent = '📺 Entertainment Center (Locked)';
+        statusSpan.textContent = 'Locked - Puzzle required';
+      }
+    }
+
+    function log(message, type = 'info') {
+      const resultsContent = document.getElementById('results-content');
+      const timestamp = new Date().toLocaleTimeString();
+      const colorClass = type === 'success' ? 'color: #22c55e' : 
+                        type === 'error' ? 'color: #ef4444' : 'color: #3b82f6';
+      
+      resultsContent.innerHTML += `<div style="${colorClass}; margin: 5px 0;">[${timestamp}] ${message}</div>`;
+    }
+
+    // Button event listener
+    document.getElementById('test-tv').addEventListener('click', () => {
+      if (tvObject) {
+        log('TV clicked - executing interaction', 'info');
+        tvObject.executeInteraction();
+      } else {
+        log('TV object not initialized', 'error');
+      }
+    });
+
+    // Initialize
+    log('Starting TV puzzle test', 'info');
+    initializeTVObject();
+  </script>
+</body>
+</html>

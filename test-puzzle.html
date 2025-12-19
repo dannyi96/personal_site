@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puzzle System Test</title>
+  <link rel="stylesheet" href="/src/styles/puzzle.css">
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .test-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .test-button {
+      background-color: #6366f1;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 10px;
+    }
+    .test-button:hover {
+      background-color: #5855eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>Puzzle System Test</h1>
+    <p>This page tests the puzzle system functionality.</p>
+    
+    <button id="test-riddle" class="test-button">Test Riddle Puzzle</button>
+    <button id="test-math" class="test-button">Test Math Puzzle</button>
+    <button id="test-multiple-choice" class="test-button">Test Multiple Choice Puzzle</button>
+    
+    <div id="test-results" style="margin-top: 20px; padding: 20px; background-color: #2a2a2a; border-radius: 8px;">
+      <h3>Test Results:</h3>
+      <div id="results-content">Click a button to test puzzle functionality</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { PuzzleManager, PuzzleFactory } from '/src/utils/puzzleSystem.js';
+    import { StateManager } from '/src/utils/stateManager.js';
+    import PuzzleModal from '/src/components/PuzzleModal/index.js';
+
+    // Initialize components
+    const stateManager = new StateManager();
+    const puzzleManager = new PuzzleManager(stateManager);
+    const puzzleModal = new PuzzleModal();
+
+    // Test data
+    const testPuzzles = {
+      riddle: {
+        id: 'test_riddle',
+        type: 'riddle',
+        question: "I'm not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, but water kills me. What am I?",
+        answer: 'fire',
+        hints: ['Think about something that consumes to survive', 'It dances without music'],
+        difficulty: 'medium'
+      },
+      math: {
+        id: 'test_math',
+        type: 'math',
+        question: 'What is 15 + 27?',
+        answer: '42',
+        hints: ['Add the numbers together'],
+        difficulty: 'easy'
+      },
+      multipleChoice: {
+        id: 'test_mc',
+        type: 'multiple_choice',
+        question: 'What is the capital of France?',
+        answer: 'paris',
+        choices: ['London', 'Berlin', 'Paris', 'Madrid'],
+        hints: ['It\'s known as the City of Light'],
+        difficulty: 'easy'
+      }
+    };
+
+    // Setup event listeners
+    document.addEventListener('puzzleAttempt', (event) => {
+      const { puzzleId, answer, callback } = event.detail;
+      const result = puzzleManager.attemptPuzzle(puzzleId, answer);
+      if (callback) callback(result);
+    });
+
+    // Test functions
+    function testPuzzle(puzzleData, puzzleName) {
+      // Register puzzle
+      puzzleManager.registerPuzzle(puzzleData, (puzzle) => {
+        updateResults(`${puzzleName} puzzle solved successfully!`, 'success');
+      });
+
+      // Show puzzle modal
+      puzzleModal.show(
+        puzzleData,
+        () => {
+          updateResults(`${puzzleName} puzzle completed!`, 'success');
+        },
+        () => {
+          updateResults(`${puzzleName} puzzle cancelled`, 'info');
+        }
+      );
+    }
+
+    function updateResults(message, type = 'info') {
+      const resultsContent = document.getElementById('results-content');
+      const timestamp = new Date().toLocaleTimeString();
+      const colorClass = type === 'success' ? 'color: #22c55e' : 
+                        type === 'error' ? 'color: #ef4444' : 'color: #3b82f6';
+      
+      resultsContent.innerHTML += `<div style="${colorClass}; margin: 5px 0;">[${timestamp}] ${message}</div>`;
+    }
+
+    // Button event listeners
+    document.getElementById('test-riddle').addEventListener('click', () => {
+      testPuzzle(testPuzzles.riddle, 'Riddle');
+    });
+
+    document.getElementById('test-math').addEventListener('click', () => {
+      testPuzzle(testPuzzles.math, 'Math');
+    });
+
+    document.getElementById('test-multiple-choice').addEventListener('click', () => {
+      testPuzzle(testPuzzles.multipleChoice, 'Multiple Choice');
+    });
+
+    // Initial message
+    updateResults('Puzzle system test page loaded successfully', 'success');
+  </script>
+</body>
+</html>

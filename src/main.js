@@ -2,11 +2,15 @@
 import Room from './components/Room/index.js';
 import { StateManager } from './utils/stateManager.js';
 import { AccessibilityUtils } from './utils/accessibility.js';
+import { PuzzleManager } from './utils/puzzleSystem.js';
+import PuzzleModal from './components/PuzzleModal/index.js';
 
 class App {
   constructor() {
     this.stateManager = new StateManager();
     this.accessibilityUtils = new AccessibilityUtils();
+    this.puzzleManager = new PuzzleManager(this.stateManager);
+    this.puzzleModal = new PuzzleModal();
     this.room = null;
     this.currentMode = this.stateManager.getMode() || 'interactive';
     
@@ -28,6 +32,9 @@ class App {
     
     // Listen for mode changes from room component
     document.addEventListener('modeChange', this.handleModeChange.bind(this));
+    
+    // Setup puzzle system event listeners
+    this.setupPuzzleSystem();
   }
   
   setupRouting() {
@@ -173,6 +180,45 @@ class App {
       announcements.setAttribute('aria-atomic', 'true');
       announcements.className = 'sr-only';
       document.body.appendChild(announcements);
+    }
+  }
+  
+  setupPuzzleSystem() {
+    // Listen for puzzle required events
+    document.addEventListener('puzzleRequired', this.handlePuzzleRequired.bind(this));
+    
+    // Listen for puzzle attempt events
+    document.addEventListener('puzzleAttempt', this.handlePuzzleAttempt.bind(this));
+  }
+  
+  handlePuzzleRequired(event) {
+    const { objectId, puzzle, onSolved } = event.detail;
+    
+    // Register the puzzle if not already registered
+    if (!this.puzzleManager.getPuzzle(puzzle.id)) {
+      this.puzzleManager.registerPuzzle(puzzle, onSolved);
+    }
+    
+    // Show the puzzle modal
+    this.puzzleModal.show(
+      puzzle,
+      onSolved,
+      () => {
+        // Cancel callback - just close modal
+        console.log('Puzzle cancelled by user');
+      }
+    );
+  }
+  
+  handlePuzzleAttempt(event) {
+    const { puzzleId, answer, callback } = event.detail;
+    
+    // Attempt to solve the puzzle
+    const result = this.puzzleManager.attemptPuzzle(puzzleId, answer);
+    
+    // Call the callback with the result
+    if (callback) {
+      callback(result);
     }
   }
 }
