@@ -6,7 +6,7 @@ export default class RecruiterMode {
     this.contentData = contentData;
     this.stateManager = stateManager;
     this.container = null;
-    this.contentRenderer = new ContentRenderer();
+    this.contentRenderer = new ContentRenderer(contentData);
   }
 
   /**
@@ -118,7 +118,7 @@ export default class RecruiterMode {
     try {
       // Use ContentRenderer to render the section content
       const contentRef = `professional.${sectionKey}`;
-      const renderedContent = this.contentRenderer.renderContent(contentRef, this.contentData);
+      const renderedContent = this.contentRenderer.render(contentRef);
       
       if (renderedContent) {
         contentContainer.appendChild(renderedContent);
@@ -199,7 +199,7 @@ export default class RecruiterMode {
     
     try {
       const contentRef = `personal.${sectionKey}`;
-      const renderedContent = this.contentRenderer.renderContent(contentRef, this.contentData);
+      const renderedContent = this.contentRenderer.render(contentRef);
       
       if (renderedContent) {
         subsection.appendChild(renderedContent);
@@ -282,6 +282,7 @@ export default class RecruiterMode {
    */
   updateContent(newContentData) {
     this.contentData = newContentData;
+    this.contentRenderer.updateContentData(newContentData);
     if (this.container) {
       this.render(this.container);
     }

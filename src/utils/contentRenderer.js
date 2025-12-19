@@ -117,6 +117,30 @@ export class ContentRenderer {
       
       return container;
     });
+    
+    // Individual professional section renderer
+    this.registerRenderer('professional-section', (data, options = {}) => {
+      const container = document.createElement('div');
+      container.className = 'content-professional-section';
+      
+      // Determine which section this is based on the data structure
+      if (data.summary && data.contact) {
+        // This is a resume section
+        return this.renderResume(data);
+      } else if (Array.isArray(data) && data[0] && data[0].company) {
+        // This is an experience section
+        return this.renderExperience(data);
+      } else if (Array.isArray(data) && data[0] && data[0].name && data[0].technologies) {
+        // This is a projects section
+        return this.renderProjects(data);
+      } else if (data.technical || data.frameworks || data.tools) {
+        // This is a skills section
+        return this.renderSkills(data);
+      } else {
+        // Fallback to generic rendering
+        return this.renderGenericSection(data);
+      }
+    });
   }
   
   registerRenderer(type, rendererFunction) {
@@ -129,7 +153,28 @@ export class ContentRenderer {
       return this.renderError(`Content not found: ${contentRef}`);
     }
     
-    const type = content.type || 'text';
+    // Determine the type based on content structure and reference
+    let type = content.type;
+    
+    if (!type) {
+      // Auto-detect type based on content structure or reference
+      if (contentRef.startsWith('professional.')) {
+        const sectionKey = contentRef.split('.')[1];
+        if (['resume', 'experience', 'projects', 'skills'].includes(sectionKey)) {
+          // Handle individual professional sections
+          type = 'professional-section';
+        } else {
+          type = 'professional';
+        }
+      } else if (content.data && (content.data.categories || content.data.locations || content.data.activities || content.data.views)) {
+        type = 'list';
+      } else if (content.data && (content.data.methodology || content.data.principles)) {
+        type = 'markdown';
+      } else {
+        type = 'text';
+      }
+    }
+    
     const renderer = this.renderers.get(type);
     
     if (!renderer) {
@@ -682,6 +727,40 @@ export class ContentRenderer {
     return section;
   }
   
+  renderGenericSection(data) {
+    const container = document.createElement('div');
+    container.className = 'content-generic';
+    
+    if (data.title) {
+      const title = document.createElement('h3');
+      title.className = 'content-title';
+      title.textContent = data.title;
+      container.appendChild(title);
+    }
+    
+    if (data.summary) {
+      const summary = document.createElement('p');
+      summary.className = 'content-summary';
+      summary.textContent = data.summary;
+      container.appendChild(summary);
+    }
+    
+    // Render other properties as key-value pairs
+    Object.entries(data).forEach(([key, value]) => {
+      if (key !== 'title' && key !== 'summary' && key !== 'type') {
+        if (Array.isArray(value)) {
+          this.renderArray(container, key, value);
+        } else if (typeof value === 'object' && value !== null) {
+          this.renderObject(container, key, value);
+        } else {
+          this.renderKeyValue(container, key, value);
+        }
+      }
+    });
+    
+    return container;
+  }
+
   renderSkills(skills) {
     const section = document.createElement('section');
     section.className = 'skills-section';
