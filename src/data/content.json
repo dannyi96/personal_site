@@ -180,6 +180,906 @@
         "size": "small"
       },
       "locked": false
+    },
+    "coffee_mug": {
+      "id": "coffee_mug",
+      "name": "Coffee Mug",
+      "position": {
+        "x": "38%",
+        "y": "65%"
+      },
+      "contentRef": "personal.coffee_culture",
+      "accessibility": {
+        "label": "Coffee mug showing daily fuel and productivity habits",
+        "role": "button",
+        "description": "Click to learn about coffee culture and daily rituals"
+      },
+      "visual": {
+        "icon": "☕",
+        "color": "brown",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "headphones": {
+      "id": "headphones",
+      "name": "Headphones",
+      "position": {
+        "x": "46%",
+        "y": "65%"
+      },
+      "contentRef": "personal.music_focus",
+      "accessibility": {
+        "label": "Headphones for music and focus",
+        "role": "button",
+        "description": "Click to explore music preferences and focus techniques"
+      },
+      "visual": {
+        "icon": "🎧",
+        "color": "purple",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "plant": {
+      "id": "plant",
+      "name": "Desk Plant",
+      "position": {
+        "x": "85%",
+        "y": "75%"
+      },
+      "contentRef": "personal.growth_mindset",
+      "accessibility": {
+        "label": "Desk plant representing growth and care",
+        "role": "button",
+        "description": "Click to learn about growth mindset and nurturing habits"
+      },
+      "visual": {
+        "icon": "🪴",
+        "color": "green",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "camera": {
+      "id": "camera",
+      "name": "Camera",
+      "position": {
+        "x": "58%",
+        "y": "32%"
+      },
+      "contentRef": "personal.photography",
+      "accessibility": {
+        "label": "Camera for capturing moments and creativity",
+        "role": "button",
+        "description": "Click to explore photography passion and visual storytelling"
+      },
+      "visual": {
+        "icon": "📷",
+        "color": "gray",
+        "size": "medium"
+      },
+      "locked": false
+    },
+    "guitar": {
+      "id": "guitar",
+      "name": "Guitar",
+      "position": {
+        "x": "8%",
+        "y": "75%"
+      },
+      "contentRef": "personal.music_creativity",
+      "accessibility": {
+        "label": "Guitar for musical expression and creativity",
+        "role": "button",
+        "description": "Click to learn about musical interests and creative outlets"
+      },
+      "visual": {
+        "icon": "🎸",
+        "color": "orange",
+        "size": "large"
+      },
+      "locked": false
+    },
+    "journal": {
+      "id": "journal",
+      "name": "Personal Journal",
+      "position": {
+        "x": "52%",
+        "y": "68%"
+      },
+      "contentRef": "personal.reflection",
+      "accessibility": {
+        "label": "Personal journal for reflection and thoughts",
+        "role": "button",
+        "description": "Click to explore reflection practices and personal growth"
+      },
+      "visual": {
+        "icon": "📔",
+        "color": "red",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "art_supplies": {
+      "id": "art_supplies",
+      "name": "Art Supplies",
+      "position": {
+        "x": "45%",
+        "y": "32%"
+      },
+      "contentRef": "personal.artistic_side",
+      "accessibility": {
+        "label": "Art supplies for creative expression",
+        "role": "button",
+        "description": "Click to discover artistic interests and creative projects"
+      },
+      "visual": {
+        "icon": "🎨",
+        "color": "purple",
+        "size": "medium"
+      },
+      "locked": false
+    },
+    "water_bottle": {
+      "id": "water_bottle",
+      "name": "Water Bottle",
+      "position": {
+        "x": "42%",
+        "y": "68%"
+      },
+      "contentRef": "personal.health_habits",
+      "accessibility": {
+        "label": "Water bottle representing health and wellness habits",
+        "role": "button",
+        "description": "Click to learn about health and wellness philosophy"
+      },
+      "visual": {
+        "icon": "💧",
+        "color": "blue",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "board_games": {
+      "id": "board_games",
+      "name": "Board Games",
+      "position": {
+        "x": "78%",
+        "y": "65%"
+      },
+      "contentRef": "personal.social_gaming",
+      "accessibility": {
+        "label": "Board games for social connection and strategy",
+        "role": "button",
+        "description": "Click to explore social gaming and strategic thinking"
+      },
+      "visual": {
+        "icon": "🎲",
+        "color": "red",
+        "size": "medium"
+      },
+      "locked": false
+    },
+    "candle": {
+      "id": "candle",
+      "name": "Scented Candle",
+      "position": {
+        "x": "15%",
+        "y": "45%"
+      },
+      "contentRef": "personal.ambiance",
+      "accessibility": {
+        "label": "Scented candle for ambiance and relaxation",
+        "role": "button",
+        "description": "Click to learn about creating peaceful environments"
+      },
+      "visual": {
+        "icon": "🕯️",
+        "color": "gold",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "telescope": {
+      "id": "telescope",
+      "name": "Telescope",
+      "position": {
+        "x": "25%",
+        "y": "35%"
+      },
+      "contentRef": "personal.curiosity",
+      "accessibility": {
+        "label": "Telescope for stargazing and wonder",
+        "role": "button",
+        "description": "Click to explore curiosity about the universe and learning"
+      },
+      "visual": {
+        "icon": "🔭",
+        "color": "gray",
+        "size": "large"
+      },
+      "locked": false
+    },
+    "cooking_pot": {
+      "id": "cooking_pot",
+      "name": "Cooking Pot",
+      "position": {
+        "x": "18%",
+        "y": "82%"
+      },
+      "contentRef": "personal.culinary_adventures",
+      "accessibility": {
+        "label": "Cooking pot representing culinary creativity",
+        "role": "button",
+        "description": "Click to discover cooking adventures and food philosophy"
+      },
+      "visual": {
+        "icon": "🍲",
+        "color": "brown",
+        "size": "medium"
+      },
+      "locked": false
+    },
+    "puzzle": {
+      "id": "puzzle",
+      "name": "Jigsaw Puzzle",
+      "position": {
+        "x": "35%",
+        "y": "82%"
+      },
+      "contentRef": "personal.problem_solving",
+      "accessibility": {
+        "label": "Jigsaw puzzle representing problem-solving skills",
+        "role": "button",
+        "description": "Click to learn about problem-solving approach and patience"
+      },
+      "visual": {
+        "icon": "🧩",
+        "color": "blue",
+        "size": "medium"
+      },
+      "locked": false
+    },
+    "tea_set": {
+      "id": "tea_set",
+      "name": "Tea Set",
+      "position": {
+        "x": "88%",
+        "y": "45%"
+      },
+      "contentRef": "personal.mindfulness",
+      "accessibility": {
+        "label": "Tea set for mindful moments and reflection",
+        "role": "button",
+        "description": "Click to explore mindfulness practices and tea culture"
+      },
+      "visual": {
+        "icon": "🍵",
+        "color": "green",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "vinyl_record": {
+      "id": "vinyl_record",
+      "name": "Vinyl Record",
+      "position": {
+        "x": "82%",
+        "y": "68%"
+      },
+      "contentRef": "personal.music_appreciation",
+      "accessibility": {
+        "label": "Vinyl record representing music appreciation",
+        "role": "button",
+        "description": "Click to explore music taste and analog appreciation"
+      },
+      "visual": {
+        "icon": "💿",
+        "color": "purple",
+        "size": "medium"
+      },
+      "locked": false
+    },
+    "alarm_clock": {
+      "id": "alarm_clock",
+      "name": "Alarm Clock",
+      "position": {
+        "x": "8%",
+        "y": "50%"
+      },
+      "contentRef": "personal.morning_routine",
+      "accessibility": {
+        "label": "Alarm clock representing morning routines and time management",
+        "role": "button",
+        "description": "Click to learn about morning routines and productivity habits"
+      },
+      "visual": {
+        "icon": "⏰",
+        "color": "red",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "reading_glasses": {
+      "id": "reading_glasses",
+      "name": "Reading Glasses",
+      "position": {
+        "x": "8%",
+        "y": "52%"
+      },
+      "contentRef": "personal.learning_habits",
+      "accessibility": {
+        "label": "Reading glasses for focused learning and study",
+        "role": "button",
+        "description": "Click to explore learning habits and continuous education"
+      },
+      "visual": {
+        "icon": "👓",
+        "color": "blue",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "bedside_book": {
+      "id": "bedside_book",
+      "name": "Bedside Book",
+      "position": {
+        "x": "8%",
+        "y": "54%"
+      },
+      "contentRef": "personal.evening_reading",
+      "accessibility": {
+        "label": "Bedside book for evening reading and relaxation",
+        "role": "button",
+        "description": "Click to discover evening reading habits and favorite genres"
+      },
+      "visual": {
+        "icon": "📖",
+        "color": "brown",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "spice_rack": {
+      "id": "spice_rack",
+      "name": "Spice Rack",
+      "position": {
+        "x": "12%",
+        "y": "40%"
+      },
+      "contentRef": "personal.flavor_exploration",
+      "accessibility": {
+        "label": "Spice rack for culinary experimentation",
+        "role": "button",
+        "description": "Click to explore flavor profiles and cooking adventures"
+      },
+      "visual": {
+        "icon": "🧂",
+        "color": "orange",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "cutting_board": {
+      "id": "cutting_board",
+      "name": "Cutting Board",
+      "position": {
+        "x": "14%",
+        "y": "40%"
+      },
+      "contentRef": "personal.food_preparation",
+      "accessibility": {
+        "label": "Cutting board for meal preparation and cooking",
+        "role": "button",
+        "description": "Click to learn about food preparation philosophy and techniques"
+      },
+      "visual": {
+        "icon": "🔪",
+        "color": "brown",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "recipe_book": {
+      "id": "recipe_book",
+      "name": "Recipe Book",
+      "position": {
+        "x": "16%",
+        "y": "40%"
+      },
+      "contentRef": "personal.recipe_collection",
+      "accessibility": {
+        "label": "Recipe book with favorite dishes and experiments",
+        "role": "button",
+        "description": "Click to browse recipe collection and cooking inspiration"
+      },
+      "visual": {
+        "icon": "📝",
+        "color": "green",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "toolbox": {
+      "id": "toolbox",
+      "name": "Toolbox",
+      "position": {
+        "x": "70%",
+        "y": "20%"
+      },
+      "contentRef": "personal.hands_on_learning",
+      "accessibility": {
+        "label": "Toolbox for hands-on projects and building",
+        "role": "button",
+        "description": "Click to explore hands-on learning and DIY philosophy"
+      },
+      "visual": {
+        "icon": "🧰",
+        "color": "red",
+        "size": "medium"
+      },
+      "locked": false
+    },
+    "project_sketches": {
+      "id": "project_sketches",
+      "name": "Project Sketches",
+      "position": {
+        "x": "72%",
+        "y": "20%"
+      },
+      "contentRef": "personal.design_process",
+      "accessibility": {
+        "label": "Project sketches showing design and planning process",
+        "role": "button",
+        "description": "Click to see design process and project planning approach"
+      },
+      "visual": {
+        "icon": "📐",
+        "color": "blue",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "measuring_tape": {
+      "id": "measuring_tape",
+      "name": "Measuring Tape",
+      "position": {
+        "x": "74%",
+        "y": "20%"
+      },
+      "contentRef": "personal.precision_mindset",
+      "accessibility": {
+        "label": "Measuring tape representing precision and attention to detail",
+        "role": "button",
+        "description": "Click to learn about precision mindset and attention to detail"
+      },
+      "visual": {
+        "icon": "📏",
+        "color": "yellow",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "throw_blanket": {
+      "id": "throw_blanket",
+      "name": "Throw Blanket",
+      "position": {
+        "x": "20%",
+        "y": "67%"
+      },
+      "contentRef": "personal.comfort_spaces",
+      "accessibility": {
+        "label": "Throw blanket for creating cozy reading spaces",
+        "role": "button",
+        "description": "Click to explore the importance of comfort and cozy spaces"
+      },
+      "visual": {
+        "icon": "🧶",
+        "color": "purple",
+        "size": "medium"
+      },
+      "locked": false
+    },
+    "reading_lamp": {
+      "id": "reading_lamp",
+      "name": "Reading Lamp",
+      "position": {
+        "x": "22%",
+        "y": "67%"
+      },
+      "contentRef": "personal.focused_environment",
+      "accessibility": {
+        "label": "Reading lamp for focused study and learning",
+        "role": "button",
+        "description": "Click to learn about creating focused learning environments"
+      },
+      "visual": {
+        "icon": "💡",
+        "color": "yellow",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "bookmark_collection": {
+      "id": "bookmark_collection",
+      "name": "Bookmark Collection",
+      "position": {
+        "x": "24%",
+        "y": "67%"
+      },
+      "contentRef": "personal.reading_journey",
+      "accessibility": {
+        "label": "Bookmark collection tracking reading progress",
+        "role": "button",
+        "description": "Click to explore reading journey and book tracking habits"
+      },
+      "visual": {
+        "icon": "🔖",
+        "color": "red",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "trophy_collection": {
+      "id": "trophy_collection",
+      "name": "Trophy Collection",
+      "position": {
+        "x": "35%",
+        "y": "18%"
+      },
+      "contentRef": "personal.achievements",
+      "accessibility": {
+        "label": "Trophy collection showcasing achievements and milestones",
+        "role": "button",
+        "description": "Click to explore achievements and milestone moments"
+      },
+      "visual": {
+        "icon": "🏆",
+        "color": "gold",
+        "size": "medium"
+      },
+      "locked": false
+    },
+    "travel_souvenirs": {
+      "id": "travel_souvenirs",
+      "name": "Travel Souvenirs",
+      "position": {
+        "x": "37%",
+        "y": "18%"
+      },
+      "contentRef": "personal.travel_memories",
+      "accessibility": {
+        "label": "Travel souvenirs from adventures and explorations",
+        "role": "button",
+        "description": "Click to explore travel memories and cultural experiences"
+      },
+      "visual": {
+        "icon": "🎁",
+        "color": "blue",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "photo_frames": {
+      "id": "photo_frames",
+      "name": "Photo Frames",
+      "position": {
+        "x": "39%",
+        "y": "18%"
+      },
+      "contentRef": "personal.cherished_moments",
+      "accessibility": {
+        "label": "Photo frames with cherished memories and relationships",
+        "role": "button",
+        "description": "Click to explore cherished moments and important relationships"
+      },
+      "visual": {
+        "icon": "🖼️",
+        "color": "brown",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "magazine_stack": {
+      "id": "magazine_stack",
+      "name": "Magazine Stack",
+      "position": {
+        "x": "90%",
+        "y": "35%"
+      },
+      "contentRef": "personal.current_interests",
+      "accessibility": {
+        "label": "Magazine stack with current interests and trends",
+        "role": "button",
+        "description": "Click to explore current interests and learning topics"
+      },
+      "visual": {
+        "icon": "📰",
+        "color": "gray",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "remote_controls": {
+      "id": "remote_controls",
+      "name": "Remote Controls",
+      "position": {
+        "x": "92%",
+        "y": "35%"
+      },
+      "contentRef": "personal.entertainment_setup",
+      "accessibility": {
+        "label": "Remote controls for entertainment and media setup",
+        "role": "button",
+        "description": "Click to learn about entertainment preferences and media habits"
+      },
+      "visual": {
+        "icon": "📱",
+        "color": "black",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "coaster_set": {
+      "id": "coaster_set",
+      "name": "Coaster Set",
+      "position": {
+        "x": "94%",
+        "y": "35%"
+      },
+      "contentRef": "personal.hospitality",
+      "accessibility": {
+        "label": "Coaster set for hosting and hospitality",
+        "role": "button",
+        "description": "Click to explore hospitality values and hosting philosophy"
+      },
+      "visual": {
+        "icon": "🥤",
+        "color": "brown",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "certificates": {
+      "id": "certificates",
+      "name": "Certificates",
+      "position": {
+        "x": "95%",
+        "y": "50%"
+      },
+      "contentRef": "personal.professional_growth",
+      "accessibility": {
+        "label": "Certificates and professional development achievements",
+        "role": "button",
+        "description": "Click to explore professional growth and learning achievements"
+      },
+      "visual": {
+        "icon": "📜",
+        "color": "gold",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "important_documents": {
+      "id": "important_documents",
+      "name": "Important Documents",
+      "position": {
+        "x": "95%",
+        "y": "52%"
+      },
+      "contentRef": "personal.life_organization",
+      "accessibility": {
+        "label": "Important documents and life organization system",
+        "role": "button",
+        "description": "Click to learn about organization and life management approach"
+      },
+      "visual": {
+        "icon": "📋",
+        "color": "blue",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "business_cards": {
+      "id": "business_cards",
+      "name": "Business Cards",
+      "position": {
+        "x": "95%",
+        "y": "54%"
+      },
+      "contentRef": "personal.networking",
+      "accessibility": {
+        "label": "Business cards and professional networking collection",
+        "role": "button",
+        "description": "Click to explore networking philosophy and professional relationships"
+      },
+      "visual": {
+        "icon": "💼",
+        "color": "gray",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "jewelry_box": {
+      "id": "jewelry_box",
+      "name": "Jewelry Box",
+      "position": {
+        "x": "85%",
+        "y": "40%"
+      },
+      "contentRef": "personal.personal_style",
+      "accessibility": {
+        "label": "Jewelry box with personal accessories and style items",
+        "role": "button",
+        "description": "Click to explore personal style and self-expression"
+      },
+      "visual": {
+        "icon": "💎",
+        "color": "purple",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "cologne_collection": {
+      "id": "cologne_collection",
+      "name": "Cologne Collection",
+      "position": {
+        "x": "87%",
+        "y": "40%"
+      },
+      "contentRef": "personal.sensory_preferences",
+      "accessibility": {
+        "label": "Cologne collection representing sensory preferences",
+        "role": "button",
+        "description": "Click to explore sensory preferences and personal care philosophy"
+      },
+      "visual": {
+        "icon": "🧴",
+        "color": "blue",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "hand_mirror": {
+      "id": "hand_mirror",
+      "name": "Hand Mirror",
+      "position": {
+        "x": "89%",
+        "y": "40%"
+      },
+      "contentRef": "personal.self_reflection",
+      "accessibility": {
+        "label": "Hand mirror for self-reflection and personal care",
+        "role": "button",
+        "description": "Click to explore self-reflection practices and personal growth"
+      },
+      "visual": {
+        "icon": "🪞",
+        "color": "silver",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "cocktail_shaker": {
+      "id": "cocktail_shaker",
+      "name": "Cocktail Shaker",
+      "position": {
+        "x": "75%",
+        "y": "55%"
+      },
+      "contentRef": "personal.social_creativity",
+      "accessibility": {
+        "label": "Cocktail shaker for social gatherings and creative mixing",
+        "role": "button",
+        "description": "Click to explore social creativity and entertaining philosophy"
+      },
+      "visual": {
+        "icon": "🍸",
+        "color": "silver",
+        "size": "medium"
+      },
+      "locked": false
+    },
+    "wine_collection": {
+      "id": "wine_collection",
+      "name": "Wine Collection",
+      "position": {
+        "x": "77%",
+        "y": "55%"
+      },
+      "contentRef": "personal.appreciation_culture",
+      "accessibility": {
+        "label": "Wine collection representing appreciation for culture and craftsmanship",
+        "role": "button",
+        "description": "Click to explore cultural appreciation and craftsmanship values"
+      },
+      "visual": {
+        "icon": "🍷",
+        "color": "red",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "cocktail_book": {
+      "id": "cocktail_book",
+      "name": "Cocktail Book",
+      "position": {
+        "x": "79%",
+        "y": "55%"
+      },
+      "contentRef": "personal.mixology_art",
+      "accessibility": {
+        "label": "Cocktail book with recipes and mixology techniques",
+        "role": "button",
+        "description": "Click to explore mixology as an art form and creative expression"
+      },
+      "visual": {
+        "icon": "📚",
+        "color": "orange",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "meditation_cushion": {
+      "id": "meditation_cushion",
+      "name": "Meditation Cushion",
+      "position": {
+        "x": "28%",
+        "y": "92%"
+      },
+      "contentRef": "personal.inner_peace",
+      "accessibility": {
+        "label": "Meditation cushion for mindfulness and inner peace practices",
+        "role": "button",
+        "description": "Click to explore meditation practices and inner peace philosophy"
+      },
+      "visual": {
+        "icon": "🧘",
+        "color": "purple",
+        "size": "medium"
+      },
+      "locked": false
+    },
+    "incense_holder": {
+      "id": "incense_holder",
+      "name": "Incense Holder",
+      "position": {
+        "x": "30%",
+        "y": "92%"
+      },
+      "contentRef": "personal.spiritual_practice",
+      "accessibility": {
+        "label": "Incense holder for spiritual practice and atmosphere",
+        "role": "button",
+        "description": "Click to explore spiritual practices and mindful living"
+      },
+      "visual": {
+        "icon": "🕯️",
+        "color": "gold",
+        "size": "small"
+      },
+      "locked": false
+    },
+    "singing_bowl": {
+      "id": "singing_bowl",
+      "name": "Singing Bowl",
+      "position": {
+        "x": "32%",
+        "y": "92%"
+      },
+      "contentRef": "personal.sound_healing",
+      "accessibility": {
+        "label": "Singing bowl for sound healing and meditation",
+        "role": "button",
+        "description": "Click to explore sound healing and vibrational wellness"
+      },
+      "visual": {
+        "icon": "🔔",
+        "color": "gold",
+        "size": "small"
+      },
+      "locked": false
     }
   },
   "content": {
@@ -497,6 +1397,723 @@
           "message": "Keep exploring, keep questioning, and never lose your sense of wonder. The best developers are those who remain curious about the world around them.",
           "reward": "🎉 Achievement Unlocked: Curious Explorer 🎉"
         }
+      },
+      "coffee_culture": {
+        "title": "Daily Fuel",
+        "content": "Coffee isn't just a beverage—it's a ritual, a moment of pause, and the fuel for creativity. My relationship with coffee reflects my approach to productivity and mindfulness.",
+        "type": "text",
+        "data": {
+          "philosophy": "Quality over quantity. I prefer a single, perfectly brewed cup that I can savor rather than multiple rushed cups throughout the day.",
+          "favorite_types": ["Single-origin pour-over", "Cold brew in summer", "Espresso when I need focus"],
+          "brewing_methods": ["V60 pour-over", "French press", "Aeropress for travel"],
+          "coffee_moments": "My best ideas often come during that first sip of morning coffee, when the mind is clear and possibilities feel endless."
+        }
+      },
+      "music_focus": {
+        "title": "Sound & Focus",
+        "content": "Music is my gateway to different mental states. The right playlist can transform my productivity, creativity, and mood in an instant.",
+        "type": "list",
+        "data": {
+          "focus_genres": [
+            "Lo-fi hip hop for deep coding sessions",
+            "Ambient electronic for creative work",
+            "Classical piano for problem-solving",
+            "Nature sounds for meditation and breaks"
+          ],
+          "energy_boosters": [
+            "Upbeat indie rock for motivation",
+            "Electronic dance music for workouts",
+            "Jazz fusion for creative inspiration"
+          ],
+          "philosophy": "Music is like a programming language for emotions—it can debug a bad mood, compile motivation, and execute the perfect atmosphere for any task."
+        }
+      },
+      "growth_mindset": {
+        "title": "Nurturing Growth",
+        "content": "This little plant represents one of my core beliefs: growth requires patience, consistency, and the right environment. Just like code, just like people, just like ideas.",
+        "type": "markdown",
+        "data": {
+          "care_principles": [
+            "**Consistent Care**: Small, daily actions compound into significant growth over time",
+            "**Right Environment**: Providing the conditions needed for flourishing—light, water, nutrients",
+            "**Patience**: Understanding that meaningful growth takes time and can't be rushed",
+            "**Adaptation**: Learning to adjust care based on changing needs and seasons",
+            "**Resilience**: Bouncing back from setbacks stronger than before"
+          ],
+          "life_parallel": "Caring for plants taught me that the same principles apply to personal development, team building, and even debugging code—patience, consistency, and creating the right conditions for success."
+        }
+      },
+      "photography": {
+        "title": "Capturing Moments",
+        "content": "Photography teaches me to see the world differently—to notice light, composition, and the stories hidden in everyday moments.",
+        "type": "text",
+        "data": {
+          "favorite_subjects": ["Street photography", "Nature and landscapes", "Candid portraits", "Architecture and urban geometry"],
+          "philosophy": "The best photographs aren't just technically perfect—they tell a story, evoke emotion, or reveal something unexpected about the ordinary.",
+          "technical_interests": ["Manual exposure control", "Natural lighting", "Composition techniques", "Post-processing workflows"],
+          "connection_to_code": "Photography and programming share surprising similarities: both require attention to detail, understanding of systems, and the ability to see patterns others might miss."
+        }
+      },
+      "music_creativity": {
+        "title": "Musical Expression",
+        "content": "Music is my creative outlet beyond code—a way to express emotions and ideas that don't fit into logical structures and syntax.",
+        "type": "list",
+        "data": {
+          "playing_style": [
+            "Fingerpicking acoustic melodies",
+            "Experimenting with alternate tunings",
+            "Writing simple chord progressions",
+            "Improvising over backing tracks"
+          ],
+          "favorite_genres": [
+            "Folk and indie acoustic",
+            "Blues and fingerstyle",
+            "Ambient and experimental",
+            "Singer-songwriter storytelling"
+          ],
+          "creative_process": "I often pick up the guitar when I'm stuck on a coding problem. The different type of pattern recognition and creativity helps unlock solutions in unexpected ways.",
+          "philosophy": "Music reminds me that not everything needs to be optimized or efficient—sometimes beauty comes from imperfection, emotion, and the human touch."
+        }
+      },
+      "reflection": {
+        "title": "Daily Reflection",
+        "content": "Writing helps me process experiences, clarify thoughts, and track personal growth. It's like version control for my mind.",
+        "type": "markdown",
+        "data": {
+          "writing_practices": [
+            "**Morning Pages**: Stream-of-consciousness writing to clear mental clutter",
+            "**Evening Reflection**: Reviewing the day's lessons and wins",
+            "**Problem Journaling**: Working through challenges on paper",
+            "**Gratitude Notes**: Focusing on positive aspects and growth",
+            "**Idea Capture**: Recording insights and creative sparks"
+          ],
+          "benefits": "Regular reflection helps me identify patterns in my thinking, celebrate progress I might otherwise overlook, and approach challenges with greater clarity and perspective."
+        }
+      },
+      "artistic_side": {
+        "title": "Creative Expression",
+        "content": "Art reminds me that creation doesn't always need a practical purpose—sometimes the joy is in the process itself.",
+        "type": "text",
+        "data": {
+          "mediums": ["Watercolor painting", "Digital illustration", "Sketching and drawing", "Mixed media experiments"],
+          "subjects": ["Abstract compositions", "Nature studies", "UI/UX mockups", "Concept art for projects"],
+          "philosophy": "Art and code both involve problem-solving, but art allows for happy accidents and embraces imperfection in ways that make the final result more human and interesting.",
+          "inspiration": "I find that engaging in visual art makes me a better designer and developer—it trains my eye for color, composition, and user experience in ways that purely technical work cannot."
+        }
+      },
+      "health_habits": {
+        "title": "Wellness Foundation",
+        "content": "Staying hydrated is a simple but powerful habit that supports everything else I do. It's a reminder that the basics matter most.",
+        "type": "list",
+        "data": {
+          "daily_habits": [
+            "Starting each day with a large glass of water",
+            "Keeping water visible as a reminder to drink regularly",
+            "Using hydration as natural break points during work",
+            "Choosing water over caffeine for afternoon energy"
+          ],
+          "wellness_philosophy": [
+            "Small, consistent habits compound into significant health benefits",
+            "Physical wellness directly impacts mental clarity and creativity",
+            "Prevention is easier than correction",
+            "Self-care isn't selfish—it's necessary for sustainable performance"
+          ],
+          "connection_to_work": "Just like code needs clean, well-structured foundations to scale, personal health provides the foundation for everything else I want to accomplish."
+        }
+      },
+      "social_gaming": {
+        "title": "Strategic Thinking",
+        "content": "Board games combine strategy, social interaction, and problem-solving in ways that sharpen my mind and strengthen relationships.",
+        "type": "text",
+        "data": {
+          "favorite_games": ["Settlers of Catan", "Ticket to Ride", "Azul", "Wingspan", "7 Wonders", "Splendor"],
+          "what_i_love": "The blend of strategy and social dynamics, the satisfaction of a well-executed plan, and the laughter that comes from unexpected twists.",
+          "skills_developed": ["Strategic planning", "Risk assessment", "Adaptability", "Reading people and situations", "Graceful winning and losing"],
+          "philosophy": "Games teach valuable lessons about decision-making under uncertainty, resource management, and the importance of both short-term tactics and long-term strategy."
+        }
+      },
+      "ambiance": {
+        "title": "Creating Atmosphere",
+        "content": "The right environment can transform productivity and mood. A simple candle creates warmth, focus, and a sense of intentional space.",
+        "type": "markdown",
+        "data": {
+          "favorite_scents": [
+            "**Vanilla**: Comforting and calming for evening work",
+            "**Eucalyptus**: Refreshing and clarifying for morning focus",
+            "**Sandalwood**: Grounding and meditative for deep thinking",
+            "**Citrus**: Energizing and uplifting for creative sessions"
+          ],
+          "ritual": "Lighting a candle signals the start of focused work time—it's a simple ritual that helps transition from scattered attention to deep concentration.",
+          "philosophy": "Small environmental changes can have profound effects on mindset and productivity. Creating intentional spaces helps create intentional work."
+        }
+      },
+      "curiosity": {
+        "title": "Wonder & Discovery",
+        "content": "Looking up at the stars reminds me how much there is to learn and discover. Curiosity is the driving force behind both scientific discovery and great code.",
+        "type": "text",
+        "data": {
+          "fascinations": ["Planetary movements and celestial events", "Deep space photography", "The scale of the universe", "Light pollution and dark sky preservation"],
+          "learning_approach": "I approach astronomy the same way I approach new technologies—with wonder, systematic learning, and hands-on experimentation.",
+          "philosophy": "The universe is the ultimate reminder that there's always more to learn, discover, and understand. This sense of wonder keeps me humble and hungry for knowledge.",
+          "connection_to_code": "Both astronomy and programming deal with complex systems, patterns, and the joy of discovery when something finally clicks into place."
+        }
+      },
+      "culinary_adventures": {
+        "title": "Kitchen Creativity",
+        "content": "Cooking is like programming—you follow recipes (documentation), experiment with variations (testing), and create something nourishing from basic ingredients.",
+        "type": "list",
+        "data": {
+          "cooking_style": [
+            "Experimenting with fusion cuisines",
+            "Focusing on fresh, seasonal ingredients",
+            "Learning traditional techniques from different cultures",
+            "Improvising based on what's available"
+          ],
+          "favorite_dishes": [
+            "Homemade pasta with creative sauces",
+            "Stir-fries with whatever vegetables are in season",
+            "Slow-cooked stews and braises",
+            "Fresh bread and fermented foods"
+          ],
+          "philosophy": "Cooking teaches patience, creativity, and the importance of process. Like good code, good food comes from understanding fundamentals and then building creatively on top of them.",
+          "life_lessons": "Cooking has taught me about timing, preparation, adaptation, and the joy of sharing something you've created with others."
+        }
+      },
+      "problem_solving": {
+        "title": "Patience & Persistence",
+        "content": "Jigsaw puzzles teach the same skills needed for debugging code: pattern recognition, systematic thinking, and the patience to work through complex problems piece by piece.",
+        "type": "markdown",
+        "data": {
+          "approach": [
+            "**Start with the edges**: Establish clear boundaries and constraints",
+            "**Group by patterns**: Sort pieces by color, texture, and obvious connections",
+            "**Work systematically**: Focus on one section at a time rather than jumping around",
+            "**Stay patient**: Trust that persistence will eventually reveal the solution",
+            "**Celebrate small wins**: Each piece placed is progress toward the bigger picture"
+          ],
+          "parallel_to_coding": "The methodical approach to puzzles mirrors how I approach complex coding challenges—break down the problem, look for patterns, and build the solution incrementally.",
+          "mindset": "Puzzles remind me that every complex problem can be solved with the right combination of patience, strategy, and persistence."
+        }
+      },
+      "mindfulness": {
+        "title": "Mindful Moments",
+        "content": "Tea ceremony is meditation in action—a practice of presence, patience, and appreciation for simple pleasures.",
+        "type": "text",
+        "data": {
+          "tea_types": ["Green tea for morning clarity", "Oolong for afternoon focus", "Herbal blends for evening relaxation", "Pu-erh for deep contemplation"],
+          "ritual": "The process of brewing tea—heating water, measuring leaves, timing the steep—creates a natural pause that helps reset my mind and intentions.",
+          "philosophy": "In our fast-paced world, tea reminds me to slow down, be present, and find meaning in simple, everyday actions.",
+          "benefits": "Regular tea breaks provide natural transition points in my day, helping me shift between different types of work with greater intention and focus."
+        }
+      },
+      "music_appreciation": {
+        "title": "Analog Soul",
+        "content": "Vinyl records represent the beauty of analog experiences in a digital world—the warmth, imperfection, and intentionality of physical media.",
+        "type": "list",
+        "data": {
+          "collection_highlights": [
+            "Classic jazz albums from the Blue Note era",
+            "Indie folk and singer-songwriter records",
+            "Electronic music that benefits from analog warmth",
+            "Rare finds from local record shops and flea markets"
+          ],
+          "listening_experience": [
+            "The ritual of selecting, handling, and playing a record",
+            "Reading liner notes and album artwork",
+            "Listening to full albums as intended by the artist",
+            "The subtle imperfections that add character"
+          ],
+          "philosophy": "Vinyl reminds me that some experiences are worth slowing down for. In a world of instant streaming, choosing to play a record is an act of intentionality and presence.",
+          "connection_to_values": "Like writing clean code or crafting thoughtful user experiences, vinyl appreciation is about valuing quality, craftsmanship, and the human touch in our increasingly digital world."
+        }
+      },
+      "morning_routine": {
+        "title": "Dawn Rituals",
+        "content": "How you start your day sets the tone for everything that follows. My morning routine is a carefully crafted sequence that primes both mind and body for peak performance.",
+        "type": "markdown",
+        "data": {
+          "routine_elements": [
+            "**5:30 AM Wake-up**: Consistent sleep schedule for optimal circadian rhythm",
+            "**Hydration First**: Large glass of water before anything else",
+            "**Mindful Movement**: 10 minutes of stretching or light yoga",
+            "**Meditation**: 15 minutes of focused breathing and intention setting",
+            "**Planning**: Review daily priorities and set three key objectives",
+            "**Fuel**: Nutritious breakfast with protein and healthy fats"
+          ],
+          "philosophy": "Mornings are when willpower is strongest and distractions are minimal. By front-loading the day with positive habits, I create momentum that carries through even challenging moments.",
+          "adaptation": "The routine adapts to circumstances but maintains core elements—consistency in principles, flexibility in execution."
+        }
+      },
+      "learning_habits": {
+        "title": "Continuous Learning",
+        "content": "Learning isn't something that stops after formal education—it's a lifelong practice that keeps the mind sharp and opens new possibilities.",
+        "type": "text",
+        "data": {
+          "learning_methods": ["Active reading with note-taking", "Online courses and tutorials", "Hands-on experimentation", "Teaching others to solidify understanding", "Cross-disciplinary exploration"],
+          "focus_areas": ["Emerging technologies", "Design principles", "Psychology and human behavior", "Systems thinking", "Creative problem-solving"],
+          "philosophy": "The best developers are perpetual students. Technology evolves rapidly, but the ability to learn and adapt is the one skill that never becomes obsolete.",
+          "tools": "Reading glasses aren't just for vision—they're a symbol of focused attention and the commitment to deep, concentrated learning in an age of constant distraction."
+        }
+      },
+      "evening_reading": {
+        "title": "Bedside Wisdom",
+        "content": "The last thing I consume before sleep shapes my subconscious processing. Evening reading is a ritual of winding down while feeding the mind with quality thoughts.",
+        "type": "list",
+        "data": {
+          "current_reads": [
+            "Philosophy and ethics for perspective",
+            "Biographies of inspiring individuals",
+            "Science and nature writing",
+            "Poetry for beauty and reflection",
+            "Fiction that explores human nature"
+          ],
+          "reading_environment": [
+            "Soft lighting to prepare for sleep",
+            "Physical books over screens",
+            "Comfortable positioning and ergonomics",
+            "Notebook nearby for capturing insights"
+          ],
+          "benefits": "Evening reading improves sleep quality, reduces stress, expands vocabulary, and provides a peaceful transition from the day's activities to rest and recovery.",
+          "philosophy": "What we feed our minds before sleep influences our dreams, our subconscious processing, and how we wake up feeling the next day."
+        }
+      },
+      "flavor_exploration": {
+        "title": "Spice Adventures",
+        "content": "Cooking with spices is like programming with libraries—each one brings unique capabilities, and the magic happens in how you combine them.",
+        "type": "text",
+        "data": {
+          "spice_philosophy": "Spices tell the story of human exploration, trade, and cultural exchange. Each jar contains centuries of culinary evolution and cultural wisdom.",
+          "favorite_combinations": ["Cumin + coriander + turmeric for warmth", "Rosemary + thyme + garlic for earthiness", "Cardamom + cinnamon + ginger for complexity", "Paprika + oregano + black pepper for depth"],
+          "experimentation": "I approach new spice combinations like debugging code—systematic testing, careful observation of results, and iterative improvement based on feedback.",
+          "cultural_connection": "Learning about spices connects me to different cultures and cooking traditions, expanding both my palate and my understanding of the world."
+        }
+      },
+      "food_preparation": {
+        "title": "Mindful Preparation",
+        "content": "The cutting board is where ingredients transform into possibilities. Food preparation is meditation in motion—focused, intentional, and deeply satisfying.",
+        "type": "markdown",
+        "data": {
+          "preparation_philosophy": [
+            "**Mise en Place**: Everything in its place before cooking begins",
+            "**Sharp Tools**: Well-maintained knives for safety and precision",
+            "**Fresh Ingredients**: Quality inputs create quality outputs",
+            "**Mindful Process**: Full attention to texture, aroma, and technique",
+            "**Waste Reduction**: Using every part of ingredients creatively"
+          ],
+          "parallel_to_coding": "Food prep teaches the same principles as good software development: preparation, organization, attention to detail, and iterative refinement.",
+          "meditative_aspect": "The rhythmic chopping, the focus on technique, and the transformation of raw ingredients into something nourishing creates a meditative state that clears the mind."
+        }
+      },
+      "recipe_collection": {
+        "title": "Culinary Documentation",
+        "content": "My recipe book is like a personal codebase—filled with tested solutions, experimental features, and detailed documentation for future reference.",
+        "type": "list",
+        "data": {
+          "organization_system": [
+            "Family recipes with historical notes",
+            "Successful experiments with modification notes",
+            "Seasonal dishes organized by availability",
+            "Quick weeknight solutions for busy periods",
+            "Special occasion showstoppers"
+          ],
+          "documentation_style": [
+            "Ingredient substitutions and variations",
+            "Timing notes and preparation shortcuts",
+            "Scaling instructions for different group sizes",
+            "Wine pairing suggestions",
+            "Photos of successful results"
+          ],
+          "philosophy": "Like good code comments, recipe notes capture not just what to do, but why certain choices were made and how to adapt for different situations.",
+          "sharing": "The best recipes, like the best code, are meant to be shared, improved upon, and adapted by others."
+        }
+      },
+      "hands_on_learning": {
+        "title": "Building & Making",
+        "content": "There's something deeply satisfying about creating physical objects with your hands. Working with tools teaches problem-solving skills that translate directly to software development.",
+        "type": "text",
+        "data": {
+          "project_types": ["Furniture restoration and repair", "Electronics and gadget modification", "Home improvement and organization", "Artistic and creative builds"],
+          "skills_developed": ["Spatial reasoning and 3D thinking", "Problem-solving with physical constraints", "Patience and attention to detail", "Understanding of materials and their properties"],
+          "philosophy": "Hands-on work provides a counterbalance to digital creation. It grounds abstract thinking in physical reality and teaches lessons about durability, craftsmanship, and the satisfaction of tangible results.",
+          "connection_to_code": "Debugging hardware teaches patience and systematic thinking. Building physical objects reinforces the importance of solid foundations and careful planning."
+        }
+      },
+      "design_process": {
+        "title": "Sketching Ideas",
+        "content": "Before any code is written, ideas take shape on paper. Sketching is the fastest way to iterate through concepts and communicate visual thinking.",
+        "type": "markdown",
+        "data": {
+          "sketching_benefits": [
+            "**Speed**: Faster than digital tools for initial ideation",
+            "**Freedom**: No software limitations or interface constraints",
+            "**Thinking**: Hand-drawing engages different parts of the brain",
+            "**Communication**: Universal language for sharing concepts",
+            "**Iteration**: Easy to modify, annotate, and build upon"
+          ],
+          "tools": "Simple tools—pencil, paper, ruler—force focus on ideas rather than execution details. The constraint breeds creativity.",
+          "process": "Start rough, iterate quickly, add detail gradually. Like code refactoring, sketches evolve from concept to specification through multiple passes.",
+          "digital_integration": "Sketches inform digital designs, but the tactile process of drawing helps think through problems in ways that jumping straight to software cannot match."
+        }
+      },
+      "precision_mindset": {
+        "title": "Measure Twice, Cut Once",
+        "content": "Precision isn't about perfection—it's about intentionality. Measuring carefully prevents costly mistakes and ensures that effort is applied effectively.",
+        "type": "text",
+        "data": {
+          "precision_principles": ["Plan before acting", "Verify assumptions with data", "Account for tolerances and edge cases", "Document measurements for future reference"],
+          "application_areas": ["Code architecture and system design", "Project planning and time estimation", "Problem analysis and solution design", "Quality assurance and testing"],
+          "philosophy": "Precision is a form of respect—for materials, for time, for the people who will use what you create. It's the difference between professional and amateur work.",
+          "balance": "Precision must be balanced with pragmatism. Perfect measurements matter for critical components, but over-engineering simple solutions wastes time and resources."
+        }
+      },
+      "comfort_spaces": {
+        "title": "Cozy Sanctuaries",
+        "content": "Creating comfortable spaces isn't luxury—it's necessity. The right environment can transform productivity, creativity, and overall well-being.",
+        "type": "list",
+        "data": {
+          "comfort_elements": [
+            "Soft textures that invite relaxation",
+            "Warm lighting that reduces eye strain",
+            "Ergonomic positioning for extended use",
+            "Personal items that create emotional connection",
+            "Temperature and air quality optimization"
+          ],
+          "psychological_impact": [
+            "Reduced stress and anxiety",
+            "Improved focus and concentration",
+            "Enhanced creativity and problem-solving",
+            "Better sleep and recovery",
+            "Increased motivation and productivity"
+          ],
+          "philosophy": "Comfort isn't about luxury—it's about removing friction between you and your best work. When the environment supports you, you can focus entirely on the task at hand.",
+          "investment": "Time and money spent creating comfortable spaces pays dividends in improved performance, better health, and increased life satisfaction."
+        }
+      },
+      "focused_environment": {
+        "title": "Illuminating Focus",
+        "content": "Good lighting is invisible when it's right and obvious when it's wrong. The right illumination can mean the difference between strain and flow.",
+        "type": "markdown",
+        "data": {
+          "lighting_principles": [
+            "**Task-Appropriate**: Bright for detailed work, soft for relaxation",
+            "**Color Temperature**: Cool light for alertness, warm for comfort",
+            "**Direction**: Avoid glare and harsh shadows",
+            "**Adjustability**: Adapt to time of day and activity",
+            "**Eye Health**: Reduce strain and fatigue"
+          ],
+          "work_applications": "Proper lighting reduces eye strain during long coding sessions, improves accuracy in detailed work, and helps maintain circadian rhythms for better sleep.",
+          "mood_impact": "Light affects mood, energy levels, and cognitive performance. Investing in good lighting is investing in mental health and productivity.",
+          "philosophy": "Like good code architecture, good lighting should be barely noticeable when it's working well, but its absence is immediately felt."
+        }
+      },
+      "reading_journey": {
+        "title": "Literary Waypoints",
+        "content": "Bookmarks are more than placeholders—they're waypoints in a learning journey, marking progress through ideas and preserving moments of insight.",
+        "type": "text",
+        "data": {
+          "bookmark_system": ["Physical bookmarks for emotional connection", "Digital highlights for searchable reference", "Margin notes for active engagement", "Reading journal for reflection and synthesis"],
+          "tracking_benefits": "Tracking reading progress helps identify patterns in learning, ensures follow-through on commitments, and creates a personal library of insights and references.",
+          "philosophy": "Reading without reflection is like coding without testing—you might get through it, but you won't know if it actually works or what you've learned.",
+          "community": "Sharing reading progress and insights with others creates accountability, sparks discussions, and exposes you to new perspectives and recommendations."
+        }
+      },
+      "achievements": {
+        "title": "Milestone Markers",
+        "content": "Achievements aren't about ego—they're about recognizing growth, celebrating progress, and maintaining motivation for continued improvement.",
+        "type": "list",
+        "data": {
+          "achievement_categories": [
+            "Technical certifications and skill development",
+            "Project completions and successful launches",
+            "Leadership and mentoring milestones",
+            "Community contributions and recognition",
+            "Personal challenges and growth moments"
+          ],
+          "display_philosophy": [
+            "Visible reminders of capability during difficult times",
+            "Inspiration for setting and pursuing new goals",
+            "Conversation starters about experiences and lessons learned",
+            "Gratitude anchors for recognizing progress made"
+          ],
+          "balance": "Celebrating achievements while staying humble and hungry for continued growth. Past success is foundation, not destination.",
+          "sharing": "Achievements are most meaningful when they inspire others to pursue their own goals and when they represent service to something larger than yourself."
+        }
+      },
+      "travel_memories": {
+        "title": "Cultural Souvenirs",
+        "content": "Travel souvenirs aren't just objects—they're compressed experiences, cultural bridges, and reminders of the vast diversity of human experience.",
+        "type": "text",
+        "data": {
+          "souvenir_philosophy": "The best souvenirs tell stories, represent local craftsmanship, and connect you to the people and culture you encountered, not just the place you visited.",
+          "memory_triggers": ["Handmade items that show local artistry", "Books and music from different cultures", "Spices and ingredients for recreating flavors", "Maps and guides for future reference"],
+          "cultural_learning": "Each souvenir represents a lesson learned, a perspective gained, or a connection made with people from different backgrounds and ways of life.",
+          "inspiration": "Travel memories fuel creativity, broaden problem-solving approaches, and remind you that there are many ways to live, work, and find meaning."
+        }
+      },
+      "cherished_moments": {
+        "title": "Framed Memories",
+        "content": "Photographs capture moments, but the act of framing and displaying them transforms memories into daily inspiration and gratitude reminders.",
+        "type": "markdown",
+        "data": {
+          "photo_selection": [
+            "**Relationships**: People who matter most and shared experiences",
+            "**Achievements**: Moments of growth, success, and overcoming challenges",
+            "**Beauty**: Scenes that inspire wonder and appreciation",
+            "**Milestones**: Life transitions and significant events",
+            "**Joy**: Spontaneous moments of happiness and laughter"
+          ],
+          "display_impact": "Visible photos serve as daily reminders of what matters most, sources of motivation during difficult times, and conversation starters that deepen relationships.",
+          "curation": "Like a well-designed user interface, photo displays should be intentional, uncluttered, and focused on what truly adds value to daily life.",
+          "evolution": "Photo displays should evolve as life changes, ensuring they remain relevant and meaningful rather than becoming stale decoration."
+        }
+      },
+      "current_interests": {
+        "title": "Learning Pulse",
+        "content": "Magazines and articles represent the pulse of current thinking—a way to stay connected to evolving ideas and emerging trends across multiple disciplines.",
+        "type": "list",
+        "data": {
+          "reading_categories": [
+            "Technology and innovation trends",
+            "Design and user experience insights",
+            "Psychology and human behavior research",
+            "Business and entrepreneurship strategies",
+            "Science and environmental developments"
+          ],
+          "information_diet": [
+            "Curated sources over random browsing",
+            "Multiple perspectives on important topics",
+            "Balance between depth and breadth",
+            "Action-oriented learning over passive consumption"
+          ],
+          "synthesis": "The goal isn't just to consume information, but to synthesize insights across disciplines and apply them to current challenges and opportunities.",
+          "sharing": "The best insights are meant to be shared—through discussions, writing, or application in projects that benefit others."
+        }
+      },
+      "entertainment_setup": {
+        "title": "Media Curation",
+        "content": "How we consume media shapes our thoughts, mood, and worldview. Intentional entertainment choices are as important as intentional food choices.",
+        "type": "text",
+        "data": {
+          "content_curation": ["Educational documentaries that expand understanding", "Stories that explore human nature and relationships", "Comedy that provides stress relief and perspective", "Music that enhances mood and productivity"],
+          "consumption_habits": ["Scheduled viewing rather than mindless scrolling", "Discussion and reflection after meaningful content", "Balance between entertainment and education", "Regular digital detox periods"],
+          "philosophy": "Entertainment should refresh and inspire, not drain and distract. The goal is to emerge from media consumption feeling energized and enriched, not depleted.",
+          "technology_relationship": "Using technology intentionally rather than being used by it—choosing what to watch rather than letting algorithms choose for you."
+        }
+      },
+      "hospitality": {
+        "title": "Welcoming Spaces",
+        "content": "Hospitality isn't about having the perfect setup—it's about making others feel valued, comfortable, and welcome in your space.",
+        "type": "markdown",
+        "data": {
+          "hospitality_principles": [
+            "**Preparation**: Anticipating needs before guests arrive",
+            "**Attention**: Focusing on the person, not the performance",
+            "**Comfort**: Creating an environment where people can relax",
+            "**Generosity**: Sharing the best of what you have",
+            "**Presence**: Being fully engaged with your guests"
+          ],
+          "practical_elements": "Simple touches like coasters, good lighting, comfortable seating, and thoughtful refreshments show care and consideration for others' comfort.",
+          "philosophy": "True hospitality is about creating space for authentic connection and making others feel seen, heard, and valued.",
+          "reciprocity": "Good hospitality creates a positive cycle—when you make others feel welcome, they're more likely to extend the same warmth to others."
+        }
+      },
+      "professional_growth": {
+        "title": "Continuous Certification",
+        "content": "Professional certifications aren't just credentials—they're commitments to staying current, maintaining standards, and serving others with competence.",
+        "type": "text",
+        "data": {
+          "certification_value": ["Structured learning paths for skill development", "Industry recognition and credibility", "Network connections with other professionals", "Accountability for maintaining current knowledge"],
+          "selection_criteria": "Choose certifications that align with career goals, fill genuine knowledge gaps, and come from respected organizations with rigorous standards.",
+          "maintenance": "The real value comes from applying certified knowledge in real projects and staying current with evolving best practices and technologies.",
+          "philosophy": "Certifications are starting points, not endpoints. They provide foundation and credibility, but practical experience and continued learning create true expertise."
+        }
+      },
+      "life_organization": {
+        "title": "Systems & Structure",
+        "content": "Organization isn't about perfection—it's about creating systems that reduce friction, prevent loss, and enable focus on what matters most.",
+        "type": "list",
+        "data": {
+          "organization_principles": [
+            "Everything has a designated place and purpose",
+            "Regular review and purging of unnecessary items",
+            "Digital and physical systems that complement each other",
+            "Backup and redundancy for critical information",
+            "Accessibility and ease of retrieval"
+          ],
+          "document_categories": [
+            "Legal and financial records",
+            "Health and medical information",
+            "Professional and educational credentials",
+            "Personal and family history",
+            "Reference and instruction materials"
+          ],
+          "benefits": "Good organization reduces stress, saves time, prevents loss of important information, and creates mental clarity by reducing cognitive load.",
+          "philosophy": "Organization is a form of self-care and respect for future self—making life easier when you need to find something important quickly."
+        }
+      },
+      "networking": {
+        "title": "Professional Connections",
+        "content": "Networking isn't about collecting contacts—it's about building genuine relationships that create mutual value and support professional growth.",
+        "type": "markdown",
+        "data": {
+          "networking_approach": [
+            "**Give First**: Offer help and value before asking for anything",
+            "**Authentic Interest**: Genuine curiosity about others' work and challenges",
+            "**Follow Through**: Consistent communication and reliable follow-up",
+            "**Mutual Benefit**: Seeking win-win opportunities and connections",
+            "**Long-term Thinking**: Building relationships, not just making transactions"
+          ],
+          "relationship_maintenance": "Regular check-ins, sharing relevant opportunities, celebrating others' successes, and being available when help is needed.",
+          "quality_over_quantity": "A smaller network of strong, genuine relationships is more valuable than a large collection of superficial contacts.",
+          "philosophy": "The best networking happens when you stop thinking about what you can get and start thinking about what you can give."
+        }
+      },
+      "personal_style": {
+        "title": "Authentic Expression",
+        "content": "Personal style isn't about following trends—it's about authentic self-expression and choosing items that reflect your values and personality.",
+        "type": "text",
+        "data": {
+          "style_philosophy": "Choose pieces that feel authentic, serve multiple purposes, and maintain quality over quantity. Style should enhance confidence, not create anxiety.",
+          "selection_criteria": ["Comfort and functionality", "Quality materials and craftsmanship", "Versatility across different contexts", "Personal meaning and emotional connection"],
+          "minimalism": "A curated collection of meaningful pieces is more valuable than a large collection of items that don't truly represent who you are.",
+          "evolution": "Personal style should evolve with life changes, experiences, and growth while maintaining core elements that feel authentically you."
+        }
+      },
+      "sensory_preferences": {
+        "title": "Scent & Memory",
+        "content": "Scent is the most direct path to memory and emotion. Choosing fragrances intentionally can enhance mood, confidence, and personal presence.",
+        "type": "list",
+        "data": {
+          "scent_categories": [
+            "Fresh and clean for daily confidence",
+            "Warm and woody for evening sophistication",
+            "Light and citrusy for energy and focus",
+            "Complex and unique for special occasions"
+          ],
+          "application_philosophy": [
+            "Subtle enhancement, not overwhelming presence",
+            "Consistency in signature scents for recognition",
+            "Seasonal variation to match mood and weather",
+            "Quality over quantity in fragrance selection"
+          ],
+          "memory_connection": "Scents become part of personal identity and create lasting impressions in others' memories of interactions with you.",
+          "mindfulness": "Choosing and applying fragrance mindfully creates a moment of intention-setting and self-care in daily routines."
+        }
+      },
+      "self_reflection": {
+        "title": "Mirror Moments",
+        "content": "Self-reflection isn't vanity—it's the practice of honest self-assessment, growth tracking, and intentional personal development.",
+        "type": "markdown",
+        "data": {
+          "reflection_practices": [
+            "**Daily Check-ins**: Brief moments to assess mood, energy, and priorities",
+            "**Weekly Reviews**: Longer sessions to evaluate progress and adjust goals",
+            "**Monthly Planning**: Strategic thinking about direction and priorities",
+            "**Annual Assessments**: Deep reflection on growth, values, and life direction"
+          ],
+          "honest_assessment": "True self-reflection requires honesty about strengths, weaknesses, progress, and areas needing improvement without harsh self-judgment.",
+          "growth_mindset": "Using reflection to identify learning opportunities, celebrate progress, and adjust strategies rather than dwelling on mistakes or shortcomings.",
+          "action_orientation": "Reflection should lead to action—insights without implementation are just interesting thoughts."
+        }
+      },
+      "social_creativity": {
+        "title": "Mixology as Art",
+        "content": "Creating cocktails is like writing code—combining elements in precise proportions to create something greater than the sum of its parts.",
+        "type": "text",
+        "data": {
+          "creative_process": ["Understanding base ingredients and their properties", "Experimenting with flavor combinations and ratios", "Balancing sweet, sour, bitter, and strong elements", "Presentation and garnish for visual appeal"],
+          "social_aspect": "Cocktail creation is performance art that brings people together, sparks conversation, and creates shared experiences and memories.",
+          "craftsmanship": "Like good software, good cocktails require attention to detail, understanding of fundamentals, and willingness to iterate until you achieve the desired result.",
+          "philosophy": "Mixology teaches patience, precision, creativity, and the joy of creating something beautiful and functional that others can enjoy and appreciate."
+        }
+      },
+      "appreciation_culture": {
+        "title": "Cultivated Taste",
+        "content": "Appreciating wine isn't about snobbery—it's about developing sensitivity to craftsmanship, terroir, and the cultural stories embedded in every bottle.",
+        "type": "list",
+        "data": {
+          "appreciation_elements": [
+            "Understanding the winemaking process and regional differences",
+            "Developing palate sensitivity to subtle flavors and characteristics",
+            "Learning about food pairing and complementary flavors",
+            "Appreciating the cultural and historical context of different wines"
+          ],
+          "collection_philosophy": [
+            "Quality over quantity in selection",
+            "Variety to explore different regions and styles",
+            "Special bottles for meaningful occasions",
+            "Sharing and discussing with others to deepen appreciation"
+          ],
+          "cultural_connection": "Wine connects you to different cultures, landscapes, and traditions, creating appreciation for craftsmanship and regional identity.",
+          "mindfulness": "Wine tasting teaches mindfulness, attention to detail, and the ability to slow down and savor experiences rather than rushing through them."
+        }
+      },
+      "mixology_art": {
+        "title": "Liquid Literature",
+        "content": "Cocktail books are like programming manuals—they provide foundational knowledge, proven patterns, and inspiration for creative innovation.",
+        "type": "markdown",
+        "data": {
+          "learning_approach": [
+            "**Classic Foundations**: Master traditional recipes before innovating",
+            "**Technique Focus**: Understanding why recipes work, not just how",
+            "**Ingredient Knowledge**: Learning about spirits, mixers, and garnishes",
+            "**Experimentation**: Using knowledge to create original combinations",
+            "**Documentation**: Recording successful experiments for future reference"
+          ],
+          "creative_application": "Like coding, mixology combines technical knowledge with creative expression—understanding the rules enables you to break them effectively.",
+          "sharing_knowledge": "The best cocktail knowledge is meant to be shared, taught, and built upon by others in the community.",
+          "philosophy": "Mixology is both art and science—requiring precision in measurement and technique while allowing for creative expression and personal style."
+        }
+      },
+      "inner_peace": {
+        "title": "Stillness Practice",
+        "content": "Meditation isn't about emptying the mind—it's about training attention, developing awareness, and creating space between stimulus and response.",
+        "type": "text",
+        "data": {
+          "meditation_benefits": ["Improved focus and concentration", "Reduced stress and anxiety", "Better emotional regulation", "Enhanced creativity and problem-solving", "Increased self-awareness and compassion"],
+          "practice_approach": "Start small with just a few minutes daily, focus on consistency over duration, and be patient with the process of developing mental discipline.",
+          "integration": "The real value of meditation comes from integrating mindfulness into daily activities—bringing meditative awareness to work, relationships, and challenges.",
+          "philosophy": "Meditation is like debugging your mind—observing thoughts and emotions without immediately reacting, creating space for more thoughtful responses."
+        }
+      },
+      "spiritual_practice": {
+        "title": "Sacred Atmosphere",
+        "content": "Creating sacred space isn't about religion—it's about intentionality, reverence, and connecting with something larger than immediate concerns.",
+        "type": "list",
+        "data": {
+          "atmosphere_elements": [
+            "Incense for engaging the sense of smell",
+            "Soft lighting to create intimacy and focus",
+            "Comfortable seating for extended practice",
+            "Minimal distractions and clutter",
+            "Personal symbols or items with meaning"
+          ],
+          "practice_benefits": [
+            "Regular time for reflection and gratitude",
+            "Connection to values and deeper purpose",
+            "Stress relief and emotional processing",
+            "Perspective on daily challenges and concerns"
+          ],
+          "philosophy": "Spiritual practice provides anchor points in busy life—moments to reconnect with what matters most and gain perspective on temporary challenges.",
+          "personalization": "Spiritual practice should be authentic to your beliefs and values, not conforming to external expectations or traditions that don't resonate."
+        }
+      },
+      "sound_healing": {
+        "title": "Vibrational Wellness",
+        "content": "Sound has the power to shift consciousness, reduce stress, and create states of deep relaxation and healing that words cannot reach.",
+        "type": "markdown",
+        "data": {
+          "sound_benefits": [
+            "**Stress Reduction**: Vibrational frequencies that calm the nervous system",
+            "**Focus Enhancement**: Sound anchors that improve concentration",
+            "**Emotional Release**: Frequencies that help process and release tension",
+            "**Meditation Support**: Audio cues that deepen mindfulness practice",
+            "**Energy Clearing**: Sounds that refresh mental and emotional state"
+          ],
+          "practice_integration": "Incorporating sound healing into daily routines—morning intention setting, work break resets, and evening wind-down practices.",
+          "scientific_basis": "Sound therapy works through measurable effects on brainwave patterns, heart rate variability, and stress hormone levels.",
+          "philosophy": "Sound healing recognizes that we are vibrational beings—our thoughts, emotions, and physical health are all influenced by the frequencies we encounter."
+        }
       }
     }
   },
@@ -519,7 +2136,7 @@
     "description": "Discover professional information through an interactive room experience",
     "author": "Alex Chen",
     "version": "1.0.0",
-    "explorationThreshold": 6,
+    "explorationThreshold": 35,
     "finalReveal": {
       "title": "Thank You for Exploring!",
       "content": "You've discovered the essence of who I am as both a developer and a person. This interactive experience reflects my belief that the best solutions come from curiosity, exploration, and seeing beyond the surface. I hope this unique approach to a portfolio has given you insight into how I think, work, and approach challenges. Let's build something amazing together!",

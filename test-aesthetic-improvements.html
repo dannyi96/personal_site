@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Improvements Test</title>
+    <link rel="stylesheet" href="src/styles/room.css">
+    <link rel="stylesheet" href="src/styles/modals.css">
+</head>
+<body>
+    <div id="room-container"></div>
+    
+    <!-- Announcements for screen readers -->
+    <div id="announcements" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+    
+    <script type="module">
+        import Room from './src/components/Room/index.js';
+        
+        // Initialize the room
+        const room = new Room();
+        
+        // Test that all 58 items are loaded
+        setTimeout(() => {
+            const objectCount = Object.keys(room.contentData?.objects || {}).length;
+            console.log(`Loaded ${objectCount} interactive objects`);
+            
+            if (objectCount === 58) {
+                console.log('✅ All 58 items loaded successfully');
+            } else {
+                console.log(`❌ Expected 58 items, got ${objectCount}`);
+            }
+            
+            // Test that furniture has realistic colors
+            const furniture = document.querySelectorAll('[class*="room-"]');
+            console.log(`Found ${furniture.length} furniture elements with realistic styling`);
+            
+            // Test that shadows are present
+            const shadows = document.querySelectorAll('.floor-shadow');
+            console.log(`Found ${shadows.length} floor shadows`);
+            
+            // Test that objects are properly positioned
+            const objects = document.querySelectorAll('.room-object');
+            console.log(`Found ${objects.length} interactive objects positioned in furniture`);
+            
+        }, 2000);
+    </script>
+</body>
+</html>

@@ -118,6 +118,9 @@ export default class Room {
     // Make window directly clickable
     this.makeFurnitureInteractive(window, 'window');
     
+    // Add candle to window sill
+    this.addInteractiveObjectToContainer(window, 'candle');
+    
     const bookshelf = document.createElement('div');
     bookshelf.className = 'room-bookshelf room-interactive-furniture';
     bookshelf.setAttribute('data-object-id', 'bookshelf');
@@ -174,6 +177,9 @@ export default class Room {
     // Make bookshelf directly interactive
     this.makeFurnitureInteractive(bookshelf, 'bookshelf');
     
+    // Add tea set to bookshelf area
+    this.addInteractiveObjectToContainer(bookshelf, 'tea_set');
+    
     const desk = document.createElement('div');
     desk.className = 'room-desk';
     
@@ -186,15 +192,21 @@ export default class Room {
     rightLeg.className = 'desk-leg desk-leg-right';
     desk.appendChild(rightLeg);
     
-    // Add laptop and notebook to desk
+    // Add laptop, notebook, coffee mug, headphones, water bottle, and journal to desk
     this.addInteractiveObjectToContainer(desk, 'laptop');
+    this.addInteractiveObjectToContainer(desk, 'coffee_mug');
+    this.addInteractiveObjectToContainer(desk, 'headphones');
+    this.addInteractiveObjectToContainer(desk, 'water_bottle');
     this.addInteractiveObjectToContainer(desk, 'notebook');
+    this.addInteractiveObjectToContainer(desk, 'journal');
     
     const tvStand = document.createElement('div');
     tvStand.className = 'room-tv-stand';
     
-    // Add TV to TV stand
+    // Add TV, board games, and vinyl record to TV stand
     this.addInteractiveObjectToContainer(tvStand, 'tv');
+    this.addInteractiveObjectToContainer(tvStand, 'board_games');
+    this.addInteractiveObjectToContainer(tvStand, 'vinyl_record');
     
     const clockArea = document.createElement('div');
     clockArea.className = 'room-clock-area room-interactive-furniture';
@@ -206,22 +218,106 @@ export default class Room {
     const picture = document.createElement('div');
     picture.className = 'room-picture';
     
-    // Add map to picture frame
+    // Add map, camera, and art supplies to picture frame area
     this.addInteractiveObjectToContainer(picture, 'map');
+    this.addInteractiveObjectToContainer(picture, 'camera');
+    this.addInteractiveObjectToContainer(picture, 'art_supplies');
     
     const carpet = document.createElement('div');
     carpet.className = 'room-carpet';
     
-    // Add sports gear to carpet area
+    // Add sports gear, puzzle, and cooking pot to carpet area
     this.addInteractiveObjectToContainer(carpet, 'sports_gear');
+    this.addInteractiveObjectToContainer(carpet, 'puzzle');
+    this.addInteractiveObjectToContainer(carpet, 'cooking_pot');
     
-    // Add dustbin to floor (not in furniture)
+    // Add dustbin and guitar to floor (not in furniture)
     this.addInteractiveObjectToContainer(floor, 'dustbin');
+    this.addInteractiveObjectToContainer(floor, 'guitar');
+    
+    // Create additional creative furniture and background elements
+    const plantStand = document.createElement('div');
+    plantStand.className = 'room-plant-stand';
+    this.addInteractiveObjectToContainer(plantStand, 'plant');
+    
+    const telescopeCorner = document.createElement('div');
+    telescopeCorner.className = 'room-telescope-corner';
+    this.addInteractiveObjectToContainer(telescopeCorner, 'telescope');
+    
+    // Nightstand with bedside items
+    const nightstand = document.createElement('div');
+    nightstand.className = 'room-nightstand';
+    this.addInteractiveObjectToContainer(nightstand, 'alarm_clock');
+    this.addInteractiveObjectToContainer(nightstand, 'reading_glasses');
+    this.addInteractiveObjectToContainer(nightstand, 'bedside_book');
+    
+    // Kitchen counter with cooking essentials
+    const kitchenCounter = document.createElement('div');
+    kitchenCounter.className = 'room-kitchen-counter';
+    this.addInteractiveObjectToContainer(kitchenCounter, 'spice_rack');
+    this.addInteractiveObjectToContainer(kitchenCounter, 'cutting_board');
+    this.addInteractiveObjectToContainer(kitchenCounter, 'recipe_book');
+    
+    // Workbench with creative tools
+    const workbench = document.createElement('div');
+    workbench.className = 'room-workbench';
+    this.addInteractiveObjectToContainer(workbench, 'toolbox');
+    this.addInteractiveObjectToContainer(workbench, 'project_sketches');
+    this.addInteractiveObjectToContainer(workbench, 'measuring_tape');
+    
+    // Reading nook with cozy items
+    const readingNook = document.createElement('div');
+    readingNook.className = 'room-reading-nook';
+    this.addInteractiveObjectToContainer(readingNook, 'throw_blanket');
+    this.addInteractiveObjectToContainer(readingNook, 'reading_lamp');
+    this.addInteractiveObjectToContainer(readingNook, 'bookmark_collection');
+    
+    // Wall shelves with personal items
+    const wallShelves = document.createElement('div');
+    wallShelves.className = 'room-wall-shelves';
+    this.addInteractiveObjectToContainer(wallShelves, 'trophy_collection');
+    this.addInteractiveObjectToContainer(wallShelves, 'travel_souvenirs');
+    this.addInteractiveObjectToContainer(wallShelves, 'photo_frames');
+    
+    // Side table with entertainment items
+    const sideTable = document.createElement('div');
+    sideTable.className = 'room-side-table';
+    this.addInteractiveObjectToContainer(sideTable, 'magazine_stack');
+    this.addInteractiveObjectToContainer(sideTable, 'remote_controls');
+    this.addInteractiveObjectToContainer(sideTable, 'coaster_set');
+    
+    // Filing cabinet with documents
+    const filingCabinet = document.createElement('div');
+    filingCabinet.className = 'room-filing-cabinet';
+    this.addInteractiveObjectToContainer(filingCabinet, 'certificates');
+    this.addInteractiveObjectToContainer(filingCabinet, 'important_documents');
+    this.addInteractiveObjectToContainer(filingCabinet, 'business_cards');
+    
+    // Dresser with personal accessories
+    const dresser = document.createElement('div');
+    dresser.className = 'room-dresser';
+    this.addInteractiveObjectToContainer(dresser, 'jewelry_box');
+    this.addInteractiveObjectToContainer(dresser, 'cologne_collection');
+    this.addInteractiveObjectToContainer(dresser, 'hand_mirror');
+    
+    // Bar cart with social items
+    const barCart = document.createElement('div');
+    barCart.className = 'room-bar-cart';
+    this.addInteractiveObjectToContainer(barCart, 'cocktail_shaker');
+    this.addInteractiveObjectToContainer(barCart, 'wine_collection');
+    this.addInteractiveObjectToContainer(barCart, 'cocktail_book');
+    
+    // Meditation corner with mindfulness items
+    const meditationCorner = document.createElement('div');
+    meditationCorner.className = 'room-meditation-corner';
+    this.addInteractiveObjectToContainer(meditationCorner, 'meditation_cushion');
+    this.addInteractiveObjectToContainer(meditationCorner, 'incense_holder');
+    this.addInteractiveObjectToContainer(meditationCorner, 'singing_bowl');
     
     const lighting = document.createElement('div');
     lighting.className = 'room-lighting';
     
-    // Floor shadows
+    // Floor shadows for all furniture pieces
     const deskShadow = document.createElement('div');
     deskShadow.className = 'floor-shadow shadow-desk';
     
@@ -230,6 +326,39 @@ export default class Room {
     
     const bookshelfShadow = document.createElement('div');
     bookshelfShadow.className = 'floor-shadow shadow-bookshelf';
+    
+    const nightstandShadow = document.createElement('div');
+    nightstandShadow.className = 'floor-shadow shadow-nightstand';
+    
+    const kitchenCounterShadow = document.createElement('div');
+    kitchenCounterShadow.className = 'floor-shadow shadow-kitchen-counter';
+    
+    const workbenchShadow = document.createElement('div');
+    workbenchShadow.className = 'floor-shadow shadow-workbench';
+    
+    const readingNookShadow = document.createElement('div');
+    readingNookShadow.className = 'floor-shadow shadow-reading-nook';
+    
+    const wallShelvesShadow = document.createElement('div');
+    wallShelvesShadow.className = 'floor-shadow shadow-wall-shelves';
+    
+    const sideTableShadow = document.createElement('div');
+    sideTableShadow.className = 'floor-shadow shadow-side-table';
+    
+    const filingCabinetShadow = document.createElement('div');
+    filingCabinetShadow.className = 'floor-shadow shadow-filing-cabinet';
+    
+    const dresserShadow = document.createElement('div');
+    dresserShadow.className = 'floor-shadow shadow-dresser';
+    
+    const barCartShadow = document.createElement('div');
+    barCartShadow.className = 'floor-shadow shadow-bar-cart';
+    
+    const meditationCornerShadow = document.createElement('div');
+    meditationCornerShadow.className = 'floor-shadow shadow-meditation-corner';
+    
+    const plantStandShadow = document.createElement('div');
+    plantStandShadow.className = 'floor-shadow shadow-plant-stand';
     
     // Append all elements in proper z-order
     backgroundContainer.appendChild(backWall);
@@ -244,9 +373,32 @@ export default class Room {
     backgroundContainer.appendChild(clockArea);
     backgroundContainer.appendChild(picture);
     backgroundContainer.appendChild(carpet);
+    backgroundContainer.appendChild(plantStand);
+    backgroundContainer.appendChild(telescopeCorner);
+    backgroundContainer.appendChild(nightstand);
+    backgroundContainer.appendChild(kitchenCounter);
+    backgroundContainer.appendChild(workbench);
+    backgroundContainer.appendChild(readingNook);
+    backgroundContainer.appendChild(wallShelves);
+    backgroundContainer.appendChild(sideTable);
+    backgroundContainer.appendChild(filingCabinet);
+    backgroundContainer.appendChild(dresser);
+    backgroundContainer.appendChild(barCart);
+    backgroundContainer.appendChild(meditationCorner);
     backgroundContainer.appendChild(deskShadow);
     backgroundContainer.appendChild(tvShadow);
     backgroundContainer.appendChild(bookshelfShadow);
+    backgroundContainer.appendChild(nightstandShadow);
+    backgroundContainer.appendChild(kitchenCounterShadow);
+    backgroundContainer.appendChild(workbenchShadow);
+    backgroundContainer.appendChild(readingNookShadow);
+    backgroundContainer.appendChild(wallShelvesShadow);
+    backgroundContainer.appendChild(sideTableShadow);
+    backgroundContainer.appendChild(filingCabinetShadow);
+    backgroundContainer.appendChild(dresserShadow);
+    backgroundContainer.appendChild(barCartShadow);
+    backgroundContainer.appendChild(meditationCornerShadow);
+    backgroundContainer.appendChild(plantStandShadow);
     backgroundContainer.appendChild(lighting);
     
     this.container.appendChild(backgroundContainer);
@@ -273,7 +425,10 @@ export default class Room {
       objectElement.style.transform = 'none';
       
       // Add container-specific classes for fine-tuning if needed
-      objectElement.classList.add(`in-${container.className.replace('room-', '')}`);
+      const containerClass = container.className.split(' ').find(cls => cls.startsWith('room-'));
+      if (containerClass) {
+        objectElement.classList.add(`in-${containerClass.replace('room-', '')}`);
+      }
       
       container.appendChild(objectElement);
       this.objects[objectId] = interactiveObject;

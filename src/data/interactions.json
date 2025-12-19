@@ -215,6 +215,1086 @@
         "key": "Enter",
         "focusable": true
       }
+    },
+    "coffee_mug_click": {
+      "objectId": "coffee_mug",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.coffee_culture",
+      "animation": {
+        "type": "fade",
+        "duration": 300,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Coffee culture modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "headphones_click": {
+      "objectId": "headphones",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.music_focus",
+      "animation": {
+        "type": "slide",
+        "duration": 350,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Music and focus modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "plant_click": {
+      "objectId": "plant",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.growth_mindset",
+      "animation": {
+        "type": "scale",
+        "duration": 400,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Growth mindset modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "camera_click": {
+      "objectId": "camera",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.photography",
+      "animation": {
+        "type": "fade",
+        "duration": 300,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Photography passion modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "guitar_click": {
+      "objectId": "guitar",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.music_creativity",
+      "animation": {
+        "type": "bounce",
+        "duration": 400,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Musical creativity modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "journal_click": {
+      "objectId": "journal",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.reflection",
+      "animation": {
+        "type": "slide",
+        "duration": 350,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Personal reflection modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "art_supplies_click": {
+      "objectId": "art_supplies",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.artistic_side",
+      "animation": {
+        "type": "scale",
+        "duration": 400,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Artistic creativity modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "water_bottle_click": {
+      "objectId": "water_bottle",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.health_habits",
+      "animation": {
+        "type": "fade",
+        "duration": 300,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Health and wellness modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "board_games_click": {
+      "objectId": "board_games",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.social_gaming",
+      "animation": {
+        "type": "bounce",
+        "duration": 400,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Social gaming modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "candle_click": {
+      "objectId": "candle",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.ambiance",
+      "animation": {
+        "type": "fade",
+        "duration": 350,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Ambiance and atmosphere modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "telescope_click": {
+      "objectId": "telescope",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.curiosity",
+      "animation": {
+        "type": "scale",
+        "duration": 500,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Curiosity and wonder modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "cooking_pot_click": {
+      "objectId": "cooking_pot",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.culinary_adventures",
+      "animation": {
+        "type": "bounce",
+        "duration": 400,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Culinary adventures modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "puzzle_click": {
+      "objectId": "puzzle",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.problem_solving",
+      "animation": {
+        "type": "slide",
+        "duration": 350,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Problem solving approach modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "tea_set_click": {
+      "objectId": "tea_set",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.mindfulness",
+      "animation": {
+        "type": "fade",
+        "duration": 400,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Mindfulness practices modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "vinyl_record_click": {
+      "objectId": "vinyl_record",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.music_appreciation",
+      "animation": {
+        "type": "scale",
+        "duration": 400,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Music appreciation modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "alarm_clock_click": {
+      "objectId": "alarm_clock",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.morning_routine",
+      "animation": {
+        "type": "bounce",
+        "duration": 300,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Morning routine modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "reading_glasses_click": {
+      "objectId": "reading_glasses",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.learning_habits",
+      "animation": {
+        "type": "fade",
+        "duration": 300,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Learning habits modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "bedside_book_click": {
+      "objectId": "bedside_book",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.evening_reading",
+      "animation": {
+        "type": "slide",
+        "duration": 350,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Evening reading modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "spice_rack_click": {
+      "objectId": "spice_rack",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.flavor_exploration",
+      "animation": {
+        "type": "scale",
+        "duration": 400,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Flavor exploration modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "cutting_board_click": {
+      "objectId": "cutting_board",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.food_preparation",
+      "animation": {
+        "type": "fade",
+        "duration": 300,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Food preparation modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "recipe_book_click": {
+      "objectId": "recipe_book",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.recipe_collection",
+      "animation": {
+        "type": "slide",
+        "duration": 350,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Recipe collection modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "toolbox_click": {
+      "objectId": "toolbox",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.hands_on_learning",
+      "animation": {
+        "type": "bounce",
+        "duration": 400,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Hands-on learning modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "project_sketches_click": {
+      "objectId": "project_sketches",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.design_process",
+      "animation": {
+        "type": "scale",
+        "duration": 350,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Design process modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "measuring_tape_click": {
+      "objectId": "measuring_tape",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.precision_mindset",
+      "animation": {
+        "type": "fade",
+        "duration": 300,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Precision mindset modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "throw_blanket_click": {
+      "objectId": "throw_blanket",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.comfort_spaces",
+      "animation": {
+        "type": "slide",
+        "duration": 400,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Comfort spaces modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "reading_lamp_click": {
+      "objectId": "reading_lamp",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.focused_environment",
+      "animation": {
+        "type": "bounce",
+        "duration": 300,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Focused environment modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "bookmark_collection_click": {
+      "objectId": "bookmark_collection",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.reading_journey",
+      "animation": {
+        "type": "scale",
+        "duration": 350,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Reading journey modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "trophy_collection_click": {
+      "objectId": "trophy_collection",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.achievements",
+      "animation": {
+        "type": "bounce",
+        "duration": 400,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Achievements modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "travel_souvenirs_click": {
+      "objectId": "travel_souvenirs",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.travel_memories",
+      "animation": {
+        "type": "slide",
+        "duration": 350,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Travel memories modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "photo_frames_click": {
+      "objectId": "photo_frames",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.cherished_moments",
+      "animation": {
+        "type": "fade",
+        "duration": 400,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Cherished moments modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "magazine_stack_click": {
+      "objectId": "magazine_stack",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.current_interests",
+      "animation": {
+        "type": "scale",
+        "duration": 300,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Current interests modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "remote_controls_click": {
+      "objectId": "remote_controls",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.entertainment_setup",
+      "animation": {
+        "type": "bounce",
+        "duration": 350,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Entertainment setup modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "coaster_set_click": {
+      "objectId": "coaster_set",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.hospitality",
+      "animation": {
+        "type": "fade",
+        "duration": 300,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Hospitality modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "certificates_click": {
+      "objectId": "certificates",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.professional_growth",
+      "animation": {
+        "type": "slide",
+        "duration": 400,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Professional growth modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "important_documents_click": {
+      "objectId": "important_documents",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.life_organization",
+      "animation": {
+        "type": "scale",
+        "duration": 350,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Life organization modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "business_cards_click": {
+      "objectId": "business_cards",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.networking",
+      "animation": {
+        "type": "bounce",
+        "duration": 300,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Networking modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "jewelry_box_click": {
+      "objectId": "jewelry_box",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.personal_style",
+      "animation": {
+        "type": "fade",
+        "duration": 400,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Personal style modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "cologne_collection_click": {
+      "objectId": "cologne_collection",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.sensory_preferences",
+      "animation": {
+        "type": "slide",
+        "duration": 350,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Sensory preferences modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "hand_mirror_click": {
+      "objectId": "hand_mirror",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.self_reflection",
+      "animation": {
+        "type": "scale",
+        "duration": 400,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Self reflection modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "cocktail_shaker_click": {
+      "objectId": "cocktail_shaker",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.social_creativity",
+      "animation": {
+        "type": "bounce",
+        "duration": 400,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Social creativity modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "wine_collection_click": {
+      "objectId": "wine_collection",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.appreciation_culture",
+      "animation": {
+        "type": "fade",
+        "duration": 350,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Cultural appreciation modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "cocktail_book_click": {
+      "objectId": "cocktail_book",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.mixology_art",
+      "animation": {
+        "type": "slide",
+        "duration": 400,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Mixology art modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "meditation_cushion_click": {
+      "objectId": "meditation_cushion",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.inner_peace",
+      "animation": {
+        "type": "scale",
+        "duration": 500,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Inner peace modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "incense_holder_click": {
+      "objectId": "incense_holder",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.spiritual_practice",
+      "animation": {
+        "type": "fade",
+        "duration": 400,
+        "easing": "ease-in-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Spiritual practice modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
+    },
+    "singing_bowl_click": {
+      "objectId": "singing_bowl",
+      "trigger": "click",
+      "action": "modal",
+      "target": "personal.sound_healing",
+      "animation": {
+        "type": "bounce",
+        "duration": 450,
+        "easing": "ease-out"
+      },
+      "conditions": {
+        "unlocked": true,
+        "mode": "both"
+      },
+      "effects": {
+        "trackVisit": true,
+        "incrementExploration": true,
+        "announceToScreenReader": "Sound healing modal opened"
+      },
+      "keyboard": {
+        "key": "Enter",
+        "focusable": true
+      }
     }
   },
   "globalInteractions": {
@@ -227,14 +1307,59 @@
       "escapeKey": true,
       "tabOrder": [
         "laptop",
-        "window",
-        "map",
+        "coffee_mug",
+        "headphones",
+        "water_bottle",
         "notebook",
+        "journal",
+        "window",
+        "candle",
+        "telescope",
+        "map",
+        "camera",
+        "art_supplies",
         "bookshelf",
+        "tea_set",
         "tv",
+        "board_games",
+        "vinyl_record",
+        "plant",
         "sports_gear",
+        "puzzle",
+        "cooking_pot",
+        "guitar",
         "clock",
-        "dustbin"
+        "dustbin",
+        "alarm_clock",
+        "reading_glasses",
+        "bedside_book",
+        "spice_rack",
+        "cutting_board",
+        "recipe_book",
+        "toolbox",
+        "project_sketches",
+        "measuring_tape",
+        "throw_blanket",
+        "reading_lamp",
+        "bookmark_collection",
+        "trophy_collection",
+        "travel_souvenirs",
+        "photo_frames",
+        "magazine_stack",
+        "remote_controls",
+        "coaster_set",
+        "certificates",
+        "important_documents",
+        "business_cards",
+        "jewelry_box",
+        "cologne_collection",
+        "hand_mirror",
+        "cocktail_shaker",
+        "wine_collection",
+        "cocktail_book",
+        "meditation_cushion",
+        "incense_holder",
+        "singing_bowl"
       ],
       "arrowKeys": true
     }

@@ -1,28 +1,42 @@
-/* Room spatial layout styles with muted color scheme */
+/* Room spatial layout styles with realistic color scheme */
 :root {
-  /* Refined muted color palette */
-  --room-bg-primary: #fafbfc;
-  --room-bg-secondary: #f1f3f5;
-  --room-text-primary: #2d3748;
-  --room-text-secondary: #4a5568;
-  --room-text-muted: #718096;
+  /* Sophisticated neutral palette */
+  --room-bg-primary: #f8f6f3;
+  --room-bg-secondary: #ede8e3;
+  --room-bg-tertiary: #e2ddd6;
+  --room-text-primary: #2c2825;
+  --room-text-secondary: #4a453f;
+  --room-text-muted: #6b6560;
   
-  /* Object colors - refined muted versions */
-  --object-blue: #4299e1;
-  --object-cyan: #38b2ac;
-  --object-green: #48bb78;
-  --object-orange: #ed8936;
-  --object-brown: #a0aec0;
-  --object-purple: #805ad5;
-  --object-red: #f56565;
-  --object-gold: #ecc94b;
-  --object-gray: #718096;
+  /* Realistic material colors */
+  --wood-primary: #8b6f47;
+  --wood-secondary: #6d5537;
+  --wood-accent: #a0845c;
+  --metal-primary: #5a5a5a;
+  --metal-secondary: #404040;
+  --fabric-primary: #d4c4b0;
+  --fabric-secondary: #c2b29e;
+  --glass-primary: #e8f4f8;
+  --glass-secondary: #d1e7ed;
+  
+  /* Sophisticated object colors */
+  --object-blue: #4a6fa5;
+  --object-cyan: #5b8a8a;
+  --object-green: #6b8e5a;
+  --object-orange: #c17817;
+  --object-brown: #8b6f47;
+  --object-purple: #7d5ba6;
+  --object-red: #b85450;
+  --object-gold: #d4af37;
+  --object-gray: #6b6560;
+  --object-silver: #9ca3af;
+  --object-black: #374151;
   
   /* Interactive states */
-  --focus-color: #3182ce;
-  --hover-shadow: rgba(0, 0, 0, 0.08);
-  --active-shadow: rgba(0, 0, 0, 0.12);
-  --glow-shadow: rgba(49, 130, 206, 0.4);
+  --focus-color: #4a6fa5;
+  --hover-shadow: rgba(0, 0, 0, 0.12);
+  --active-shadow: rgba(0, 0, 0, 0.18);
+  --glow-shadow: rgba(74, 111, 165, 0.3);
   
   /* Animation timing - refined for smoother interactions */
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -176,17 +190,18 @@
   position: relative;
 }
 
-/* Individual room elements */
+/* Individual room elements with realistic materials */
 .room-floor {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 40%;
-  background: linear-gradient(180deg, #dde1e6 0%, #d4d8dc 50%, #c8cdd3 100%);
-  background-image: 
-    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(200, 205, 211, 0.3) 40px),
-    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(200, 205, 211, 0.3) 40px);
+  background: 
+    linear-gradient(180deg, #d4c4b0 0%, #c2b29e 50%, #b8a896 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(184, 168, 150, 0.3) 40px),
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(184, 168, 150, 0.3) 40px);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .room-back-wall {
@@ -195,7 +210,10 @@
   left: 0;
   width: 100%;
   height: 60%;
-  background: linear-gradient(180deg, #f8fafb 0%, #f0f2f5 50%, #e8eaed 100%);
+  background: 
+    linear-gradient(180deg, #f8f6f3 0%, #ede8e3 50%, #e2ddd6 100%),
+    radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.4) 0%, transparent 50%);
+  box-shadow: inset 0 -2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .room-left-wall {
@@ -204,9 +222,10 @@
   left: 0;
   width: 15%;
   height: 70%;
-  background: linear-gradient(135deg, #e8eaed 0%, #dde1e6 100%);
+  background: linear-gradient(135deg, #e2ddd6 0%, #d4cfc6 100%);
   transform: skewY(2deg);
   transform-origin: bottom left;
+  box-shadow: inset -2px 0 8px rgba(0, 0, 0, 0.08);
 }
 
 .room-right-wall {
@@ -215,9 +234,10 @@
   right: 0;
   width: 15%;
   height: 70%;
-  background: linear-gradient(225deg, #dde1e6 0%, #d4d8dc 100%);
+  background: linear-gradient(225deg, #d4cfc6 0%, #c7c0b5 100%);
   transform: skewY(-2deg);
   transform-origin: bottom right;
+  box-shadow: inset 2px 0 8px rgba(0, 0, 0, 0.08);
 }
 
 .room-ceiling {
@@ -226,53 +246,53 @@
   left: 15%;
   width: 70%;
   height: 8%;
-  background: linear-gradient(90deg, #f8fafb 0%, #ffffff 50%, #f8fafb 100%);
+  background: 
+    linear-gradient(90deg, #f8f6f3 0%, #ffffff 50%, #f8f6f3 100%),
+    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
   transform: perspective(1000px) rotateX(45deg);
   transform-origin: bottom center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Window on left wall */
+/* Window on left wall - improved positioning */
 .room-window {
   position: absolute;
-  top: 15%;
-  left: 2%;
-  width: 10%;
-  height: 20%;
-  background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%);
-  border: 4px solid #5a7ba7;
-  border-radius: 4px;
+  top: 18%;
+  left: 3%;
+  width: 9%;
+  height: 18%;
+  background: 
+    linear-gradient(135deg, var(--glass-primary) 0%, var(--glass-secondary) 100%),
+    radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
+  border: 3px solid var(--metal-primary);
+  border-radius: 6px;
   box-shadow: 
-    inset 0 0 20px rgba(255, 255, 255, 0.3),
-    0 4px 15px rgba(0, 0, 0, 0.2);
-  /* Container for interactive objects */
+    inset 0 0 20px rgba(255, 255, 255, 0.4),
+    0 6px 20px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  padding-bottom: 0.5rem;
   transition: all var(--transition-fast);
 }
 
-/* Interactive furniture hover effects */
 .room-window.room-interactive-furniture:hover {
-  filter: brightness(1.1) saturate(1.1);
+  filter: brightness(1.05);
   box-shadow: 
-    inset 0 0 20px rgba(255, 255, 255, 0.4),
-    0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-.room-window.room-interactive-furniture:focus {
-  outline: 3px solid var(--focus-color);
-  outline-offset: 4px;
-  filter: brightness(1.2) saturate(1.2);
+    inset 0 0 25px rgba(255, 255, 255, 0.5),
+    0 8px 25px rgba(0, 0, 0, 0.2),
+    0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .room-window::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 45%;
-  width: 10%;
+  left: 47%;
+  width: 6%;
   height: 100%;
-  background: #5a7ba7;
+  background: var(--metal-primary);
   z-index: 1;
   pointer-events: none;
 }
@@ -280,164 +300,125 @@
 .room-window::after {
   content: '';
   position: absolute;
-  top: 45%;
+  top: 47%;
   left: 0;
   width: 100%;
-  height: 10%;
-  background: #5a7ba7;
+  height: 6%;
+  background: var(--metal-primary);
   z-index: 1;
   pointer-events: none;
 }
 
-/* Bookshelf on right wall */
+/* Bookshelf on right wall - improved positioning and materials */
 .room-bookshelf {
   position: absolute;
-  top: 18%;
-  right: 2%;
-  width: 8%;
-  height: 45%;
+  top: 20%;
+  right: 3%;
+  width: 7%;
+  height: 40%;
   background: 
-    linear-gradient(135deg, #8b7355 0%, #6b5d42 100%),
-    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 0, 0, 0.1) 3px);
-  border: 3px solid #6b5d42;
+    linear-gradient(135deg, var(--wood-primary) 0%, var(--wood-secondary) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 0, 0, 0.08) 3px);
+  border: 2px solid var(--wood-secondary);
   border-radius: 4px;
   box-shadow: 
-    0 4px 15px rgba(0, 0, 0, 0.3),
-    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
   transition: all var(--transition-fast);
 }
 
-/* Interactive bookshelf hover effects */
 .room-bookshelf.room-interactive-furniture:hover {
-  filter: brightness(1.05) saturate(1.05);
+  filter: brightness(1.03);
   box-shadow: 
-    0 6px 20px rgba(0, 0, 0, 0.4),
-    inset 0 2px 4px rgba(255, 255, 255, 0.15);
+    0 8px 25px rgba(0, 0, 0, 0.25),
+    inset 0 2px 4px rgba(255, 255, 255, 0.15),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.12);
 }
 
-.room-bookshelf.room-interactive-furniture:focus {
-  outline: 3px solid var(--focus-color);
-  outline-offset: 4px;
-  filter: brightness(1.1) saturate(1.1);
-}
-
-.bookshelf-shelf {
-  position: absolute;
-  left: 5%;
-  width: 90%;
-  height: 8px;
-  background: #6b5d42;
-}
-
-.bookshelf-shelf:nth-child(1) { top: 20%; }
-.bookshelf-shelf:nth-child(2) { top: 40%; }
-.bookshelf-shelf:nth-child(3) { top: 60%; }
-.bookshelf-shelf:nth-child(4) { top: 80%; }
-
-.book {
-  position: absolute;
-  border-radius: 1px 1px 0 0;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 
-    inset 1px 0 2px rgba(255, 255, 255, 0.3),
-    1px 1px 3px rgba(0, 0, 0, 0.2);
-  pointer-events: none;
-  transition: all var(--transition-fast);
-}
-
-/* Book spine details */
-.book::before {
-  content: '';
-  position: absolute;
-  top: 10%;
-  left: 2px;
-  width: 60%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 1px;
-}
-
-.book::after {
-  content: '';
-  position: absolute;
-  bottom: 15%;
-  left: 2px;
-  width: 40%;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 1px;
-}
-
-/* Subtle book hover effect when bookshelf is hovered */
-.room-bookshelf.room-interactive-furniture:hover .book {
-  filter: brightness(1.1);
-}
-
-/* Desk in center */
+/* Desk in center - improved positioning */
 .room-desk {
   position: absolute;
-  bottom: 25%;
-  left: 33%;
-  width: 18%;
-  height: 12%;
+  bottom: 28%;
+  left: 35%;
+  width: 16%;
+  height: 10%;
   background: 
-    linear-gradient(135deg, #8b7355 0%, #6b5d42 100%),
-    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 0, 0, 0.1) 4px);
-  border: 3px solid #6b5d42;
-  border-radius: 4px;
+    linear-gradient(135deg, var(--wood-primary) 0%, var(--wood-secondary) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 0, 0, 0.06) 4px);
+  border: 2px solid var(--wood-secondary);
+  border-radius: 6px;
   box-shadow: 
-    0 6px 20px rgba(0, 0, 0, 0.3),
-    inset 0 2px 4px rgba(255, 255, 255, 0.1);
-  /* Container for interactive objects */
+    0 8px 25px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: space-around;
-  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0.4rem;
+  gap: 0.3rem;
 }
 
+/* Desk legs with realistic wood materials */
 .desk-leg {
   position: absolute;
-  bottom: -15px;
-  width: 12px;
-  height: 15px;
-  background: #5a4d32;
+  bottom: -8px;
+  width: 8px;
+  height: 20px;
+  background: 
+    linear-gradient(180deg, var(--wood-primary) 0%, var(--wood-secondary) 100%);
+  border: 1px solid var(--wood-secondary);
   border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.desk-leg-left { left: 10px; }
-.desk-leg-right { right: 10px; }
+.desk-leg-left {
+  left: 10%;
+}
 
-/* TV stand on right */
+.desk-leg-right {
+  right: 10%;
+}
+
+/* TV stand on right - improved positioning */
 .room-tv-stand {
   position: absolute;
-  bottom: 25%;
-  right: 25%;
-  width: 12%;
-  height: 8%;
-  background: linear-gradient(135deg, #8b7355 0%, #6b5d42 100%);
-  border: 3px solid #6b5d42;
+  bottom: 28%;
+  right: 28%;
+  width: 11%;
+  height: 7%;
+  background: 
+    linear-gradient(135deg, var(--wood-primary) 0%, var(--wood-secondary) 100%),
+    linear-gradient(90deg, transparent 20%, rgba(255, 255, 255, 0.1) 50%, transparent 80%);
+  border: 2px solid var(--wood-secondary);
   border-radius: 4px;
   box-shadow: 
-    0 6px 20px rgba(0, 0, 0, 0.3),
+    0 6px 20px rgba(0, 0, 0, 0.2),
     inset 0 2px 4px rgba(255, 255, 255, 0.1);
-  /* Container for interactive objects */
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  padding: 0.3rem;
 }
 
-/* Clock on back wall */
+/* Clock on back wall - improved positioning */
 .room-clock-area {
   position: absolute;
-  top: 20%;
-  left: 65%;
-  width: 6%;
-  height: 8%;
-  background: #f8f9fa;
-  border: 3px solid #8d9499;
+  top: 22%;
+  left: 62%;
+  width: 5%;
+  height: 7%;
+  background: 
+    radial-gradient(circle, #ffffff 0%, #f8f6f3 70%, #ede8e3 100%),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
+  border: 3px solid var(--metal-primary);
   border-radius: 50%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  /* Container for interactive objects */
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -445,72 +426,326 @@
 }
 
 .room-clock-area.room-interactive-furniture:hover {
-  filter: brightness(1.1) saturate(1.1);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.05);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.12);
 }
 
-.room-clock-area.room-interactive-furniture:focus {
-  outline: 3px solid var(--focus-color);
-  outline-offset: 4px;
-  filter: brightness(1.2) saturate(1.2);
-}
-
-.room-clock-area::before {
-  content: '';
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
-  background: #ffffff;
-  border-radius: 50%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Picture frame */
+/* Picture frame - improved positioning */
 .room-picture {
   position: absolute;
-  top: 25%;
-  left: 40%;
-  width: 12%;
-  height: 12%;
-  background: #f8f9fa;
-  border: 3px solid #8d9499;
+  top: 28%;
+  left: 42%;
+  width: 10%;
+  height: 10%;
+  background: 
+    linear-gradient(135deg, var(--wood-accent) 0%, var(--wood-primary) 100%),
+    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  border: 3px solid var(--wood-secondary);
   border-radius: 4px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  /* Container for interactive objects */
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.4rem;
+  padding: 0.3rem;
 }
 
-.room-picture::before {
-  content: '';
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
-  background: linear-gradient(135deg, #e9ecef 0%, #f8f9fa 100%);
-  border-radius: 2px;
-  z-index: 1;
-}
-
-/* Carpet */
+/* Carpet - improved positioning and realism */
 .room-carpet {
   position: absolute;
-  bottom: 15%;
-  left: 30%;
-  width: 40%;
-  height: 15%;
-  background: radial-gradient(ellipse, #daa520 0%, #b8860b 70%, transparent 100%);
+  bottom: 18%;
+  left: 32%;
+  width: 36%;
+  height: 12%;
+  background: 
+    radial-gradient(ellipse, var(--fabric-primary) 0%, var(--fabric-secondary) 70%, transparent 100%),
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 3px);
   border-radius: 50%;
-  opacity: 0.6;
-  /* Container for interactive objects */
+  opacity: 0.8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  padding: 0.8rem;
+}
+
+/* Plant stand in corner - improved positioning and realistic materials */
+.room-plant-stand {
+  position: absolute;
+  bottom: 22%;
+  right: 14%;
+  width: 5%;
+  height: 6%;
+  background: 
+    linear-gradient(135deg, var(--wood-primary) 0%, var(--wood-secondary) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 0, 0, 0.06) 3px);
+  border: 2px solid var(--wood-secondary);
+  border-radius: 50%;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Telescope corner - improved positioning */
+.room-telescope-corner {
+  position: absolute;
+  top: 32%;
+  left: 22%;
+  width: 6%;
+  height: 8%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Nightstand - improved positioning and realistic materials */
+.room-nightstand {
+  position: absolute;
+  top: 48%;
+  left: 4%;
+  width: 7%;
+  height: 10%;
+  background: 
+    linear-gradient(135deg, var(--wood-primary) 0%, var(--wood-secondary) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 0, 0, 0.06) 4px);
+  border: 2px solid var(--wood-secondary);
+  border-radius: 4px;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.4rem;
+}
+
+/* Kitchen counter - improved positioning and realistic materials */
+.room-kitchen-counter {
+  position: absolute;
+  bottom: 38%;
+  left: 4%;
+  width: 14%;
+  height: 6%;
+  background: 
+    linear-gradient(135deg, var(--metal-primary) 0%, var(--metal-secondary) 100%),
+    linear-gradient(90deg, transparent 20%, rgba(255, 255, 255, 0.1) 50%, transparent 80%);
+  border: 2px solid var(--metal-secondary);
+  border-radius: 4px;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.4rem;
+}
+
+/* Workbench - improved positioning and realistic materials */
+.room-workbench {
+  position: absolute;
+  bottom: 18%;
+  right: 38%;
+  width: 10%;
+  height: 8%;
+  background: 
+    linear-gradient(135deg, var(--wood-primary) 0%, var(--wood-secondary) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 0, 0, 0.06) 4px);
+  border: 2px solid var(--wood-secondary);
+  border-radius: 4px;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.4rem;
+}
+
+/* Reading nook - improved positioning and realistic materials */
+.room-reading-nook {
+  position: absolute;
+  top: 62%;
+  left: 16%;
+  width: 9%;
+  height: 12%;
+  background: 
+    radial-gradient(ellipse, var(--fabric-primary) 0%, var(--fabric-secondary) 100%),
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 3px);
+  border: 2px solid var(--fabric-secondary);
+  border-radius: 50%;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+}
+
+/* Wall shelves - improved positioning and realistic materials */
+.room-wall-shelves {
+  position: absolute;
+  top: 16%;
+  left: 32%;
+  width: 10%;
+  height: 6%;
+  background: 
+    linear-gradient(135deg, var(--wood-primary) 0%, var(--wood-secondary) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 0, 0, 0.06) 3px);
+  border: 2px solid var(--wood-secondary);
+  border-radius: 4px;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.3rem;
+}
+
+/* Side table - improved positioning and realistic materials */
+.room-side-table {
+  position: absolute;
+  bottom: 32%;
+  right: 10%;
+  width: 6%;
+  height: 6%;
+  background: 
+    radial-gradient(circle, var(--wood-primary) 0%, var(--wood-secondary) 100%),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  border: 2px solid var(--wood-secondary);
+  border-radius: 50%;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+}
+
+/* Filing cabinet - improved positioning and realistic materials */
+.room-filing-cabinet {
+  position: absolute;
+  bottom: 48%;
+  right: 4%;
+  width: 5%;
+  height: 12%;
+  background: 
+    linear-gradient(135deg, var(--metal-primary) 0%, var(--metal-secondary) 100%),
+    linear-gradient(90deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  border: 2px solid var(--metal-secondary);
+  border-radius: 4px;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.25),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.3rem;
+}
+
+/* Dresser - improved positioning and realistic materials */
+.room-dresser {
+  position: absolute;
+  top: 38%;
+  right: 18%;
+  width: 8%;
+  height: 10%;
+  background: 
+    linear-gradient(135deg, var(--wood-primary) 0%, var(--wood-secondary) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 0, 0, 0.06) 4px);
+  border: 2px solid var(--wood-secondary);
+  border-radius: 4px;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.4rem;
+}
+
+/* Bar cart - improved positioning and realistic materials */
+.room-bar-cart {
+  position: absolute;
+  top: 52%;
+  right: 28%;
+  width: 6%;
+  height: 8%;
+  background: 
+    linear-gradient(135deg, var(--metal-primary) 0%, var(--metal-secondary) 100%),
+    linear-gradient(90deg, transparent 20%, rgba(255, 255, 255, 0.15) 50%, transparent 80%);
+  border: 2px solid var(--metal-secondary);
+  border-radius: 4px;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.3rem;
+}
+
+/* Meditation corner - improved positioning and realistic materials */
+.room-meditation-corner {
+  position: absolute;
+  bottom: 10%;
+  left: 28%;
+  width: 6%;
+  height: 6%;
+  background: 
+    radial-gradient(ellipse, var(--fabric-primary) 0%, var(--fabric-secondary) 100%),
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.03) 3px);
+  border: 2px solid var(--fabric-secondary);
+  border-radius: 50%;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+}
+
+/* Window sill for candle */
+.room-window {
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.room-window .room-object {
+  position: relative;
+  z-index: 2;
+}
+
+/* Bookshelf area for tea set */
+.room-bookshelf {
+  padding: 0.5rem;
+}
+
+.room-bookshelf .room-object {
+  position: absolute;
+  bottom: 5%;
+  right: 10%;
+  z-index: 3;
 }
 
 /* Ambient lighting with subtle animation */
@@ -534,7 +769,7 @@
   }
 }
 
-/* Floor shadows */
+/* Floor shadows - improved positioning */
 .floor-shadow {
   position: absolute;
   bottom: 20%;
@@ -544,14 +779,36 @@
   pointer-events: none;
 }
 
-.shadow-desk { left: 35%; width: 14%; height: 4%; }
-.shadow-tv { right: 27%; width: 10%; height: 3%; }
-.shadow-bookshelf { right: 4%; width: 6%; height: 2%; }
+.shadow-desk { left: 36%; width: 14%; height: 4%; }
+.shadow-tv { right: 29%; width: 9%; height: 3%; }
+.shadow-bookshelf { right: 4%; width: 5%; height: 2%; }
+.shadow-nightstand { left: 4%; width: 6%; height: 2%; bottom: 38%; }
+.shadow-kitchen-counter { left: 4%; width: 12%; height: 2%; bottom: 32%; }
+.shadow-workbench { right: 38%; width: 8%; height: 2%; bottom: 10%; }
+.shadow-reading-nook { left: 16%; width: 7%; height: 3%; bottom: 50%; }
+.shadow-wall-shelves { left: 32%; width: 8%; height: 2%; bottom: 78%; }
+.shadow-side-table { right: 10%; width: 5%; height: 2%; bottom: 26%; }
+.shadow-filing-cabinet { right: 4%; width: 4%; height: 2%; bottom: 36%; }
+.shadow-dresser { right: 18%; width: 6%; height: 2%; bottom: 48%; }
+.shadow-bar-cart { right: 28%; width: 5%; height: 2%; bottom: 44%; }
+.shadow-meditation-corner { left: 28%; width: 5%; height: 2%; bottom: 4%; }
+.shadow-plant-stand { right: 14%; width: 4%; height: 2%; bottom: 16%; }
 
 /* Subtle furniture hover effects */
 .room-desk:hover + .shadow-desk,
 .room-tv-stand:hover + .shadow-tv,
-.room-bookshelf:hover + .shadow-bookshelf {
+.room-bookshelf:hover + .shadow-bookshelf,
+.room-nightstand:hover + .shadow-nightstand,
+.room-kitchen-counter:hover + .shadow-kitchen-counter,
+.room-workbench:hover + .shadow-workbench,
+.room-reading-nook:hover + .shadow-reading-nook,
+.room-wall-shelves:hover + .shadow-wall-shelves,
+.room-side-table:hover + .shadow-side-table,
+.room-filing-cabinet:hover + .shadow-filing-cabinet,
+.room-dresser:hover + .shadow-dresser,
+.room-bar-cart:hover + .shadow-bar-cart,
+.room-meditation-corner:hover + .shadow-meditation-corner,
+.room-plant-stand:hover + .shadow-plant-stand {
   background: radial-gradient(ellipse, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
 }
 
@@ -628,14 +885,50 @@
 
 /* Container-specific object positioning */
 .room-desk {
-  gap: 1rem;
+  gap: 0.5rem;
   padding: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .room-desk .room-object {
   flex-shrink: 0;
-  flex: 1;
-  max-width: 45%;
+  flex: 0 0 auto;
+  max-width: 30%;
+  margin: 0.25rem;
+}
+
+.room-tv-stand {
+  gap: 0.5rem;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.room-tv-stand .room-object {
+  flex-shrink: 0;
+  margin: 0.25rem;
+}
+
+.room-picture {
+  gap: 0.5rem;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.room-picture .room-object {
+  flex-shrink: 0;
+  margin: 0.25rem;
+}
+
+.room-carpet {
+  gap: 1rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.room-carpet .room-object {
+  flex-shrink: 0;
+  margin: 0.5rem;
 }
 
 /* Objects on floor need absolute positioning */
@@ -698,10 +991,24 @@
 /* Improve visual hierarchy */
 .room-bookshelf .book {
   z-index: 2;
+  position: absolute;
+  background: var(--wood-secondary);
+  border: 1px solid var(--wood-primary);
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
 }
 
 .room-bookshelf .bookshelf-shelf {
   z-index: 1;
+  position: absolute;
+  width: 90%;
+  height: 3px;
+  background: 
+    linear-gradient(90deg, var(--wood-primary) 0%, var(--wood-secondary) 100%);
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Object sizes - more realistic proportions */
@@ -723,16 +1030,51 @@
   font-size: 4rem;
 }
 
-/* Object color variations - subtle glow effects */
-.room-object.object-color-blue { filter: drop-shadow(0 0 8px rgba(66, 153, 225, 0.3)); }
-.room-object.object-color-cyan { filter: drop-shadow(0 0 8px rgba(56, 178, 172, 0.3)); }
-.room-object.object-color-green { filter: drop-shadow(0 0 8px rgba(72, 187, 120, 0.3)); }
-.room-object.object-color-orange { filter: drop-shadow(0 0 8px rgba(237, 137, 54, 0.3)); }
-.room-object.object-color-brown { filter: drop-shadow(0 0 8px rgba(160, 174, 192, 0.3)); }
-.room-object.object-color-purple { filter: drop-shadow(0 0 8px rgba(128, 90, 213, 0.3)); }
-.room-object.object-color-red { filter: drop-shadow(0 0 8px rgba(245, 101, 101, 0.3)); }
-.room-object.object-color-gold { filter: drop-shadow(0 0 8px rgba(236, 201, 75, 0.3)); }
-.room-object.object-color-gray { filter: drop-shadow(0 0 8px rgba(113, 128, 150, 0.3)); }
+/* Object color variations - sophisticated glow effects */
+.room-object.object-color-blue { 
+  filter: drop-shadow(0 0 8px rgba(74, 111, 165, 0.3));
+  color: var(--object-blue);
+}
+.room-object.object-color-cyan { 
+  filter: drop-shadow(0 0 8px rgba(91, 138, 138, 0.3));
+  color: var(--object-cyan);
+}
+.room-object.object-color-green { 
+  filter: drop-shadow(0 0 8px rgba(107, 142, 90, 0.3));
+  color: var(--object-green);
+}
+.room-object.object-color-orange { 
+  filter: drop-shadow(0 0 8px rgba(193, 120, 23, 0.3));
+  color: var(--object-orange);
+}
+.room-object.object-color-brown { 
+  filter: drop-shadow(0 0 8px rgba(139, 111, 71, 0.3));
+  color: var(--object-brown);
+}
+.room-object.object-color-purple { 
+  filter: drop-shadow(0 0 8px rgba(125, 91, 166, 0.3));
+  color: var(--object-purple);
+}
+.room-object.object-color-red { 
+  filter: drop-shadow(0 0 8px rgba(184, 84, 80, 0.3));
+  color: var(--object-red);
+}
+.room-object.object-color-gold { 
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+  color: var(--object-gold);
+}
+.room-object.object-color-gray { 
+  filter: drop-shadow(0 0 8px rgba(107, 101, 96, 0.3));
+  color: var(--object-gray);
+}
+.room-object.object-color-silver { 
+  filter: drop-shadow(0 0 8px rgba(156, 163, 175, 0.3));
+  color: var(--object-silver);
+}
+.room-object.object-color-black { 
+  filter: drop-shadow(0 0 8px rgba(55, 65, 81, 0.3));
+  color: var(--object-black);
+}
 
 /* Object icon */
 .object-icon {
