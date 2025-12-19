@@ -177,6 +177,15 @@ export class StateManager {
   }
 
   /**
+   * Set final reveal state
+   * @param {boolean} revealed - Whether final reveal has been shown
+   */
+  setFinalRevealed(revealed) {
+    this.state.finalRevealed = revealed;
+    this.saveState();
+  }
+
+  /**
    * Check if final reveal has been shown
    * @returns {boolean} True if final reveal has been shown
    */

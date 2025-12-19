@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal System Test</title>
+  <link rel="stylesheet" href="src/styles/modals.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 2rem;
+      background: #f8f9fa;
+    }
+    .test-button {
+      padding: 1rem 2rem;
+      margin: 1rem;
+      background: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .test-button:hover {
+      background: #3a7bc8;
+    }
+  </style>
+</head>
+<body>
+  <h1>Content Modal System Test</h1>
+  
+  <button class="test-button" onclick="testModal()">Test Modal</button>
+  <button class="test-button" onclick="testPanel()">Test Panel</button>
+  <button class="test-button" onclick="testInline()">Test Inline</button>
+  <button class="test-button" onclick="testContentRenderer()">Test Content Renderer</button>
+  
+  <div id="test-target" style="margin: 2rem 0; padding: 1rem; background: white; border-radius: 8px;">
+    Click "Test Inline" to see inline expansion here
+  </div>
+  
+  <!-- Accessibility live region for announcements -->
+  <div id="announcements" aria-live="polite" aria-atomic="true" style="position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;"></div>
+
+  <script type="module">
+    import ContentModal from './src/components/ContentModals/index.js';
+    import ContentRenderer from './src/utils/contentRenderer.js';
+    
+    // Sample content data
+    const sampleContent = {
+      content: {
+        professional: {
+          resume: {
+            title: "Professional Resume",
+            summary: "Passionate software developer with expertise in full-stack development.",
+            contact: {
+              email: "developer@example.com",
+              phone: "+1 (555) 123-4567"
+            }
+          }
+        },
+        personal: {
+          thinking: {
+            title: "How I Think",
+            content: "My approach to problem-solving combines systematic analysis with creative exploration.",
+            type: "markdown",
+            data: {
+              methodology: [
+                "**Understand the Problem**: Before writing any code, I spend time understanding the real problem",
+                "**Break It Down**: Complex problems become manageable when broken into smaller pieces",
+                "**Prototype Quickly**: Build small experiments to test assumptions"
+              ]
+            }
+          }
+        }
+      }
+    };
+    
+    window.testModal = function() {
+      const modal = new ContentModal({ mode: 'modal' });
+      modal.open('<h3>Test Modal</h3><p>This is a test modal with overlay and focus trapping.</p>', {
+        title: 'Test Modal',
+        announcement: 'Test modal opened'
+      });
+    };
+    
+    window.testPanel = function() {
+      const panel = new ContentModal({ mode: 'panel' });
+      panel.open('<h3>Test Panel</h3><p>This is a side panel that slides in from the right.</p>', {
+        title: 'Test Panel',
+        announcement: 'Test panel opened'
+      });
+    };
+    
+    window.testInline = function() {
+      const target = document.getElementById('test-target');
+      const inline = new ContentModal({ mode: 'inline' });
+      inline.open('<h4>Inline Content</h4><p>This content expands inline near the target element.</p>', {
+        title: 'Inline Content',
+        position: { target: target },
+        announcement: 'Inline content expanded'
+      });
+    };
+    
+    window.testContentRenderer = async function() {
+      try {
+        const modal = await ContentModal.openWithRenderer('personal.thinking', sampleContent, {
+          mode: 'modal',
+          title: 'Content Renderer Test',
+          announcement: 'Content renderer test modal opened'
+        });
+        console.log('Content renderer test successful');
+      } catch (error) {
+        console.error('Content renderer test failed:', error);
+        alert('Content renderer test failed - check console for details');
+      }
+    };
+  </script>
+</body>
+</html>

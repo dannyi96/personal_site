@@ -1,6 +1,7 @@
 // Room component - Main spatial layout container
 import { StateManager } from '../../utils/stateManager.js';
 import ObjectFactory from '../InteractiveObjects/ObjectFactory.js';
+import ContentModal from '../ContentModals/index.js';
 
 export default class Room {
   constructor() {
@@ -140,8 +141,8 @@ export default class Room {
     const { objectId, objectData, interaction, contentRef } = event.detail;
     console.log(`Room received interaction from ${objectId}:`, interaction.action);
     
-    // This will be handled by the ContentModal system when implemented
-    // For now, just log the interaction
+    // Handle different interaction types with ContentModal
+    this.openContentModal(objectId, objectData, interaction, contentRef);
   }
   
   handleObjectLocked(event) {
@@ -163,46 +164,56 @@ export default class Room {
   handleLaptopInteraction(event) {
     const { content, sections } = event.detail;
     console.log('Laptop interaction - Professional content:', sections);
+    // Content modal is handled by the generic handleObjectInteraction
   }
   
   handleWindowInteraction(event) {
     const { currentView, viewData } = event.detail;
     console.log(`Window interaction - Current view: ${currentView}`, viewData);
+    // Special handling for window toggle behavior could be added here
   }
   
   handleMapInteraction(event) {
     const { locations } = event.detail;
     console.log('Map interaction - Journey locations:', locations.length);
+    // Content modal is handled by the generic handleObjectInteraction
   }
   
   handleNotebookInteraction(event) {
     const { methodology } = event.detail;
     console.log('Notebook interaction - Methodology steps:', methodology.length);
+    // Content modal is handled by the generic handleObjectInteraction
   }
   
   handleBookshelfInteraction(event) {
     const { categories } = event.detail;
     console.log('Bookshelf interaction - Reading categories:', categories.length);
+    // Content modal is handled by the generic handleObjectInteraction
   }
   
   handleTVInteraction(event) {
     const { shows, movies } = event.detail;
-    console.log('TV interaction - Entertainment content:', { shows: shows.length, movies: movies.length });
+    console.log('TV interaction - Entertainment content:', { shows: shows?.length, movies: movies?.length });
+    // Content modal is handled by the generic handleObjectInteraction
+    // Puzzle handling is done in handlePuzzleRequired
   }
   
   handleSportsGearInteraction(event) {
     const { activities } = event.detail;
     console.log('Sports gear interaction - Activities:', activities.length);
+    // Content modal is handled by the generic handleObjectInteraction
   }
   
   handleClockInteraction(event) {
     const { principles } = event.detail;
     console.log('Clock interaction - Time principles:', principles.length);
+    // Content modal is handled by the generic handleObjectInteraction
   }
   
   handleDustbinInteraction(event) {
     const { reward, isEasterEgg } = event.detail;
     console.log('Dustbin interaction - Easter egg found!', reward);
+    // Content modal is handled by the generic handleObjectInteraction
   }
   
   handleRoomKeydown(event) {
@@ -251,9 +262,98 @@ export default class Room {
     }
   }
   
+  async openContentModal(objectId, objectData, interaction, contentRef) {
+    try {
+      const modalOptions = {
+        mode: interaction.action === 'modal' ? 'modal' : 
+              interaction.action === 'panel' ? 'panel' : 'inline',
+        title: objectData.name || objectData.id,
+        announcement: interaction.effects?.announceToScreenReader,
+        contentData: this.contentData,
+        onClose: () => {
+          // Handle modal close
+          this.announceToScreenReader('Content closed');
+        },
+        onOpen: (modal) => {
+          // Handle modal open
+          if (interaction.effects?.trackVisit) {
+            this.stateManager.markVisited(objectId);
+            this.updateObjectState(objectId);
+          }
+          if (interaction.effects?.incrementExploration) {
+            this.stateManager.incrementExploration();
+            this.checkExplorationThreshold();
+          }
+        }
+      };
+      
+      // Position inline modals near the target object
+      if (interaction.action === 'inline') {
+        const objectElement = this.objects[objectId]?.getElement();
+        if (objectElement) {
+          modalOptions.position = { target: objectElement };
+        }
+      }
+      
+      // Open modal with content rendering
+      const modal = await ContentModal.openWithRenderer(contentRef, this.contentData, modalOptions);
+      
+      // Store reference to modal for cleanup
+      if (!this.activeModals) {
+        this.activeModals = new Set();
+      }
+      this.activeModals.add(modal);
+      
+      // Remove from active modals when closed
+      const originalOnClose = modalOptions.onClose;
+      modal.onClose = (modal) => {
+        this.activeModals.delete(modal);
+        if (originalOnClose) originalOnClose(modal);
+      };
+      
+    } catch (error) {
+      console.error('Failed to open content modal:', error);
+      this.announceToScreenReader('Error opening content');
+    }
+  }
+  
   closeAllModals() {
-    // This will be implemented when modal system is added
-    console.log('Closing all modals');
+    if (this.activeModals) {
+      this.activeModals.forEach(modal => {
+        modal.close();
+      });
+      this.activeModals.clear();
+    }
+  }
+  
+  checkExplorationThreshold() {
+    const explorationCount = this.stateManager.getExplorationCount();
+    const threshold = this.contentData?.metadata?.explorationThreshold || 6;
+    
+    if (explorationCount >= threshold && !this.stateManager.isFinalRevealed()) {
+      this.stateManager.setFinalRevealed(true);
+      this.showFinalReveal();
+    }
+  }
+  
+  async showFinalReveal() {
+    const finalReveal = this.contentData?.metadata?.finalReveal;
+    if (!finalReveal) return;
+    
+    try {
+      this.stateManager.markFinalRevealed();
+      
+      const modal = await ContentModal.openWithRenderer('metadata.finalReveal', this.contentData, {
+        mode: 'modal',
+        title: finalReveal.title || 'Final Reveal',
+        announcement: 'Final content unlocked! You have explored enough to reveal the complete experience.',
+        className: 'final-reveal-modal'
+      });
+      
+      this.announceToScreenReader('Final content unlocked! You have explored enough to reveal the complete experience.');
+    } catch (error) {
+      console.error('Failed to show final reveal:', error);
+    }
   }
   
   announceToScreenReader(message) {
