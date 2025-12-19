@@ -1,14 +1,15 @@
 /* Content presentation styles */
 :root {
   --modal-bg: rgba(255, 255, 255, 0.98);
-  --modal-overlay: rgba(0, 0, 0, 0.6);
-  --modal-border: rgba(0, 0, 0, 0.1);
-  --modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  --modal-text: #333333;
-  --modal-text-secondary: #666666;
-  --modal-focus: #4a90e2;
-  --modal-radius: 12px;
-  --modal-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --modal-overlay: rgba(0, 0, 0, 0.65);
+  --modal-border: rgba(0, 0, 0, 0.08);
+  --modal-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 8px 25px rgba(0, 0, 0, 0.08);
+  --modal-text: #2d3748;
+  --modal-text-secondary: #4a5568;
+  --modal-focus: #3182ce;
+  --modal-radius: 16px;
+  --modal-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --modal-glow: rgba(49, 130, 206, 0.15);
 }
 
 /* Prevent body scroll when modal is open */
@@ -40,8 +41,8 @@ body.modal-open {
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(4px);
-  animation: fadeIn 0.3s ease-out;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .content-modal-modal .modal-panel {
@@ -56,7 +57,7 @@ body.modal-open {
   overflow: hidden;
   backdrop-filter: blur(20px);
   border: 1px solid var(--modal-border);
-  animation: slideUp 0.3s ease-out;
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .content-modal-modal .modal-content {
@@ -107,9 +108,10 @@ body.modal-open {
 }
 
 .content-modal-modal .modal-close:focus {
-  outline: 2px solid var(--modal-focus);
+  outline: 3px solid var(--modal-focus);
   outline-offset: 2px;
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--modal-glow);
+  box-shadow: 0 0 0 4px var(--modal-glow);
 }
 
 /* Panel mode styles */
@@ -295,22 +297,25 @@ body.modal-open {
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px) scale(0.95);
+    transform: translateY(30px) scale(0.9) rotate(1deg);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0) scale(1) rotate(0deg);
   }
 }
 
 @keyframes expandIn {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.85) rotate(-2deg);
+  }
+  50% {
+    transform: scale(1.02) rotate(0deg);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
   }
 }
 
@@ -669,8 +674,9 @@ body.keyboard-navigation .content-modal *:focus {
 .skills-section {
   margin: 2rem 0;
   padding: 1.5rem;
-  background: rgba(0, 0, 0, 0.02);
-  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.01) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .resume-section h3,

@@ -186,14 +186,15 @@
     "professional": {
       "resume": {
         "title": "Professional Resume",
-        "summary": "Passionate software developer with expertise in full-stack development, user experience design, and innovative problem-solving. Committed to creating accessible, performant applications that make a meaningful impact.",
+        "summary": "Creative full-stack developer with 4+ years of experience building scalable web applications and user-centered digital experiences. Passionate about accessibility, performance optimization, and innovative problem-solving. Proven track record of leading technical initiatives, mentoring junior developers, and delivering high-quality solutions that serve diverse user needs.",
+        "profilePhoto": "/src/assets/images/profile-photo.svg",
         "contact": {
-          "email": "developer@example.com",
-          "phone": "+1 (555) 123-4567",
+          "email": "hello@alexchen.dev",
+          "phone": "+1 (415) 789-2341",
           "location": "San Francisco, CA",
-          "linkedin": "https://linkedin.com/in/developer",
-          "github": "https://github.com/developer",
-          "website": "https://developer-portfolio.com"
+          "linkedin": "https://linkedin.com/in/alexchen-dev",
+          "github": "https://github.com/alexchen-dev",
+          "website": "https://alexchen.dev"
         },
         "education": [
           {
@@ -257,9 +258,10 @@
           "name": "Interactive Personal Website",
           "description": "A unique personal portfolio website featuring a point-and-click room interface that presents professional information through spatial discovery and interactive storytelling.",
           "technologies": ["JavaScript", "CSS3", "HTML5", "Vite", "GitHub Pages"],
-          "github": "https://github.com/developer/interactive-portfolio",
-          "demo": "https://developer.github.io/interactive-portfolio",
+          "github": "https://github.com/alexchen-dev/interactive-portfolio",
+          "demo": "https://alexchen-dev.github.io/interactive-portfolio",
           "status": "in-progress",
+          "image": "/src/assets/images/project-screenshots/interactive-portfolio.svg",
           "highlights": [
             "Innovative spatial navigation design",
             "Full accessibility compliance with WCAG 2.1",
@@ -271,9 +273,10 @@
           "name": "Task Management Dashboard",
           "description": "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
           "technologies": ["React", "Node.js", "Socket.io", "MongoDB", "Express"],
-          "github": "https://github.com/developer/task-dashboard",
+          "github": "https://github.com/alexchen-dev/task-dashboard",
           "demo": "https://task-dashboard-demo.com",
           "status": "completed",
+          "image": "/src/assets/images/project-screenshots/task-dashboard.svg",
           "highlights": [
             "Real-time collaboration with WebSocket integration",
             "Drag-and-drop interface with smooth animations",
@@ -285,7 +288,7 @@
           "name": "Accessibility Testing Toolkit",
           "description": "An open-source toolkit for automated accessibility testing with custom rules and detailed reporting for development teams.",
           "technologies": ["TypeScript", "Puppeteer", "axe-core", "Node.js"],
-          "github": "https://github.com/developer/a11y-toolkit",
+          "github": "https://github.com/alexchen-dev/a11y-toolkit",
           "status": "completed",
           "highlights": [
             "Custom accessibility rules for specific use cases",
@@ -327,7 +330,7 @@
     "personal": {
       "environment": {
         "title": "Environment Preferences",
-        "content": "I find inspiration in both urban energy and natural tranquility. The city fuels my creativity with its constant innovation and diverse perspectives, while mountains provide the clarity and peace needed for deep thinking and problem-solving.",
+        "content": "I find inspiration in both urban energy and natural tranquility. The city fuels my creativity with its constant innovation, diverse perspectives, and the electric buzz of collaboration. Meanwhile, mountains provide the clarity and peace needed for deep thinking, complex problem-solving, and gaining perspective on life's bigger picture.",
         "type": "text",
         "data": {
           "views": [
@@ -353,25 +356,25 @@
             {
               "name": "Hometown",
               "coordinates": { "x": "20%", "y": "60%" },
-              "description": "Where it all began - first computer, first program, first dream of building something meaningful",
+              "description": "Where it all began - got my first computer at age 12, wrote my first 'Hello World' in Python, and dreamed of building something that could change the world",
               "year": "2000-2016"
             },
             {
               "name": "University",
               "coordinates": { "x": "45%", "y": "40%" },
-              "description": "Formal education met practical application. Late nights in the lab, hackathons, and lifelong friendships",
+              "description": "Computer Science at University of Technology - where theory met practice. Countless late nights in the lab, 3 hackathon wins, and friendships that became my professional network",
               "year": "2016-2020"
             },
             {
               "name": "First Job",
               "coordinates": { "x": "70%", "y": "55%" },
-              "description": "Learning the ropes of professional development. Every bug was a lesson, every feature a small victory",
+              "description": "Digital Solutions Co. - my first real development role. Learned the art of clean code, the importance of user experience, and that every bug is a teacher in disguise",
               "year": "2020-2022"
             },
             {
               "name": "Current Role",
               "coordinates": { "x": "60%", "y": "25%" },
-              "description": "Leading projects, mentoring others, and pushing the boundaries of what's possible with code",
+              "description": "Tech Innovations Inc. - leading full-stack projects, mentoring junior developers, and architecting solutions that serve 100K+ users daily. Every day brings new challenges and opportunities to grow",
               "year": "2022-Present"
             }
           ]
@@ -514,7 +517,7 @@
   "metadata": {
     "title": "Interactive Personal Portfolio",
     "description": "Discover professional information through an interactive room experience",
-    "author": "Your Name",
+    "author": "Alex Chen",
     "version": "1.0.0",
     "explorationThreshold": 6,
     "finalReveal": {

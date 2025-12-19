@@ -1,32 +1,34 @@
 /* Room spatial layout styles with muted color scheme */
 :root {
-  /* Muted color palette */
-  --room-bg-primary: #f8f9fa;
-  --room-bg-secondary: #e9ecef;
-  --room-text-primary: #495057;
-  --room-text-secondary: #6c757d;
-  --room-text-muted: #adb5bd;
+  /* Refined muted color palette */
+  --room-bg-primary: #fafbfc;
+  --room-bg-secondary: #f1f3f5;
+  --room-text-primary: #2d3748;
+  --room-text-secondary: #4a5568;
+  --room-text-muted: #718096;
   
-  /* Object colors - muted versions */
-  --object-blue: #6c9bd1;
-  --object-cyan: #67c3cc;
-  --object-green: #81c784;
-  --object-orange: #ffb74d;
-  --object-brown: #a1887f;
-  --object-purple: #9575cd;
-  --object-red: #e57373;
-  --object-gold: #ffd54f;
-  --object-gray: #90a4ae;
+  /* Object colors - refined muted versions */
+  --object-blue: #4299e1;
+  --object-cyan: #38b2ac;
+  --object-green: #48bb78;
+  --object-orange: #ed8936;
+  --object-brown: #a0aec0;
+  --object-purple: #805ad5;
+  --object-red: #f56565;
+  --object-gold: #ecc94b;
+  --object-gray: #718096;
   
   /* Interactive states */
-  --focus-color: #4a90e2;
-  --hover-shadow: rgba(0, 0, 0, 0.1);
-  --active-shadow: rgba(0, 0, 0, 0.15);
+  --focus-color: #3182ce;
+  --hover-shadow: rgba(0, 0, 0, 0.08);
+  --active-shadow: rgba(0, 0, 0, 0.12);
+  --glow-shadow: rgba(49, 130, 206, 0.4);
   
-  /* Animation timing */
-  --transition-fast: 0.15s ease-out;
-  --transition-medium: 0.3s ease-in-out;
-  --transition-slow: 0.5s ease-in-out;
+  /* Animation timing - refined for smoother interactions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --bounce-transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* Main room container */
@@ -35,7 +37,8 @@
   width: 100%;
   height: 100vh;
   min-height: 600px;
-  background: linear-gradient(135deg, var(--room-bg-primary) 0%, var(--room-bg-secondary) 100%);
+  background: linear-gradient(135deg, var(--room-bg-primary) 0%, var(--room-bg-secondary) 50%, var(--room-bg-primary) 100%);
+  background-attachment: fixed;
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   color: var(--room-text-primary);
@@ -229,24 +232,30 @@
 
 /* Interactive states */
 .room-object:hover {
-  transform: translate(-50%, -50%) scale(1.05);
-  box-shadow: 0 4px 16px var(--hover-shadow);
-  background: rgba(255, 255, 255, 0.9);
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 8px 25px var(--hover-shadow), 0 0 0 1px rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.95);
+  transition: all var(--bounce-transition);
 }
 
 .room-object:hover .object-icon {
   filter: grayscale(0) opacity(1);
+  transform: scale(1.1);
+  transition: all var(--transition-fast);
 }
 
 .room-object:hover .object-label {
   opacity: 1;
+  transform: translateY(-2px);
+  transition: all var(--transition-fast);
 }
 
 .room-object:focus {
-  outline: 2px solid var(--focus-color);
-  outline-offset: 2px;
-  transform: translate(-50%, -50%) scale(1.05);
-  box-shadow: 0 4px 16px var(--hover-shadow);
+  outline: 3px solid var(--focus-color);
+  outline-offset: 3px;
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 8px 25px var(--hover-shadow), 0 0 0 4px var(--glow-shadow);
+  transition: all var(--bounce-transition);
 }
 
 .room-object:active,
@@ -397,24 +406,35 @@ body.keyboard-navigation *:focus {
   overflow: hidden;
 }
 
-/* Subtle animations */
+/* Enhanced subtle animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8);
+    transform: translate(-50%, -50%) scale(0.8) rotate(-5deg);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-3px);
   }
 }
 
 @keyframes pulse {
   0%, 100% {
     transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.02);
+    transform: translate(-50%, -50%) scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 }
 
@@ -423,30 +443,77 @@ body.keyboard-navigation *:focus {
     transform: translate(-50%, -50%) scale(1);
   }
   40%, 43% {
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: translate(-50%, -50%) scale(1.15);
   }
   70% {
-    transform: translate(-50%, -50%) scale(1.05);
+    transform: translate(-50%, -50%) scale(1.08);
   }
   90% {
     transform: translate(-50%, -50%) scale(1.02);
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 /* Animation classes */
 .room-object.animate-fade-in {
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.room-object.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
 
 .room-object.animate-pulse {
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulse 2.5s ease-in-out infinite;
 }
 
 .room-object.animate-bounce {
-  animation: bounce 0.5s ease-out;
+  animation: bounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Responsive design */
+.room-object.animate-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Enhanced responsive design */
+@media (max-width: 1200px) {
+  .room-object.object-size-small {
+    width: 55px;
+    height: 55px;
+    font-size: 1.3rem;
+  }
+  
+  .room-object.object-size-medium {
+    width: 70px;
+    height: 70px;
+    font-size: 1.7rem;
+  }
+  
+  .room-object.object-size-large {
+    width: 85px;
+    height: 85px;
+    font-size: 2.2rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .room-object.object-size-small {
     width: 50px;
@@ -465,73 +532,94 @@ body.keyboard-navigation *:focus {
     height: 80px;
     font-size: 2rem;
   }
+  
+  /* Improve touch targets on tablets */
+  .room-object {
+    min-width: 44px;
+    min-height: 44px;
+  }
 }
 
 @media (max-width: 768px) {
   .room-container {
     min-height: 500px;
+    background-attachment: scroll; /* Better performance on mobile */
   }
   
   .mode-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 10px 20px;
-    font-size: 12px;
+    top: 15px;
+    right: 15px;
+    padding: 12px 20px;
+    font-size: 13px;
+    backdrop-filter: blur(8px);
+  }
+  
+  .room-object {
+    /* Larger touch targets for mobile */
+    min-width: 48px;
+    min-height: 48px;
+    padding: 0.75rem;
   }
   
   .room-object.object-size-small {
-    width: 45px;
-    height: 45px;
-    font-size: 1rem;
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
   }
   
   .room-object.object-size-medium {
-    width: 55px;
-    height: 55px;
-    font-size: 1.25rem;
+    width: 60px;
+    height: 60px;
+    font-size: 1.4rem;
   }
   
   .room-object.object-size-large {
-    width: 65px;
-    height: 65px;
-    font-size: 1.5rem;
+    width: 72px;
+    height: 72px;
+    font-size: 1.7rem;
+  }
+  
+  /* Adjust hover effects for touch devices */
+  .room-object:hover {
+    transform: translate(-50%, -50%) scale(1.05);
   }
   
   /* Adjust object positions for mobile */
   .room-objects {
-    padding: 1rem;
+    padding: 1.5rem;
   }
   
   /* Recruiter mode responsive styles */
   .room-recruiter {
-    padding: 1rem;
-  }
-  
-  .recruiter-title {
-    font-size: 2rem;
-  }
-  
-  .recruiter-description {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .recruiter-section {
-    margin: 2rem 0;
     padding: 1.5rem;
   }
   
+  .recruiter-title {
+    font-size: 2.2rem;
+    line-height: 1.1;
+  }
+  
+  .recruiter-description {
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .recruiter-section {
+    margin: 2.5rem 0;
+    padding: 1.75rem;
+  }
+  
   .recruiter-section-title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
   
   .recruiter-subsection {
-    margin: 1.5rem 0;
-    padding: 1rem;
+    margin: 1.75rem 0;
+    padding: 1.25rem;
   }
   
   .recruiter-subsection-title {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
   }
 }
 

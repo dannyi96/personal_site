@@ -18,23 +18,47 @@ class App {
   }
   
   async init() {
-    // Initialize hash-based routing
-    this.setupRouting();
-    
-    // Initialize the room
-    await this.initializeRoom();
-    
-    // Setup mode toggle
-    this.setupModeToggle();
-    
-    // Setup accessibility features
-    this.setupAccessibility();
-    
-    // Listen for mode changes from room component
-    document.addEventListener('modeChange', this.handleModeChange.bind(this));
-    
-    // Setup puzzle system event listeners
-    this.setupPuzzleSystem();
+    try {
+      // Initialize hash-based routing
+      this.setupRouting();
+      
+      // Initialize the room
+      await this.initializeRoom();
+      
+      // Setup mode toggle
+      this.setupModeToggle();
+      
+      // Setup accessibility features
+      this.setupAccessibility();
+      
+      // Listen for mode changes from room component
+      document.addEventListener('modeChange', this.handleModeChange.bind(this));
+      
+      // Setup puzzle system event listeners
+      this.setupPuzzleSystem();
+      
+      // Hide loading screen after everything is initialized
+      this.hideLoadingScreen();
+      
+    } catch (error) {
+      console.error('Failed to initialize application:', error);
+      this.hideLoadingScreen(); // Hide loading screen even on error
+    }
+  }
+  
+  hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+      // Add fade-out class for smooth transition
+      loadingScreen.classList.add('fade-out');
+      
+      // Remove the loading screen from DOM after transition
+      setTimeout(() => {
+        if (loadingScreen.parentNode) {
+          loadingScreen.parentNode.removeChild(loadingScreen);
+        }
+      }, 500); // Match the CSS transition duration
+    }
   }
   
   setupRouting() {
@@ -225,5 +249,19 @@ class App {
 
 // Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  new App();
+  const app = new App();
+  
+  // Fallback: Hide loading screen after 10 seconds if something goes wrong
+  setTimeout(() => {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen && !loadingScreen.classList.contains('fade-out')) {
+      console.warn('Loading screen timeout - hiding loading screen');
+      loadingScreen.classList.add('fade-out');
+      setTimeout(() => {
+        if (loadingScreen.parentNode) {
+          loadingScreen.parentNode.removeChild(loadingScreen);
+        }
+      }, 500);
+    }
+  }, 10000);
 });
