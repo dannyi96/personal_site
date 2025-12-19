@@ -1,10 +1,211 @@
-/* Room spatial layout styles */
+/* Room spatial layout styles with muted color scheme */
+:root {
+  /* Muted color palette */
+  --room-bg-primary: #f8f9fa;
+  --room-bg-secondary: #e9ecef;
+  --room-text-primary: #495057;
+  --room-text-secondary: #6c757d;
+  --room-text-muted: #adb5bd;
+  
+  /* Object colors - muted versions */
+  --object-blue: #6c9bd1;
+  --object-cyan: #67c3cc;
+  --object-green: #81c784;
+  --object-orange: #ffb74d;
+  --object-brown: #a1887f;
+  --object-purple: #9575cd;
+  --object-red: #e57373;
+  --object-gold: #ffd54f;
+  --object-gray: #90a4ae;
+  
+  /* Interactive states */
+  --focus-color: #4a90e2;
+  --hover-shadow: rgba(0, 0, 0, 0.1);
+  --active-shadow: rgba(0, 0, 0, 0.15);
+  
+  /* Animation timing */
+  --transition-fast: 0.15s ease-out;
+  --transition-medium: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+}
+
+/* Main room container */
 .room-container {
   position: relative;
   width: 100%;
   height: 100vh;
-  background-color: #f5f5f5;
+  min-height: 600px;
+  background: linear-gradient(135deg, var(--room-bg-primary) 0%, var(--room-bg-secondary) 100%);
   overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: var(--room-text-primary);
+  transition: background var(--transition-medium);
+}
+
+.room-container:focus {
+  outline: 2px solid var(--focus-color);
+  outline-offset: -2px;
+}
+
+/* Room mode variations */
+.room-interactive {
+  cursor: default;
+}
+
+.room-recruiter {
+  background: var(--room-bg-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Objects container */
+.room-objects {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: opacity var(--transition-medium);
+}
+
+.room-recruiter .room-objects {
+  display: none;
+}
+
+/* Interactive room objects */
+.room-object {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast);
+  border-radius: 12px;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Object sizes */
+.room-object.object-size-small {
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+}
+
+.room-object.object-size-medium {
+  width: 80px;
+  height: 80px;
+  font-size: 2rem;
+}
+
+.room-object.object-size-large {
+  width: 100px;
+  height: 100px;
+  font-size: 2.5rem;
+}
+
+/* Object color variations */
+.room-object.object-color-blue { border-left: 4px solid var(--object-blue); }
+.room-object.object-color-cyan { border-left: 4px solid var(--object-cyan); }
+.room-object.object-color-green { border-left: 4px solid var(--object-green); }
+.room-object.object-color-orange { border-left: 4px solid var(--object-orange); }
+.room-object.object-color-brown { border-left: 4px solid var(--object-brown); }
+.room-object.object-color-purple { border-left: 4px solid var(--object-purple); }
+.room-object.object-color-red { border-left: 4px solid var(--object-red); }
+.room-object.object-color-gold { border-left: 4px solid var(--object-gold); }
+.room-object.object-color-gray { border-left: 4px solid var(--object-gray); }
+
+/* Object icon */
+.object-icon {
+  display: block;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  filter: grayscale(0.2) opacity(0.9);
+  transition: filter var(--transition-fast);
+}
+
+/* Object label (hidden by default, shown on hover for sighted users) */
+.object-label {
+  font-size: 0.75rem;
+  color: var(--room-text-secondary);
+  text-align: center;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  pointer-events: none;
+}
+
+/* Interactive states */
+.room-object:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 4px 16px var(--hover-shadow);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.room-object:hover .object-icon {
+  filter: grayscale(0) opacity(1);
+}
+
+.room-object:hover .object-label {
+  opacity: 1;
+}
+
+.room-object:focus {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+  transform: translate(-50%, -50%) scale(1.05);
+  box-shadow: 0 4px 16px var(--hover-shadow);
+}
+
+.room-object:active,
+.room-object.object-activated {
+  transform: translate(-50%, -50%) scale(0.95);
+  box-shadow: 0 2px 8px var(--active-shadow);
+  background: rgba(255, 255, 255, 1);
+}
+
+/* Visited state */
+.room-object.object-visited {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.room-object.object-visited .object-icon {
+  filter: grayscale(0) opacity(1);
+}
+
+/* Locked state */
+.room-object.object-locked {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.room-object.object-locked::after {
+  content: '🔒';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 0.8rem;
+  background: var(--room-bg-primary);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--room-text-muted);
+}
+
+.room-object.object-locked:hover {
+  transform: translate(-50%, -50%) scale(1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 /* Mode toggle button */
@@ -12,21 +213,35 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--room-text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 500;
   z-index: 1000;
+  backdrop-filter: blur(10px);
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.mode-toggle:hover,
+.mode-toggle:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
 .mode-toggle:focus {
-  background-color: #555;
-  outline: 2px solid #007acc;
+  outline: 2px solid var(--focus-color);
   outline-offset: 2px;
+  background: rgba(255, 255, 255, 1);
+}
+
+.mode-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Screen reader only content */
@@ -42,12 +257,223 @@
   border: 0;
 }
 
-/* Basic responsive design */
+/* Announcements for screen readers */
+#announcements {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Subtle animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  40%, 43% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  90% {
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+}
+
+/* Animation classes */
+.room-object.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.room-object.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.room-object.animate-bounce {
+  animation: bounce 0.5s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .room-object.object-size-small {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+  
+  .room-object.object-size-medium {
+    width: 65px;
+    height: 65px;
+    font-size: 1.5rem;
+  }
+  
+  .room-object.object-size-large {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .room-container {
+    min-height: 500px;
+  }
+  
   .mode-toggle {
     top: 10px;
     right: 10px;
-    padding: 8px 16px;
+    padding: 10px 20px;
     font-size: 12px;
+  }
+  
+  .room-object.object-size-small {
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+  
+  .room-object.object-size-medium {
+    width: 55px;
+    height: 55px;
+    font-size: 1.25rem;
+  }
+  
+  .room-object.object-size-large {
+    width: 65px;
+    height: 65px;
+    font-size: 1.5rem;
+  }
+  
+  /* Adjust object positions for mobile */
+  .room-objects {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .room-container {
+    min-height: 400px;
+  }
+  
+  .room-object {
+    padding: 0.25rem;
+  }
+  
+  .room-object.object-size-small {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+  
+  .room-object.object-size-medium {
+    width: 50px;
+    height: 50px;
+    font-size: 1.1rem;
+  }
+  
+  .room-object.object-size-large {
+    width: 60px;
+    height: 60px;
+    font-size: 1.3rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .room-container {
+    background: #ffffff;
+  }
+  
+  .room-object {
+    background: #ffffff;
+    border: 2px solid #000000;
+    box-shadow: none;
+  }
+  
+  .room-object:focus {
+    outline: 3px solid #0066cc;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .room-object,
+  .mode-toggle,
+  .room-objects,
+  .object-icon {
+    transition: none;
+  }
+  
+  .room-object:hover {
+    transform: translate(-50%, -50%);
+  }
+  
+  .room-object:focus {
+    transform: translate(-50%, -50%);
+  }
+  
+  .room-object:active,
+  .room-object.object-activated {
+    transform: translate(-50%, -50%);
+  }
+  
+  .room-object.animate-fade-in,
+  .room-object.animate-pulse,
+  .room-object.animate-bounce {
+    animation: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --room-bg-primary: #1a1a1a;
+    --room-bg-secondary: #2d2d2d;
+    --room-text-primary: #e0e0e0;
+    --room-text-secondary: #b0b0b0;
+    --room-text-muted: #808080;
+    --hover-shadow: rgba(255, 255, 255, 0.1);
+    --active-shadow: rgba(255, 255, 255, 0.15);
+  }
+  
+  .room-object {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .room-object:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+  
+  .mode-toggle {
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--room-text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .mode-toggle:hover {
+    background: rgba(0, 0, 0, 1);
   }
 }
